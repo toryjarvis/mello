@@ -1,30 +1,41 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import spinningm from './spinningm.svg';
 import './App.css';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import SignInSignUpForm from './components/SignInSignUpForm';
 
 function App() {
+
+  const [showForm, setShowForm] = useState(false);
+
+  // Show form, hide splash page content
+  const handleHelloMelloClick = () => {
+    setShowForm(true);
+  };
+
   return (
     <Router>
       <div className="App">
         {/* Header */}
-        <header className="App-header">
-          <h1>Welcome to Mello</h1>
-        </header>
+        <Header />
 
-        {/* Main Content */}
+        {/* Main */}
         <div className="App-main">
-          <img src={spinningm} className="App-logo" alt="logo" />
-          <p>Manage your projects with ease.</p>
-          <Link to="/landing" className="App-link">
-            Hello Mello
-          </Link>
+          {showForm ? (
+            <SignInSignUpForm />
+          ) : (
+            <>
+              <img src={spinningm} className="App-logo" alt="logo" onClick={handleHelloMelloClick} style={{ cursor: 'pointer' }} />
+              <p>Manage your projects with ease.</p>
+              <button className="App-link" onClick={handleHelloMelloClick}>Hello Mello</button>
+            </>
+          )}
         </div>
 
         {/* Footer */}
-        <footer className="App-footer">
-          <p>&copy; {new Date().getFullYear()} Mello. All Rights Reserved.</p>
-        </footer>
+        <Footer/>
       </div>
 
       {/* Routes */}

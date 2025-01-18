@@ -1,0 +1,80 @@
+.App-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #282c34;
+  color: white;
+}
+
+.Header-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.Header-button {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.Header-button:hover {
+  color: #61dafb;
+}
+
+.Header-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background-color: #282c34;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  transition: width 0.3s ease-in-out;
+}
+
+.Header-nav.open {
+  width: 100%; /* Expands the menu horizontally */
+}
+
+.Header-list {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+}
+
+.Header-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 0 10px;
+}
+
+.Header-link:hover {
+  text-decoration: none;
+  color: #4297ae;
+}
+
+.Close-button {
+  margin-left: auto;
+  padding: 10px 20px;
+  background-color: #4d4dff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.Close-button:hover {
+  background-color: #3c437b;
+}
