@@ -15,6 +15,12 @@ function App() {
     setShowForm(true);
   };
 
+  // Refactor to operate as:
+  // If user is signed in, 
+  // mello click leads to dashboard, 
+  // else load signup.
+  // This does not apply to the About/FAQ/Contact/Privacy pages
+
   return (
     <Router>
       <div className="App">
@@ -23,13 +29,22 @@ function App() {
 
         {/* Main */}
         <div className="App-main">
-          {showForm ? (
-            <SignInSignUpForm />
-          ) : (
+          {showForm ? (<SignInSignUpForm />) : (
             <>
-              <img src={spinningm} className="App-logo" alt="logo" onClick={handleHelloMelloClick} style={{ cursor: 'pointer' }} />
+              <img 
+                src={spinningm} 
+                className="App-logo" 
+                alt="logo" 
+                onClick={handleHelloMelloClick}
+                style={{ cursor: 'pointer' }}/>
+
               <p>Manage your projects with ease.</p>
-              <button className="App-link" onClick={handleHelloMelloClick}>Hello Mello</button>
+
+              <button 
+                className="App-link" 
+                onClick={handleHelloMelloClick}>
+                Hello Mello
+              </button>
             </>
           )}
         </div>
