@@ -1,74 +1,133 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import spinningm from './spinningm.svg';
 import './App.css';
+
+import MelloContext from './contexts/mellocontext';
+import TokenService from './services/token-service';
+import AuthApiService from './services/auth-api-service';
+import IdleService from './services/idle-service';
+
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import SignInSignUpForm from './components/SignInSignUpForm';
+import SignInSignUpForm from './components/Registration/SignInSignUpForm';
+import AboutPage from './pages/AboutPage';
+import FAQPage from './pages/FAQPage';
+import ContactPage from './pages/ContactPage';
+import PrivacyPage from './pages/PrivacyPage';
+import Dashboard from './pages/Dashboard';
+import LoginSignUpPage from './pages/LoginPage';
 
-function App() {
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loggedIn: false,
+      hasError: false,
+    };
+  }
 
-  const [showForm, setShowForm] = useState(false);
+  static getDerivedStateFromError(error) {
+    console.error(error);
+    return { hasError: true };
+  }
 
-  // Show form, hide splash page content
-  const handleHelloMelloClick = () => {
-    setShowForm(true);
+  componentDidMount() {
+    IdleService.setIdleCallback(this.logoutFromIdle);
+
+    if (TokenService.hasAuthToken()) {
+      IdleService.regiserIdleTimerResets();
+      TokenService.queueCallbackBeforeExpiry(() => {
+        AuthApiService.postRefreshToken();
+      });
+    }
+  }
+
+  componentWillUnmount() {
+    IdleService.unRegisterIdleResets();
+    TokenService.clearCallbackBeforeExpiry();
+  }
+
+  logoutFromIdle = () => {
+    TokenService.clearAuthToken();
+    TokenService.clearCallbackBeforeExpiry();
+    IdleService.unRegisterIdleResets();
+    this.setState({ loggedIn: false });
   };
 
-  // Refactor to operate as:
-  // If user is signed in, 
-  // mello click leads to dashboard, 
-  // else load signup.
-  // This does not apply to the About/FAQ/Contact/Privacy pages
+  setLoginStatus = (status) => {
+    this.setState({
+      loggedIn: status,
+    });
+  };
 
-  return (
-    <Router>
-      <div className="App">
-        {/* Header */}
-        <Header />
+  handleHelloMelloClick = () => {
+    const { loggedIn } = this.state;
+    const { navigate } = this.props;
+  
+    if (navigate) { // Ensure navigate exists
+      if (loggedIn) {
+        navigate('/dashboard');
+      } else {
+        navigate('/login');
+      }
+    } else {
+      console.error('Navigate function is not available!');
+    }
+  };
+  
 
-        {/* Main */}
-        <div className="App-main">
-          {showForm ? (<SignInSignUpForm />) : (
-            <>
-              <img 
-                src={spinningm} 
-                className="App-logo" 
-                alt="logo" 
-                onClick={handleHelloMelloClick}
-                style={{ cursor: 'pointer' }}/>
+  render() {
+    return (
+      <MelloContext.Provider
+        value={{
+          loggedIn: this.state.loggedIn,
+          setLoginStatus: this.setLoginStatus,
+        }}
+      >
+        <div className="App">
+          {/* Header */}
+          <Header />
 
-              <p>Manage your projects with ease.</p>
+          {/* Main */}
+          <div className="App-main">
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <>
+                    <img
+                      src={spinningm}
+                      className="App-logo"
+                      alt="logo"
+                      onClick={this.handleHelloMelloClick}
+                      style={{ cursor: 'pointer' }}
+                    />
+                    <p>Manage your projects with ease.</p>
+                    <button
+                      className="App-link"
+                      onClick={this.handleHelloMelloClick}
+                    >
+                      Hello Mello
+                    </button>
+                  </>
+                }
+              />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/faq" element={<FAQPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/privacy" element={<PrivacyPage />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/login" element={<LoginSignUpPage />} />
+            </Routes>
+          </div>
 
-              <button 
-                className="App-link" 
-                onClick={handleHelloMelloClick}>
-                Hello Mello
-              </button>
-            </>
-          )}
+          {/* Footer */}
+          <Footer />
         </div>
-
-        {/* Footer */}
-        <Footer/>
-      </div>
-
-      {/* Routes */}
-      <Routes>
-        <Route path="/landing" element={<Landing />} />
-      </Routes>
-    </Router>
-  );
-}
-
-// Placeholder for Landing Component
-function Landing() {
-  return (
-    <div>
-      <h2>This is the Landing Page!</h2>
-      <p>Content for the landing page goes here.</p>
-    </div>
-  );
+      </MelloContext.Provider>
+    );
+  }
 }
 
 export default App;

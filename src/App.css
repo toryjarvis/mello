@@ -1,6 +1,13 @@
 .App {
   text-align: center;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #201f2a;
+  box-sizing: border-box;
 }
+
 
 .App-logo {
   height: 40vmin;
@@ -8,7 +15,7 @@
 }
 
 .App-logo:hover {
-  transform: scale(1.1);
+  transform: scale(1.4);
   transition: transform 0.3s ease-in-out;
 }
 
