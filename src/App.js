@@ -10,13 +10,14 @@ import IdleService from './services/idle-service';
 
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import SignInSignUpForm from './components/Registration/SignInSignUpForm';
 import AboutPage from './pages/AboutPage';
 import FAQPage from './pages/FAQPage';
 import ContactPage from './pages/ContactPage';
 import PrivacyPage from './pages/PrivacyPage';
 import Dashboard from './pages/Dashboard';
-import LoginSignUpPage from './pages/LoginPage';
+import LoginSignUpPage from './pages/LoginSignUpPage';
+
+import Button from "./components/Utils/Button";
 
 class App extends React.Component {
   constructor(props) {
@@ -64,8 +65,8 @@ class App extends React.Component {
   handleHelloMelloClick = () => {
     const { loggedIn } = this.state;
     const { navigate } = this.props;
-  
-    if (navigate) { // Ensure navigate exists
+
+    if (navigate) {
       if (loggedIn) {
         navigate('/dashboard');
       } else {
@@ -75,7 +76,7 @@ class App extends React.Component {
       console.error('Navigate function is not available!');
     }
   };
-  
+
 
   render() {
     return (
@@ -86,30 +87,17 @@ class App extends React.Component {
         }}
       >
         <div className="App">
-          {/* Header */}
           <Header />
 
-          {/* Main */}
           <div className="App-main">
             <Routes>
               <Route
                 path="/"
                 element={
                   <>
-                    <img
-                      src={spinningm}
-                      className="App-logo"
-                      alt="logo"
-                      onClick={this.handleHelloMelloClick}
-                      style={{ cursor: 'pointer' }}
-                    />
+                    <img src={spinningm} className="App-logo" alt="logo" onClick={this.handleHelloMelloClick} style={{ cursor: 'pointer' }} />
                     <p>Manage your projects with ease.</p>
-                    <button
-                      className="App-link"
-                      onClick={this.handleHelloMelloClick}
-                    >
-                      Hello Mello
-                    </button>
+                    <Button text="Hello Mello" className="App-link" onClick={this.handleHelloMelloClick}/>
                   </>
                 }
               />
@@ -122,7 +110,6 @@ class App extends React.Component {
             </Routes>
           </div>
 
-          {/* Footer */}
           <Footer />
         </div>
       </MelloContext.Provider>

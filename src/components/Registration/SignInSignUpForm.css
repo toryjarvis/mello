@@ -1,54 +1,130 @@
+/* Form Container */
 .Form-container {
-    background-color: #f4f4f4;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 300px;
-    margin: 0 auto;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Form Wrapper */
+.Form-wrapper {
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Form Groups */
+.Form-group {
+  width: 100%;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Label Styling */
+.Form-group label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+/* Input Field Styling */
+.Form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.Form-group input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Primary Button */
+.Form-button {
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out;
+  margin-top: 15px; /* FIX: Adds proper spacing */
+}
+
+.Form-button:hover {
+  background-color: #0056b3;
+}
+
+/* Toggle Button */
+.Toggle-button {
+  width: 100%;
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  margin-top: 25px; /* FIX: Extra spacing below main button */
+  font-size: 14px;
+  transition: color 0.2s ease-in-out;
+  text-align: center;
+}
+
+.Toggle-button:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+/* Error & Success Messages */
+.Error-message {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.Success-message {
+  color: green;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.Toggle-text {
+  color: #007bff;
+  cursor: pointer;
+  margin-top: 15px;
+  font-size: 14px;
+  transition: color 0.2s ease-in-out;
+  text-align: center;
+}
+
+.Toggle-text:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 500px) {
+  .Form-container {
+    width: 90%;
+    padding: 15px;
   }
-  
-  .Form-group {
-    margin-bottom: 15px;
-    text-align: left;
+
+  .Form-wrapper {
+    max-width: 100%;
   }
-  
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  .Toggle-button {
-    background: none;
-    border: none;
-    color: #007bff;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  
-  .Toggle-button:hover {
-    text-decoration: underline;
-  }
-  
+}
