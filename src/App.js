@@ -1,13 +1,6 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import spinningm from './spinningm.svg';
-import './App.css';
-
-import MelloContext from './contexts/mellocontext';
-import TokenService from './services/token-service';
-import AuthApiService from './services/auth-api-service';
-import IdleService from './services/idle-service';
-
+import React, { useContext } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate, useNavigate } from 'react-router-dom';
+import { AuthContext } from './contexts/AuthContext';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import AboutPage from './pages/AboutPage';
@@ -16,105 +9,53 @@ import ContactPage from './pages/ContactPage';
 import PrivacyPage from './pages/PrivacyPage';
 import Dashboard from './pages/Dashboard';
 import LoginSignUpPage from './pages/LoginSignUpPage';
+import Button from './components/Utils/Button';
+import spinningm from './spinningm.svg';
+import './App.css';
 
-import Button from "./components/Utils/Button";
+const App = () => {
+  const { user, loading } = useContext(AuthContext);
+  const navigate = useNavigate(); 
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loggedIn: false,
-      hasError: false,
-    };
-  }
+  if (loading) return <p>Loading...</p>;
 
-  static getDerivedStateFromError(error) {
-    console.error(error);
-    return { hasError: true };
-  }
-
-  componentDidMount() {
-    IdleService.setIdleCallback(this.logoutFromIdle);
-
-    if (TokenService.hasAuthToken()) {
-      IdleService.regiserIdleTimerResets();
-      TokenService.queueCallbackBeforeExpiry(() => {
-        AuthApiService.postRefreshToken();
-      });
-    }
-  }
-
-  componentWillUnmount() {
-    IdleService.unRegisterIdleResets();
-    TokenService.clearCallbackBeforeExpiry();
-  }
-
-  logoutFromIdle = () => {
-    TokenService.clearAuthToken();
-    TokenService.clearCallbackBeforeExpiry();
-    IdleService.unRegisterIdleResets();
-    this.setState({ loggedIn: false });
-  };
-
-  setLoginStatus = (status) => {
-    this.setState({
-      loggedIn: status,
-    });
-  };
-
-  handleHelloMelloClick = () => {
-    const { loggedIn } = this.state;
-    const { navigate } = this.props;
-
-    if (navigate) {
-      if (loggedIn) {
-        navigate('/dashboard');
-      } else {
-        navigate('/login');
-      }
+  const handleHelloMelloClick = () => {
+    if (user) {
+      navigate('/dashboard');
     } else {
-      console.error('Navigate function is not available!');
+      navigate('/login');
     }
   };
 
+  return (
+    <div className='App'>
+      <Header />
 
-  render() {
-    return (
-      <MelloContext.Provider
-        value={{
-          loggedIn: this.state.loggedIn,
-          setLoginStatus: this.setLoginStatus,
-        }}
-      >
-        <div className="App">
-          <Header />
+      <div className='App-main'>
+        <Routes>
+          <Route
+            path='/'
+            element={
+              <>
+                <img src={spinningm} className='App-logo' alt='logo' style={{ cursor: 'pointer' }}
+                  onClick={handleHelloMelloClick} />
+                <p className='logline'>Manage your projects with ease.</p>
+                <Button text='Hello Mello' className='App-link' onClick={handleHelloMelloClick} />
+              </>
+            }
+          />
+          <Route path='/about' element={<AboutPage />} />
+          <Route path='/faq' element={<FAQPage />} />
+          <Route path='/contact' element={<ContactPage />} />
+          <Route path='/privacy' element={<PrivacyPage />} />
+          <Route path='/dashboard' element={user ? <Dashboard /> : <Navigate to='/' />} />
+          <Route path='/login' element={!user ? <LoginSignUpPage /> : <Navigate to='/dashboard' />} />
+        </Routes>
+      </div>
 
-          <div className="App-main">
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <>
-                    <img src={spinningm} className="App-logo" alt="logo" onClick={this.handleHelloMelloClick} style={{ cursor: 'pointer' }} />
-                    <p>Manage your projects with ease.</p>
-                    <Button text="Hello Mello" className="App-link" onClick={this.handleHelloMelloClick}/>
-                  </>
-                }
-              />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/faq" element={<FAQPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/privacy" element={<PrivacyPage />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/login" element={<LoginSignUpPage />} />
-            </Routes>
-          </div>
-
-          <Footer />
-        </div>
-      </MelloContext.Provider>
-    );
-  }
-}
+      <Footer />
+    </div>
+  );
+};
 
 export default App;

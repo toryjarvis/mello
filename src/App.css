@@ -1,11 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #201f2a;
+  overflow: hidden;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column; /* Make the root a column layout */
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .App {
   text-align: center;
   margin: 0;
   padding: 0;
   width: 100%;
-  min-height: 100vh;
+  min-height: 100vh; /* Ensure App takes at least the full viewport height */
   background-color: #201f2a;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column; /* Make App a column layout */
+  flex: 1; /* Allow App to grow and fill the remaining space */
 }
 
 .App-logo {
@@ -18,6 +52,10 @@
   transition: transform 0.3s ease-in-out;
 }
 
+.logline {
+  margin: 20px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -25,7 +63,7 @@
 }
 
 .App-header {
-  min-height: 5vh;
+  min-height: 8vh;
   display: flex;
   align-items: center;
   background-color: #282c34;
@@ -52,14 +90,13 @@
 
 .App-main {
   background-color: #201f2a;
-  min-height: 90vh;
+  flex: 1; /* Allow main content to grow and fill the remaining space */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  /* background-image: ; */
 }
 
 .App-link {
@@ -81,6 +118,9 @@
   background-color: #282c34;
   color: white;
   font-size: 0.9rem;
+  width: 100%; /* Ensure footer spans the full width */
+  position: sticky; /* Stick footer to the bottom */
+  bottom: 0; /* Position at the bottom */
 }
 
 @keyframes App-logo-spin {

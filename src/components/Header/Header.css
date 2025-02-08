@@ -1,80 +1,130 @@
 .App-header {
+  background-color: #18171f;
+  color: white;
+  padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 20px;
-  background-color: #282c34;
-  color: white;
-}
-
-.Header-container {
-  display: flex;
-  align-items: center;
+  height: 60px;
   position: relative;
-  width: 100%;
 }
 
-.Header-button {
+.Header-logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #b4d2db;
+}
+
+.Menu-toggle {
   font-size: 1.5rem;
   background: none;
   border: none;
   color: white;
   cursor: pointer;
-}
-
-.Header-button:hover {
-  color: #61dafb;
+  position: absolute;
+  right: 10px;
+  z-index: 30;
 }
 
 .Header-nav {
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   height: 100%;
+  background-color: #18171f;
   width: 0;
-  background-color: #282c34;
   overflow: hidden;
   display: flex;
   align-items: center;
-  transition: width 0.3s ease-in-out;
+  justify-content: flex-end;
+  transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
+  white-space: nowrap;
+  z-index: 20;
+  transform: translateX(100%);
 }
 
 .Header-nav.open {
-  width: 100%; /* Expands the menu horizontally */
+  width: fit-content;
+  padding: 0 50px 0 15px;
+  transform: translateX(0);
 }
 
 .Header-list {
   list-style: none;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  gap: 12px;
   margin: 0;
   padding: 0;
-  flex: 1;
+  align-items: center;
 }
 
-.Header-link {
+.Header-list li {
+  display: inline;
+}
+
+.Header-list a {
   color: white;
   text-decoration: none;
-  font-size: 1rem;
-  padding: 0 10px;
+  font-size: 1.1rem;
+  padding: 8px;
 }
 
-.Header-link:hover {
-  text-decoration: none;
-  color: #4297ae;
+.Header-list a:hover {
+  color: #88c0d0;
+  text-decoration: underline;
 }
 
-.Close-button {
-  margin-left: auto;
-  padding: 10px 20px;
-  background-color: #4d4dff;
+.Logout-button {
+  background-color: #b22222;
   color: white;
+  padding: 8px 15px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 1rem;
 }
 
-.Close-button:hover {
-  background-color: #3c437b;
+.Logout-button:hover {
+  background-color: #a11d1d;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .Header-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 0;
+    background-color: rgba(24, 23, 31, 0.95);
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 60px;
+    transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transform: translateX(100%);
+  }
+
+  .Header-nav.open {
+    width: 100vw;
+    padding: 0 10px; 
+    transform: translateX(0);
+  }
+
+  .Header-list {
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+  }
+
+  .Menu-toggle {
+    position: absolute;
+    right: 10px;
+    z-index: 40;
+  }
+
+  .Menu-toggle.open {
+    content: "×";
+    font-size: 2rem;
+  }
 }
