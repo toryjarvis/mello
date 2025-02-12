@@ -14,6 +14,8 @@
   font-weight: bold;
   text-decoration: none;
   color: #b4d2db;
+  background: transparent;
+  cursor: pointer;
 }
 
 .Menu-toggle {
@@ -89,7 +91,6 @@
   background-color: #a11d1d;
 }
 
-/* Mobile Styles */
 @media (max-width: 768px) {
   .Header-nav {
     position: fixed;
@@ -107,7 +108,7 @@
 
   .Header-nav.open {
     width: 100vw;
-    padding: 0 10px; 
+    padding: 0 10px;
     transform: translateX(0);
   }
 

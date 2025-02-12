@@ -1,29 +1,43 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import './Header.css';
 
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleLogoClick = () => {
+    if (user) {
+      // Redirect to dashboard if logged in      
+      navigate('/dashboard');
+    } else {
+      // Redirect to home if not logged in    
+      navigate('/');
+    }
+  };
+
   return (
     <header className='App-header'>
       <div className='Header-container'>
-        <Link to='/' className='Header-logo'>m.</Link>
+        {/* Logo Button - navigates conditionally */}
+        <button className='Header-logo' onClick={handleLogoClick}>m.</button>
 
-        <button 
-          className={`Menu-toggle ${isOpen ? 'open' : ''}`} 
-          onClick={toggleMenu} 
+        {/* Menu Toggle Button */}
+        <button
+          className={`Menu-toggle ${isOpen ? 'open' : ''}`}
+          onClick={toggleMenu}
           aria-label='Toggle menu'
         >
           {isOpen ? '×' : '☰'}
         </button>
 
+        {/* Navigation Menu */}
         <nav className={`Header-nav ${isOpen ? 'open' : ''}`}>
           <ul className='Header-list'>
             <li><Link to='/' onClick={toggleMenu}>Home</Link></li>

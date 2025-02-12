@@ -1,0 +1,32 @@
+/* Grid Container */
+.board-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+/* Individual Board Card */
+.board-card {
+    background-color: #282c34;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #b4d2db;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.board-card:hover {
+    background-color: #3a3f4b;
+}
+
+/* No Boards Message */
+.no-boards-message {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #d1d1d1;
+}
