@@ -4,8 +4,9 @@ import { AuthContext } from "../contexts/AuthContext";
 import Button from "../components/Utils/Button";
 import BoardGrid from "../components/BoardGrid/BoardGrid";
 import "./Dashboard.css";
-import { auth, db } from "../config/firebaseConfig"; 
-import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
+import { auth, db } from "../config/firebaseConfig";
+import { onAuthStateChanged } from "firebase/auth";
+import { collection, addDoc, query, where, onSnapshot } from "firebase/firestore";
 
 const Dashboard = () => {
   const { logout } = useContext(AuthContext);
@@ -17,11 +18,11 @@ const Dashboard = () => {
       console.error("User not authenticated");
       return;
     }
-  
+
     try {
       await addDoc(collection(db, "boards"), {
         name: "New Board",
-        // Ensure the user is logged in
+        // Assign board to the logged-in user
         userId: auth.currentUser.uid, 
         createdAt: new Date(),
       });
@@ -30,33 +31,30 @@ const Dashboard = () => {
       console.error("Error adding board:", error);
     }
   };
-  
-  // Fetch User Specific Boards
+
   useEffect(() => {
-    const fetchBoards = async () => {
-      if (!auth.currentUser) return;
-      
-      try {
-        const q = query(
-          collection(db, "boards"),
-          // Fetch only the current user's boards
-          where("userId", "==", auth.currentUser.uid)
-        );
-        const querySnapshot = await getDocs(q);
-        const userBoards = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-
-        setBoards(userBoards);
-      } catch (error) {
-        console.error("Error fetching boards:", error);
+    const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const q = query(collection(db, "boards"), where("userId", "==", user.uid));
+  
+        // Listen for changes in real-time
+        const unsubscribeBoards = onSnapshot(q, (querySnapshot) => {
+          const userBoards = querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+          setBoards(userBoards);
+        }, (error) => {
+          console.error("Error fetching boards:", error);
+        });
+    // Cleanup listener when user logs out or unmounts
+        return () => unsubscribeBoards();
       }
-    };
-
-    fetchBoards();
-    // Re-run if the user changes
-  }, [auth.currentUser]); 
+    });
+  // Cleanup auth listener when component unmounts
+    return () => unsubscribeAuth();
+  }, []);
+  
 
   return (
     <div className="dashboard-container">
@@ -64,19 +62,18 @@ const Dashboard = () => {
       <aside className="dashboard-sidebar">
         <h2 className="sidebar-header">Mello</h2>
         <nav className="sidebar-nav">
-          <Button 
-            type="primary" 
-            text="Add New Board" 
-            onClick={() => handleAddBoard()} 
+          <Button
+            type="primary"
+            text="Add New Board"
+            onClick={() => handleAddBoard()}
           />
           <Link to="/settings" className="sidebar-link">Settings</Link>
-          <Button type="primary" text="Logout" className="sidebar-logout" 
-          onClick={async () => {
-            await logout();
-            // Redirect to login page
-            navigate("/login");
-          }} />
-        </nav>   
+          <Button type="primary" text="Logout" className="sidebar-logout"
+            onClick={async () => {
+              await logout();
+              navigate("/login");
+            }} />
+        </nav>
       </aside>
 
       {/* Main Dashboard */}

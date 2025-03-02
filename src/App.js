@@ -12,6 +12,7 @@ import LoginSignUpPage from './pages/LoginSignUpPage';
 import Button from './components/Utils/Button';
 import spinningm from './spinningm.svg';
 import './App.css';
+import BoardDetail from './pages/BoardDetail';
 
 const App = () => {
   const { user, loading } = useContext(AuthContext);
@@ -50,6 +51,7 @@ const App = () => {
           <Route path='/privacy' element={<PrivacyPage />} />
           <Route path='/dashboard' element={user ? <Dashboard /> : <Navigate to='/' />} />
           <Route path='/login' element={!user ? <LoginSignUpPage /> : <Navigate to='/dashboard' />} />
+          <Route path="/boards/:boardId" element={<BoardDetail />} />
         </Routes>
       </div>
 

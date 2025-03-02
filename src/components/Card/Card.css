@@ -1,0 +1,19 @@
+.card-container {
+  background-color: #282c34;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 8px 0;
+  color: white;
+  word-wrap: break-word;
+}
+
+.card-container h4 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.card-container p {
+  font-size: 1rem;
+  color: #d1d1d1;
+  word-break: break-word;
+}
