@@ -1,6 +1,8 @@
 # Mello  
 
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)  ![Firebase](https://img.shields.io/badge/firebase-a08021?style=for-the-badge&logo=firebase&logoColor=ffcd34)  ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)  
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)  
+![Firebase](https://img.shields.io/badge/firebase-a08021?style=for-the-badge&logo=firebase&logoColor=ffcd34)  
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)  
 
 Mello is a Trello-inspired task management application designed for seamless project planning and organization. Built with React, Firebase, and Node.js, Mello provides an intuitive interface for users to create, organize, and manage their boards and tasks in real time. This is an ever growing personal project that largely serves to display my ability as a software engineer.
 
@@ -51,5 +53,5 @@ Mello is a Trello-inspired task management application designed for seamless pro
 
 ## Contributions  
 
-While this is a personal portfolio project, contributions are always welcome. If you notice any potential imporvements or issues that could help the application run more smoothly, feel free to fork the repository, submit issues, or open pull requests to help improve Mello!
+While this is a personal portfolio project, contributions are always welcome. If you notice any potential imporvements or issues that could help the application run more smoothly, feel free to reach out, or fork the repository, submit issues, or open pull requests to help improve Mello!
 

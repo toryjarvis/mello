@@ -5,7 +5,7 @@ import Card from "../Card/Card";
 import Button from "../Utils/Button";
 import "./List.css";
 
-const List = ({ list, boardId }) => {
+const List = ({ list, listId, boardId }) => {
   const [cards, setCards] = useState([]);
   const [newCardTitle, setNewCardTitle] = useState("");
   const [newCardDescription, setNewCardDescription] = useState("");
@@ -13,9 +13,9 @@ const List = ({ list, boardId }) => {
 
   // Fetch cards in real-time
   useEffect(() => {
-    if (!list.id) return;
+    if (!listId) return;
 
-    const cardsRef = collection(db, `boards/${boardId}/lists/${list.id}/cards`);
+    const cardsRef = collection(db, `boards/${boardId}/lists/${listId}/cards`);
 
     // Listen for changes in real-time
     const unsubscribe = onSnapshot(cardsRef, (snapshot) => {
@@ -24,7 +24,7 @@ const List = ({ list, boardId }) => {
 
     // Cleanup listener on unmount
     return () => unsubscribe();
-  }, [list.id, boardId]);
+  }, [listId, boardId]);
 
   // Adding a Card
   const handleAddCard = async () => {
@@ -33,7 +33,7 @@ const List = ({ list, boardId }) => {
       return;
     }
   
-    if (!list.id) {
+    if (!listId) {
       console.error("List ID is missing!");
       return;
     }
@@ -42,12 +42,12 @@ const List = ({ list, boardId }) => {
       const newCard = {
         title: newCardTitle, // Ensure title input is being used
         description: newCardDescription, // Ensure description input is being used
-        listId: list.id,
+        listId: listId,
         userId: auth.currentUser.uid,
         createdAt: new Date(),
       };
   
-      await addDoc(collection(db, `boards/${boardId}/lists/${list.id}/cards`), newCard);
+      await addDoc(collection(db, `boards/${boardId}/lists/${listId}/cards`), newCard);
   
       console.log("Card added successfully!", newCard);
       setNewCardTitle(""); // Reset input field
@@ -64,7 +64,7 @@ const List = ({ list, boardId }) => {
 
       {/* Display Cards */}
       {cards && cards.map((card) => (
-        <Card key={card.id} card={card} />
+        <Card key={card.id} card={card} listId={listId} />
       ))}
 
       {/* Add Card Button */}

@@ -46,7 +46,7 @@ const BoardDetail = () => {
         } else {
           console.log("Snapshot received:", snapshot.docs.map((doc) => doc.data()));
         }
-        setLists(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+        setLists(snapshot.docs.map((doc) => ({ listId: doc.id, ...doc.data() })));
       },
       (error) => {
         console.error("Error fetching lists:", error);
@@ -93,7 +93,7 @@ const BoardDetail = () => {
       {/* Lists Display */}
       <div className="lists-container">
         {lists.map((list) => (
-          <List className="list-container" key={list.id} list={list} />
+          <List className="list-container" key={list.id} listId={list.listId} list={list} />
         ))}
 
 
