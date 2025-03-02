@@ -31,11 +31,16 @@
 
 .lists-container {
     display: flex;
-    gap: 15px;
     flex-wrap: nowrap;
     overflow-x: auto;
     padding: 10px 0;
-}
+    gap: 20px;
+
+  }
+
+  .list-container {
+    margin: 10px 0;
+  }
 
 .add-list-form {
     display: flex;
@@ -46,6 +51,10 @@
     border-radius: 5px;
     width: 250px;
     align-items: center;
+}
+
+.add-list-button{
+ max-height: 300px;   
 }
 
 .list-input {
@@ -60,6 +69,10 @@
 .board-detail {
     padding: 20px;
     color: white;
+}
+
+.back-to-dash-btn{
+    align-items: end;
 }
 
 @media (max-width: 768px) {

@@ -28,16 +28,16 @@ const BoardDetail = () => {
     return () => unsubscribe();
   }, [boardId]);
 
-// Fetch Lists in Real-Time
-useEffect(() => {
+  // Fetch Lists in Real-Time
+  useEffect(() => {
     if (!boardId) {
       console.error("Board ID is missing!");
       return;
     }
-  
+
     const listsRef = collection(db, `boards/${boardId}/lists`);
     console.log("Listening to:", `boards/${boardId}/lists`);
-  
+
     const unsubscribe = onSnapshot(
       listsRef,
       (snapshot) => {
@@ -52,11 +52,9 @@ useEffect(() => {
         console.error("Error fetching lists:", error);
       }
     );
-  
+
     return () => unsubscribe();
   }, [boardId]);
-  
-
 
   // Handle List Creation
   const handleAddList = async () => {
@@ -70,7 +68,7 @@ useEffect(() => {
       await addDoc(collection(db, `boards/${boardId}/lists`), {
         name: newListName,
         boardId,
-        userId: auth.currentUser.uid, 
+        userId: auth.currentUser.uid,
         createdAt: new Date(),
       });
       setNewListName("");
@@ -83,33 +81,45 @@ useEffect(() => {
   return (
     <div className="board-detail-container">
       {/* Back Button */}
-      <Button text="← Back to Dashboard" type="secondary" onClick={() => navigate("/dashboard")} />
+      <Button
+        className="back-button"
+        text="← Back to Dashboard"
+        type="secondary"
+        onClick={() => navigate("/dashboard")}
+      />
 
-      <h1>{board ? board.name : "Loading..."}</h1>
+      <h1 className="loading-conditional">{board ? board.name : "Loading..."}</h1>
 
       {/* Lists Display */}
       <div className="lists-container">
         {lists.map((list) => (
-          <List key={list.id} list={list} />
+          <List className="list-container" key={list.id} list={list} />
         ))}
 
-        {/* Add List Button */}
-        {!showListForm ? (
-          <Button text="Add List" type="primary" onClick={() => setShowListForm(true)} />
-        ) : (
-          <div className="add-list-form">
-            <input
-              type="text"
-              placeholder="Enter list name"
-              value={newListName}
-              onChange={(e) => setNewListName(e.target.value)}
-              className="list-input"
-            />
-            <Button text="Create" type="primary" onClick={handleAddList} />
-            <Button text="Cancel" type="secondary" onClick={() => setShowListForm(false)} />
-          </div>
-        )}
+
       </div>
+
+      {/* Add List Button */}
+      {!showListForm ? (
+        <Button
+          className="add-list-button"
+          text="Add List"
+          type="primary"
+          onClick={() => setShowListForm(true)}
+        />
+      ) : (
+        <div className="add-list-form">
+          <input
+            type="text"
+            placeholder="Enter list name"
+            value={newListName}
+            onChange={(e) => setNewListName(e.target.value)}
+            className="list-input"
+          />
+          <Button text="Create" type="primary" onClick={handleAddList} />
+          <Button text="Cancel" type="secondary" onClick={() => setShowListForm(false)} />
+        </div>
+      )}
     </div>
   );
 };
