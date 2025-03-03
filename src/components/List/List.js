@@ -26,7 +26,7 @@ const List = ({ list, listId, boardId }) => {
     return () => unsubscribe();
   }, [listId, boardId]);
 
-  // Adding a Card
+  // Add a Card
   const handleAddCard = async () => {
     if (!auth.currentUser) {
       console.error("User not authenticated");
@@ -40,8 +40,8 @@ const List = ({ list, listId, boardId }) => {
   
     try {
       const newCard = {
-        title: newCardTitle, // Ensure title input is being used
-        description: newCardDescription, // Ensure description input is being used
+        title: newCardTitle,
+        description: newCardDescription,
         listId: listId,
         userId: auth.currentUser.uid,
         createdAt: new Date(),
@@ -50,8 +50,9 @@ const List = ({ list, listId, boardId }) => {
       await addDoc(collection(db, `boards/${boardId}/lists/${listId}/cards`), newCard);
   
       console.log("Card added successfully!", newCard);
-      setNewCardTitle(""); // Reset input field
-      setNewCardDescription(""); // Reset input field
+      setNewCardTitle("");
+      setNewCardDescription("");
+      setShowCardForm(false);
     } catch (error) {
       console.error("Error adding card:", error);
     }
@@ -60,7 +61,7 @@ const List = ({ list, listId, boardId }) => {
 
   return (
     <div className="list-container">
-      <h3>{list.name}</h3>
+      <h3 className="list-name-h3">{list.name}</h3>
 
       {/* Display Cards */}
       {cards && cards.map((card) => (
@@ -69,7 +70,7 @@ const List = ({ list, listId, boardId }) => {
 
       {/* Add Card Button */}
       {!showCardForm ? (
-        <Button text="Add Card" type="primary" onClick={() => setShowCardForm(true)} />
+        <Button className="add-card-btn" text="Add Card" type="primary" onClick={() => setShowCardForm(true)} />
       ) : (
         <div className="add-card-form">
           <input

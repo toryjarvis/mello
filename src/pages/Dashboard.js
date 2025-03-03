@@ -78,7 +78,7 @@ const Dashboard = () => {
 
       {/* Main Dashboard */}
       <main className="dashboard-main">
-        <h1>Welcome to Your Dashboard!</h1>
+        <h1>Your Dashboard</h1>
         <p>Manage your projects and boards here.</p>
 
         {/* Conditionally Render Board Grid or Message */}

@@ -88,7 +88,7 @@ const BoardDetail = () => {
         onClick={() => navigate("/dashboard")}
       />
 
-      <h1 className="loading-conditional">{board ? board.name : "Loading..."}</h1>
+      <h1 className="board-header">{board ? board.name : "Loading..."}</h1>
 
       {/* Lists Display */}
       <div className="lists-container">
