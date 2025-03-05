@@ -93,7 +93,7 @@ const BoardDetail = () => {
       {/* Lists Display */}
       <div className="lists-container">
         {lists.map((list) => (
-          <List className="list-container" key={list.id} listId={list.listId} list={list} />
+          <List className="list-container" key={list.listId} listId={list.listId} list={list} />
         ))}
 
 

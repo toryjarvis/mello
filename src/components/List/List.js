@@ -19,53 +19,57 @@ const List = ({ list, listId, boardId }) => {
 
     // Listen for changes in real-time
     const unsubscribe = onSnapshot(cardsRef, (snapshot) => {
-      setCards(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+      setCards(snapshot.docs.map((doc) => ({ cardId: doc.id, ...doc.data() })));
     });
 
     // Cleanup listener on unmount
     return () => unsubscribe();
   }, [listId, boardId]);
 
+
   // Add a Card
   const handleAddCard = async () => {
-    if (!auth.currentUser) {
-      console.error("User not authenticated");
-      return;
-    }
-  
-    if (!listId) {
-      console.error("List ID is missing!");
-      return;
-    }
+    if (!newCardTitle.trim()) return;
   
     try {
-      const newCard = {
+      const docRef = await addDoc(collection(db, `boards/${boardId}/lists/${listId}/cards`), {
         title: newCardTitle,
         description: newCardDescription,
-        listId: listId,
-        userId: auth.currentUser.uid,
         createdAt: new Date(),
-      };
+        userId: auth.currentUser?.uid,
+      });
   
-      await addDoc(collection(db, `boards/${boardId}/lists/${listId}/cards`), newCard);
+      console.log("New card added with ID:", docRef.id);
   
-      console.log("Card added successfully!", newCard);
+      // setCards((prevCards) => [
+      //   ...prevCards,
+      //   { id: docRef.id, title: newCardTitle, description: newCardDescription }
+      // ]);
+  
       setNewCardTitle("");
       setNewCardDescription("");
       setShowCardForm(false);
+      console.log("Card added successfully!");
     } catch (error) {
       console.error("Error adding card:", error);
     }
   };
-
 
   return (
     <div className="list-container">
       <h3 className="list-name-h3">{list.name}</h3>
 
       {/* Display Cards */}
-      {cards && cards.map((card) => (
-        <Card key={card.id} card={card} listId={listId} />
+      {cards.map((card, handleEditCard, handleDeleteCard) => (
+        <Card
+        key={card.cardId}
+        card={card}
+        cardId={card.cardId}
+        listId={listId}
+        boardId={boardId}
+        handleDeleteCard={handleDeleteCard}
+        handleEditCard={handleEditCard}
+      />
       ))}
 
       {/* Add Card Button */}

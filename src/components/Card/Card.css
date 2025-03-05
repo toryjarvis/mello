@@ -1,50 +1,82 @@
-.card-container {
-  background-color: #4b5363;
-  padding: 12px;
-  border-radius: 5px;
-  margin: 8px 0;
+.card {
+  background: #282c34;
   color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-bottom: 12px;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  position: relative;
-  width: 100%, fit-content;
-}
-
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
   gap: 8px;
 }
 
-.card-title {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 5px;
+.card-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-text {
   flex-grow: 1;
+  overflow-wrap: break-word;
 }
 
-.card-edit-btn {
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-  font-size: 1rem;
-  flex-shrink: 0;
-  margin-left: auto;
-  padding: 6px 10px;
+.card h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #b4d2db;
 }
 
-.card-edit-btn:hover {
-  color: #88c0d0;
-}
-
-.card-description {
+.card p {
   font-size: 0.9rem;
   color: #d1d1d1;
-  word-break: break-word;
-  margin-top: 5px;
+  margin: 5px 0;
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Ensure buttons are properly aligned */
+.card-actions .btn-primary {
+  background-color: #61dafb;
+  color: black;
+}
+
+.card-actions .btn-secondary {
+  background-color: #b22222;
+  color: white;
+}
+
+/* Edit Form */
+.card-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  background: white;
+  color: black;
+}
+
+/* Ensure responsiveness */
+@media (max-width: 768px) {
+  .card {
+      padding: 12px;
+  }
+
+  .card h3 {
+      font-size: 1rem;
+  }
+
+  .card p {
+      font-size: 0.85rem;
+  }
 }
