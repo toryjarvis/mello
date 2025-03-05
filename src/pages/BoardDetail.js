@@ -78,6 +78,8 @@ const BoardDetail = () => {
     }
   };
 
+
+
   return (
     <div className="board-detail-container">
       {/* Back Button */}
@@ -92,8 +94,16 @@ const BoardDetail = () => {
 
       {/* Lists Display */}
       <div className="lists-container">
-        {lists.map((list) => (
-          <List className="list-container" key={list.listId} listId={list.listId} list={list} />
+        {lists.map((list, handleEditList, handleDeleteList) => (
+          <List 
+            className="list-container" 
+            key={list.listId} 
+            listId={list.listId} 
+            list={list} 
+            boardId={boardId}
+            handleEditList={handleEditList}
+            handleDeleteList={handleDeleteList}
+          />
         ))}
 
 
