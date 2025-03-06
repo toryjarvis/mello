@@ -1,6 +1,6 @@
 import React from 'react';
 import './BoardGrid.css';
-import Board from '../Board/Board';
+import Board from '/../components/Board/Board';
 
 const BoardGrid = ({boards}) => {
     return (
