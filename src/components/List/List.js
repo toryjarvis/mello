@@ -41,8 +41,6 @@ const List = ({ list, listId, boardId }) => {
           userId: auth.currentUser.uid,
         });
         setIsEditing(false);
-        // setNewListName("");
-        // setShowListForm(false);
         console.log("List updated successfully!", editedName);
       } catch (error) {
         console.error("Error updating list:", error);
@@ -65,7 +63,6 @@ const List = ({ list, listId, boardId }) => {
       }
     };
 
-
   // Add a Card
   const handleAddCard = async () => {
     if (!newCardTitle.trim()) return;
@@ -79,12 +76,7 @@ const List = ({ list, listId, boardId }) => {
       });
   
       console.log("New card added with ID:", docRef.id);
-  
-      // setCards((prevCards) => [
-      //   ...prevCards,
-      //   { id: docRef.id, title: newCardTitle, description: newCardDescription }
-      // ]);
-  
+
       setNewCardTitle("");
       setNewCardDescription("");
       setShowCardForm(false);
@@ -112,8 +104,8 @@ const List = ({ list, listId, boardId }) => {
         <div className="list-content">
         <h3 className="list-name-h3">{list.name}</h3>
         <div className="list-actions">
-            <Button text="Edit" type="primary" onClick={() => setIsEditing(true)} />
-            <Button text="Delete" type="secondary" onClick={() => handleDeleteList(listId, boardId)} />
+            <Button className="list-edit-btn" text="Edit" type="primary" onClick={() => setIsEditing(true)} />
+            <Button className="list-delete-btn" text="Delete" type="secondary" onClick={() => handleDeleteList(listId, boardId)} />
         </div>
         </div>
       )}

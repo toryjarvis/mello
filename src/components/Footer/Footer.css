@@ -7,3 +7,10 @@
     color: white;
     font-size: 0.9rem;
   }
+
+  .privacy-footer-link{
+    margin: 0 5px;
+    color: #b4d2db;
+    text-decoration: none;
+    font-weight: bold;
+  }

@@ -1,18 +1,22 @@
 import React, { useContext } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate, useNavigate } from 'react-router-dom';
+import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import { AuthContext } from './contexts/AuthContext';
+
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+
 import AboutPage from './pages/AboutPage';
 import FAQPage from './pages/FAQPage';
 import ContactPage from './pages/ContactPage';
 import PrivacyPage from './pages/PrivacyPage';
 import Dashboard from './pages/Dashboard';
 import LoginSignUpPage from './pages/LoginSignUpPage';
+import BoardDetail from './pages/BoardDetail';
+
 import Button from './components/Utils/Button';
 import spinningm from './spinningm.svg';
+
 import './App.css';
-import BoardDetail from './pages/BoardDetail';
 
 const App = () => {
   const { user, loading } = useContext(AuthContext);
