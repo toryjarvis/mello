@@ -40,7 +40,7 @@ const Dashboard = () => {
         // Listen for changes in real-time
         const unsubscribeBoards = onSnapshot(q, (querySnapshot) => {
           const userBoards = querySnapshot.docs.map((doc) => ({
-            id: doc.id,
+            boardId: doc.id,
             ...doc.data(),
           }));
           setBoards(userBoards);
