@@ -14,7 +14,7 @@ Mello is a Trello-inspired task management application designed for seamless pro
 
 ## Tech Stack  
 
-- **Frontend:** React, Pure CSS  
+- **Frontend:** React, Pure CSS (soon to be Material UI)  
 - **Backend:** Node.js, Express  
 - **Database:** Firebase Firestore  
 - **Authentication:** Firebase Auth  
@@ -48,11 +48,11 @@ Mello is a Trello-inspired task management application designed for seamless pro
 
 ## Roadmap  
 
-- Implement drag-and-drop functionality  
-- Improve UI animations and design consistency  
-- Optimize for mobile responsiveness  
+- Board enhancements, advanced card features, account and user preferences, Firestore optimizations  
+- Full UI/UX overhaul, including migration to Material UI, drag and drop enhancements, and real time upgrades and syncing.  
+- Collaboration, multi-user support, advanced notifications and tracking, scaling, and deployment  
 - Expand board features, including lists, task cards, and deadlines  
 
 ## Contributions  
 
-While this is a personal portfolio project, contributions are always welcome. If you notice any potential imporvements or issues that could help the application run more smoothly, feel free to reach out, or fork the repository, submit issues, or open pull requests to help improve Mello!
+While this is a personal portfolio project, contributions are always welcome. If you notice any potential improvements or issues that could help the application run more smoothly, feel free to reach out, or fork the repository, submit issues, or open pull requests to help improve Mello!

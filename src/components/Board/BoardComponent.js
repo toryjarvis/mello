@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { db, auth } from "../../config/firebaseConfig";
-import { doc, updateDoc, deleteDoc } from "firebase/firestore";
-import Button from "../Utils/Button";
+import { db, auth } from '../../config/firebaseConfig';
+import { doc, updateDoc, deleteDoc } from 'firebase/firestore';
+import Button from '../Utils/Button';
 
 const Board = ({ board }) => {
     const [isEditing, setIsEditing] = useState(false);
@@ -13,16 +13,16 @@ const Board = ({ board }) => {
         try {
             const boardRef = doc(db, `boards/${boardId}`);
             await deleteDoc(boardRef);
-            console.log("Board ID " + boardId + " deleted successfully!");
+            console.log('Board ID ' + boardId + ' deleted successfully!');
         } catch (error) {
-            console.error("Error deleting board: ", error);
+            console.error('Error deleting board: ', error);
         }
     }
 
     // Handle Board Edit
     const handleBoardEdit = async (boardId) => {
-        console.log("Auth User ID:", auth.currentUser?.uid);
-        console.log("Board ID received in handleBoardEdit:", boardId);
+        console.log('Auth User ID:', auth.currentUser?.uid);
+        console.log('Board ID received in handleBoardEdit:', boardId);
 
         try {
             const boardRef = doc(db, `boards/${boardId}`);
@@ -31,28 +31,28 @@ const Board = ({ board }) => {
                 userId: auth.currentUser.uid,
             });
             setIsEditing(false);
-            console.log("Board updated successfully!", editedName);
+            console.log('Board updated successfully!', editedName);
         } catch (error) {
-            console.error("Error updating board:", error);
+            console.error('Error updating board:', error);
         }
     };
 
     return (
         <div className='board-card'>
             {isEditing ? (
-                <div className="board-edit-form">
+                <div className='board-edit-form'>
                     <input
-                        type="text"
+                        type='text'
                         value={editedName}
                         onChange={(e) => setEditedName(e.target.value)}
-                        placeholder="Board Name"
-                        className="board-input"
+                        placeholder='Board Name'
+                        className='board-input'
                     />
-                    <Button className="board-save-btn" text="Save" type="primary" onClick={() => handleBoardEdit(board.boardId)}>Save</Button>
-                    <Button className="board-cancel-btn" text="Cancel" type="secondary" onClick={() => setIsEditing(false)}>Cancel</Button>
+                    <Button className='board-save-btn' text='Save' type='primary' onClick={() => handleBoardEdit(board.boardId)}>Save</Button>
+                    <Button className='board-cancel-btn' text='Cancel' type='secondary' onClick={() => setIsEditing(false)}>Cancel</Button>
                 </div>
             ) : (
-                <div className="board-content">
+                <div className='board-content'>
 
                     <Link
                         key={board.boardId}
@@ -62,12 +62,12 @@ const Board = ({ board }) => {
                         <h3>{board.name}</h3>
                     </Link>
 
-                    <div className="board-card-buttons">
-                        <Button className="board-edit-btn" text="Edit" type="primary" onClick={() => {
+                    <div className='board-card-buttons'>
+                        <Button className='board-edit-btn' text='Edit' type='primary' onClick={() => {
                             setIsEditing(true);
                             setEditedName(board.name);
                         }}>Edit</Button>
-                        <Button className="board-delete-btn" text="Delete" type="secondary" onClick={() => handleBoardDelete(board.boardId)}>Delete</Button>
+                        <Button className='board-delete-btn' text='Delete' type='secondary' onClick={() => handleBoardDelete(board.boardId)}>Delete</Button>
                     </div>
                 </div>
 
