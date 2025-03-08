@@ -50,3 +50,12 @@
     font-size: 1.1rem;
     color: #d1d1d1;
 }
+
+.board-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 10px 0;
+}

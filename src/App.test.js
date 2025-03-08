@@ -9,7 +9,7 @@ test('renders "Hello Mello" link', () => {
 
 test('renders header button', () => {
   render(<App />);
-  const headerButton = screen.getByRole('button', { name: /m\./i }); // Checks for the "m." button
+  const headerButton = screen.getByRole('button', { name: /m\./i });
   expect(headerButton).toBeInTheDocument();
 });
 
@@ -21,16 +21,16 @@ test('renders footer text', () => {
 
 test('shows sign-in/sign-up form when "Hello Mello" link is clicked', () => {
   render(<App />);
-  const helloMelloLinks = screen.getAllByText(/Hello Mello/i); // Gets all matching elements
-  fireEvent.click(helloMelloLinks[0]); // Clicks the first instance
-  const formHeadings = screen.getAllByText(/Sign In/i); // Gets all "Sign In" headings
-  expect(formHeadings.length).toBeGreaterThan(0); // Ensure at least one form is shown
+  const helloMelloLinks = screen.getAllByText(/Hello Mello/i);
+  fireEvent.click(helloMelloLinks[0]); 
+  const formHeadings = screen.getAllByText(/Sign In/i); 
+  expect(formHeadings.length).toBeGreaterThan(0); 
 });
 
 test('shows sign-in/sign-up form when logo is clicked', () => {
   render(<App />);
-  const logos = screen.getAllByAltText(/logo/i); // Gets all matching logos
-  fireEvent.click(logos[0]); // Clicks the first logo
-  const formHeadings = screen.getAllByText(/Sign In/i); // Gets all "Sign In" headings
-  expect(formHeadings.length).toBeGreaterThan(0); // Ensure at least one form is shown
+  const logos = screen.getAllByAltText(/logo/i); 
+  fireEvent.click(logos[0]);
+  const formHeadings = screen.getAllByText(/Sign In/i);
+  expect(formHeadings.length).toBeGreaterThan(0); 
 });

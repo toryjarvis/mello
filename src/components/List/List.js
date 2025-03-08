@@ -28,45 +28,45 @@ const List = ({ list, listId, boardId }) => {
     return () => unsubscribe();
   }, [listId, boardId]);
 
-    // Handle List Edit
-    const handleEditList = async () => {
-      console.log("Auth User ID:", auth.currentUser?.uid);
-      console.log("List ID received in handleEditList:", listId);
-      console.log("Board ID:", boardId);
-  
-      try {
-        const listRef = doc(db, `boards/${boardId}/lists/${listId}`);
-        await updateDoc(listRef, {
-          name: editedName,
-          userId: auth.currentUser.uid,
-        });
-        setIsEditing(false);
-        console.log("List updated successfully!", editedName);
-      } catch (error) {
-        console.error("Error updating list:", error);
-      }
-    };
-  
-    // Handle List Delete
-    const handleDeleteList = async (listId, boardId) => {
-      console.log("Auth User ID:", auth.currentUser?.uid);
-      console.log("List ID received in handleDeleteList:", listId);
-      console.log("Board ID:", boardId);
-  
-      try {
-        const listRef = doc(db, `boards/${boardId}/lists/${listId}`);
-        await deleteDoc (listRef);
-        setIsEditing(false);
-        console.log("List deleted successfully!");
-      } catch (error) {
-        console.error("Error deleting list:", error);
-      }
-    };
+  // Handle List Edit
+  const handleEditList = async () => {
+    console.log("Auth User ID:", auth.currentUser?.uid);
+    console.log("List ID received in handleEditList:", listId);
+    console.log("Board ID:", boardId);
+
+    try {
+      const listRef = doc(db, `boards/${boardId}/lists/${listId}`);
+      await updateDoc(listRef, {
+        name: editedName,
+        userId: auth.currentUser.uid,
+      });
+      setIsEditing(false);
+      console.log("List updated successfully!", editedName);
+    } catch (error) {
+      console.error("Error updating list:", error);
+    }
+  };
+
+  // Handle List Delete
+  const handleDeleteList = async (listId, boardId) => {
+    console.log("Auth User ID:", auth.currentUser?.uid);
+    console.log("List ID received in handleDeleteList:", listId);
+    console.log("Board ID:", boardId);
+
+    try {
+      const listRef = doc(db, `boards/${boardId}/lists/${listId}`);
+      await deleteDoc(listRef);
+      setIsEditing(false);
+      console.log("List deleted successfully!");
+    } catch (error) {
+      console.error("Error deleting list:", error);
+    }
+  };
 
   // Add a Card
   const handleAddCard = async () => {
     if (!newCardTitle.trim()) return;
-  
+
     try {
       const docRef = await addDoc(collection(db, `boards/${boardId}/lists/${listId}/cards`), {
         title: newCardTitle,
@@ -74,7 +74,7 @@ const List = ({ list, listId, boardId }) => {
         createdAt: new Date(),
         userId: auth.currentUser?.uid,
       });
-  
+
       console.log("New card added with ID:", docRef.id);
 
       setNewCardTitle("");
@@ -97,30 +97,30 @@ const List = ({ list, listId, boardId }) => {
             placeholder="List Title"
             className="list-input"
           />
-          <Button text="Save" type="primary" onClick={handleEditList}  />
+          <Button text="Save" type="primary" onClick={handleEditList} />
           <Button text="Cancel" type="secondary" onClick={() => setIsEditing(false)} />
         </div>
       ) : (
         <div className="list-content">
-        <h3 className="list-name-h3">{list.name}</h3>
-        <div className="list-actions">
+          <h3 className="list-name-h3">{list.name}</h3>
+          <div className="list-actions">
             <Button className="list-edit-btn" text="Edit" type="primary" onClick={() => setIsEditing(true)} />
             <Button className="list-delete-btn" text="Delete" type="secondary" onClick={() => handleDeleteList(listId, boardId)} />
-        </div>
+          </div>
         </div>
       )}
 
       {/* Display Cards */}
       {cards.map((card, handleEditCard, handleDeleteCard) => (
         <Card
-        key={card.cardId}
-        card={card}
-        cardId={card.cardId}
-        listId={listId}
-        boardId={boardId}
-        handleDeleteCard={handleDeleteCard}
-        handleEditCard={handleEditCard}
-      />
+          key={card.cardId}
+          card={card}
+          cardId={card.cardId}
+          listId={listId}
+          boardId={boardId}
+          handleDeleteCard={handleDeleteCard}
+          handleEditCard={handleEditCard}
+        />
       ))}
 
       {/* Add Card Button */}

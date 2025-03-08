@@ -1,8 +1,9 @@
 import React from 'react';
-import './BoardGrid.css';
-import Board from '/../components/Board/Board';
+import Board from '../Board/BoardComponent';
 
-const BoardGrid = ({boards}) => {
+import './BoardGrid.css';
+
+const BoardGrid = ({ boards }) => {
     return (
         <div className='board-grid'>
             {boards.map((board) => (

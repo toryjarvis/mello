@@ -65,7 +65,8 @@
   font-weight: bold;
   border-radius: 5px;
   transition: background-color 0.3s ease-in-out;
-  margin-top: 15px; /* FIX: Adds proper spacing */
+  margin-top: 15px;
+  /* FIX: Adds proper spacing */
 }
 
 .Form-button:hover {
@@ -79,7 +80,8 @@
   border: none;
   color: #007bff;
   cursor: pointer;
-  margin-top: 25px; /* FIX: Extra spacing below main button */
+  margin-top: 25px;
+  /* FIX: Extra spacing below main button */
   font-size: 14px;
   transition: color 0.2s ease-in-out;
   text-align: center;

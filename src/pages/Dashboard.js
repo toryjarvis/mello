@@ -23,7 +23,7 @@ const Dashboard = () => {
       await addDoc(collection(db, "boards"), {
         name: "New Board",
         // Assign board to the logged-in user
-        userId: auth.currentUser.uid, 
+        userId: auth.currentUser.uid,
         createdAt: new Date(),
       });
       console.log("Board added successfully!");
@@ -36,7 +36,7 @@ const Dashboard = () => {
     const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
       if (user) {
         const q = query(collection(db, "boards"), where("userId", "==", user.uid));
-  
+
         // Listen for changes in real-time
         const unsubscribeBoards = onSnapshot(q, (querySnapshot) => {
           const userBoards = querySnapshot.docs.map((doc) => ({
@@ -47,14 +47,14 @@ const Dashboard = () => {
         }, (error) => {
           console.error("Error fetching boards:", error);
         });
-    // Cleanup listener when user logs out or unmounts
+        // Cleanup listener when user logs out or unmounts
         return () => unsubscribeBoards();
       }
     });
-  // Cleanup auth listener when component unmounts
+    // Cleanup auth listener when component unmounts
     return () => unsubscribeAuth();
   }, []);
-  
+
 
   return (
     <div className="dashboard-container">

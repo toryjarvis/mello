@@ -1,41 +1,40 @@
 /* Base style */
 .btn {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
-  }
-  
-  /* Primary */
-  .btn-primary {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .btn-primary:hover {
-    background-color: #0056b3;
-    transform: scale(1.01);
-  }
-  
-  /* Secondary */
-  .btn-secondary {
-    background-color: #6c757d;
-    color: white;
-  }
-  
-  .btn-secondary:hover {
-    background-color: #545b62;
-    transform: scale(1.05);
-  }
-  
-  /* Disabled */
-  .btn:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-    transform: none;
-  }
-  
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* Primary */
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  transform: scale(1.01);
+}
+
+/* Secondary */
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #545b62;
+  transform: scale(1.05);
+}
+
+/* Disabled */
+.btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}

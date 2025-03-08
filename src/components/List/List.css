@@ -7,7 +7,6 @@
   width: 100%;
   min-height: 100px;
   max-height: 500px;
-  /* overflow-y: auto; */
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   color: white;
   align-items: center;
@@ -99,7 +98,7 @@
 }
 
 .list-content {
-  width:100%;
+  width: 100%;
   background-color: rgba(176, 176, 176, 0.3);
   border-radius: 8px;
   display: flex;
