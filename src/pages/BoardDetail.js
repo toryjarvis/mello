@@ -103,8 +103,6 @@ const BoardDetail = () => {
             handleDeleteList={handleDeleteList}
           />
         ))}
-
-
       </div>
 
       {/* Add List Button */}

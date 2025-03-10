@@ -24,7 +24,6 @@
 .list-name-h3 {
   margin: 10px;
   font-size: 2rem;
-
 }
 
 .cards-container {
@@ -106,4 +105,14 @@
   gap: 10px;
   margin-bottom: 10px;
   align-items: center;
+}
+
+.list-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #333842;
+  padding: 10px;
+  border-radius: 5px;
+  width: 50%;
 }

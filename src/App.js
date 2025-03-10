@@ -56,8 +56,8 @@ const App = () => {
           <Route path='/privacy' element={<PrivacyPage />} />
           <Route path='/dashboard' element={user ? <Dashboard /> : <Navigate to='/' />} />
           <Route path='/login' element={!user ? <LoginSignUpPage /> : <Navigate to='/dashboard' />} />
-          <Route path="/boards/:boardId" element={<BoardDetail />} />
-          <Route path="/settings" element={!user ? <LoginSignUpPage /> : <Settings />} />
+          <Route path='/boards/:boardId' element={<BoardDetail />} />
+          <Route path='/settings' element={!user ? <LoginSignUpPage /> : <Settings />} />
         </Routes>
       </div>
 
