@@ -77,23 +77,17 @@
   display: flex;
   justify-content: center;
   gap: 10px;
+  margin-bottom: 10px;
 }
 
-.list-actions button {
-  background-color: #f44336;
+.list-actions .btn-primary {
+  background-color: #61dafb;
+  color: black;
+}
+
+.list-actions .btn-secondary {
+  background-color: #b22222;
   color: white;
-  margin: 10px;
-  border: none;
-  padding: 6px;
-  font-size: 1rem;
-  cursor: pointer;
-  border-radius: 4px;
-  text-align: center;
-  transition: background 0.3s ease-in-out;
-}
-
-.list-actions button:hover {
-  background-color: #e53935;
 }
 
 .list-content {

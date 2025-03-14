@@ -66,15 +66,6 @@ body {
   }
 }
 
-.App-header {
-  min-height: 8vh;
-  display: flex;
-  align-items: center;
-  background-color: #282c34;
-  color: white;
-  font-size: 1.0rem;
-  font-weight: bold;
-}
 
 .Header-button {
   display: flex;

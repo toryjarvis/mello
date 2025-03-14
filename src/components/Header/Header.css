@@ -1,11 +1,14 @@
 .App-header {
-  background-color: #18171f;
-  color: white;
-  padding: 10px 20px;
+  min-height: 8vh;
   display: flex;
   align-items: center;
+  background-color: #282c34;
+  color: white;
+  font-size: 1.0rem;
+  font-weight: bold;
+  
+  padding: 10px 20px;
   justify-content: space-between;
-  min-height: 460px;
   position: relative;
 }
 

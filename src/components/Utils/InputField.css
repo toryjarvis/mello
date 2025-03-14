@@ -1,18 +1,15 @@
-/* Container for input and label */
 .input-container {
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
 }
 
-/* Label styling */
 .input-label {
   font-size: 14px;
   font-weight: bold;
   margin-bottom: 5px;
 }
 
-/* Base Input Styling */
 .input-field {
   width: 100%;
   padding: 10px;
@@ -27,7 +24,6 @@
   outline: none;
 }
 
-/* Error */
 .input-error {
   border-color: red;
 }

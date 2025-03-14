@@ -34,3 +34,5 @@ test('shows sign-in/sign-up form when logo is clicked', () => {
   const formHeadings = screen.getAllByText(/Sign In/i);
   expect(formHeadings.length).toBeGreaterThan(0); 
 });
+
+

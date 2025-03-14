@@ -1,4 +1,3 @@
-/* Form Container */
 .Form-container {
   background-color: #f4f4f4;
   padding: 20px;
@@ -13,7 +12,6 @@
   align-items: center;
 }
 
-/* Form Wrapper */
 .Form-wrapper {
   width: 100%;
   max-width: 350px;
@@ -22,7 +20,6 @@
   align-items: center;
 }
 
-/* Form Groups */
 .Form-group {
   width: 100%;
   margin-bottom: 15px;
@@ -30,7 +27,6 @@
   flex-direction: column;
 }
 
-/* Label Styling */
 .Form-group label {
   font-size: 14px;
   font-weight: bold;
@@ -38,7 +34,6 @@
   color: #333;
 }
 
-/* Input Field Styling */
 .Form-group input {
   width: 100%;
   padding: 10px;
@@ -53,7 +48,6 @@
   outline: none;
 }
 
-/* Primary Button */
 .Form-button {
   width: 100%;
   background-color: #007bff;
@@ -66,14 +60,12 @@
   border-radius: 5px;
   transition: background-color 0.3s ease-in-out;
   margin-top: 15px;
-  /* FIX: Adds proper spacing */
 }
 
 .Form-button:hover {
   background-color: #0056b3;
 }
 
-/* Toggle Button */
 .Toggle-button {
   width: 100%;
   background: none;
@@ -81,7 +73,6 @@
   color: #007bff;
   cursor: pointer;
   margin-top: 25px;
-  /* FIX: Extra spacing below main button */
   font-size: 14px;
   transition: color 0.2s ease-in-out;
   text-align: center;
@@ -92,7 +83,6 @@
   color: #0056b3;
 }
 
-/* Error & Success Messages */
 .Error-message {
   color: red;
   font-size: 14px;
@@ -119,7 +109,6 @@
   color: #0056b3;
 }
 
-/* Mobile Responsiveness */
 @media (max-width: 500px) {
   .Form-container {
     width: 90%;

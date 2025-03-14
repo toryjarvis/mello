@@ -45,12 +45,6 @@
     background-color: #4f5666;
 }
 
-.no-boards-message {
-    text-align: center;
-    font-size: 1.1rem;
-    color: #d1d1d1;
-}
-
 .board-input {
     padding: 8px;
     border: 1px solid #ccc;
