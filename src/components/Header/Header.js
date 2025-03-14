@@ -40,6 +40,7 @@ const Header = () => {
         {/* Navigation Menu */}
         <nav className={`Header-nav ${isOpen ? 'open' : ''}`}>
           <ul className='Header-list'>
+            {/* TODO: Set Home link conditional redirect to dashboard based on user authentication */}
             <li><Link to='/' onClick={toggleMenu}>Home</Link></li>
             <li><Link to='/about' onClick={toggleMenu}>About Mello</Link></li>
             <li><Link to='/faq' onClick={toggleMenu}>FAQ</Link></li>

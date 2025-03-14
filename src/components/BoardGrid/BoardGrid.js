@@ -5,6 +5,7 @@ import './BoardGrid.css';
 
 const BoardGrid = ({ boards, handleEditBoard }) => {
     // Render a grid of boards
+    // TODO: Fix order of new board appearance when adding
     // TODO: Sort functionality
     // TODO: Implement drag and drop functionality
     return (

@@ -15,6 +15,7 @@ const BoardModal = ({ isOpen, onClose, mode, board }) => {
     }
   }, [mode, board]);
 
+  // TODO: Fix old board names appearing in the modal when adding new boards
   const handleBoardSave = async () => {
     if (!auth.currentUser) {
       console.error('User not authenticated');
