@@ -24,7 +24,7 @@ const SignInSignUpForm = () => {
     e.preventDefault();
     setError('');
     setSuccess('');
-  
+
     try {
       if (isSignUp) {
         await signUpUser(formData.email, formData.password);
@@ -37,7 +37,6 @@ const SignInSignUpForm = () => {
       setError(err.message || 'An error occurred. Please try again.');
     }
   };
-  
 
   return (
     <div className='Form-container'>
@@ -66,11 +65,17 @@ const SignInSignUpForm = () => {
           required
         />
 
-        <Button type='primary' text={isSignUp ? 'Sign Up' : 'Sign In'} onClick={handleSubmit} />
+        <Button
+          type='primary'
+          text={isSignUp ? 'Sign Up' : 'Sign In'}
+          onClick={handleSubmit}
+        />
       </form>
 
       <p className='Toggle-text' onClick={toggleForm}>
-        {isSignUp ? "Already have an account? Sign In" : "Don't have an account? Sign Up"}
+        {isSignUp
+          ? 'Already have an account? Sign In'
+          : 'Don\'t have an account? Sign Up'}
       </p>
     </div>
   );

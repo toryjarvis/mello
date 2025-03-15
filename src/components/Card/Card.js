@@ -23,7 +23,6 @@ const Card = ({ card, listId, cardId, boardId }) => {
         // cardId: cardId
       });
       setIsEditing(false);
-      // setShowCardEditForm(false);
       console.log('Card updated successfully!');
     } catch (error) {
       console.error('Error updating card:', error);

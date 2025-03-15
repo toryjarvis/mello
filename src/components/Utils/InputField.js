@@ -1,19 +1,31 @@
-import React from 'react';
-import './InputField.css';
+import React from "react";
+import "./InputField.css";
 
-const InputField = ({ id, label, type = 'text', placeholder, value, onChange, error }) => {
+const InputField = ({
+  id,
+  label,
+  type = "text",
+  placeholder,
+  value,
+  onChange,
+  error,
+}) => {
   return (
-    <div className='input-container'>
-      {label && <label className='input-label' htmlFor={id}>{label}</label>}
+    <div className="input-container">
+      {label && (
+        <label className="input-label" htmlFor={id}>
+          {label}
+        </label>
+      )}
       <input
         id={id}
-        className={`input-field ${error ? 'input-error' : ''}`}
+        className={`input-field ${error ? "input-error" : ""}`}
         type={type}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
       />
-      {error && <p className='input-error-message'>{error}</p>}
+      {error && <p className="input-error-message">{error}</p>}
     </div>
   );
 };
