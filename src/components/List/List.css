@@ -57,6 +57,9 @@
   background: #333842;
   padding: 10px;
   border-radius: 5px;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: auto;
 }
 
 .card-input {
@@ -66,6 +69,17 @@
   width: 100%;
   background: white;
   color: black;
+  min-width: 300px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.card-input-textarea {
+  min-height: 100px;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .button-group {

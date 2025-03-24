@@ -3,8 +3,12 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { db, auth } from '../config/firebaseConfig';
 import { collection, addDoc, query, where, onSnapshot } from 'firebase/firestore';
 import List from '../components/List/List';
-import Button from '../components/Utils/Button';
+// import Button from '../components/Utils/Button';
 import './BoardDetail.css';
+
+import Button from '@mui/material/Button';
+import { TextField } from '@mui/material';
+
 
 const BoardDetail = () => {
   const { boardId } = useParams();
@@ -83,10 +87,10 @@ const BoardDetail = () => {
       {/* Back Button */}
       <Button
         className='back-button'
-        text='← Back to Dashboard'
+        // text='← Back to Dashboard'
+        variant='contained'
         type='secondary'
-        onClick={() => navigate('/dashboard')}
-      />
+        onClick={() => navigate('/dashboard')}>← Back to Dashboard</Button>
 
       <h1 className='board-header'>{board ? board.name : 'Loading...'}</h1>
 
@@ -109,21 +113,20 @@ const BoardDetail = () => {
       {!showListForm ? (
         <Button
           className='add-list-button'
-          text='Add List'
+          variant='contained'
           type='primary'
-          onClick={() => setShowListForm(true)}
-        />
+          onClick={() => setShowListForm(true)}> Add List</Button>
       ) : (
         <div className='add-list-form'>
-          <input
+          <TextField
             type='text'
             placeholder='Enter list name'
             value={newListName}
             onChange={(e) => setNewListName(e.target.value)}
             className='list-input'
           />
-          <Button text='Create' type='primary' onClick={handleAddList} />
-          <Button text='Cancel' type='secondary' onClick={() => setShowListForm(false)} />
+          <Button text='Create' type='primary' onClick={handleAddList}>Create</Button>
+          <Button text='Cancel' type='secondary' onClick={() => setShowListForm(false)}>Cancel</Button>
         </div>
       )}
     </div>

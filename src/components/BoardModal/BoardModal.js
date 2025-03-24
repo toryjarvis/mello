@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { db, auth } from '../../config/firebaseConfig';
 import { doc, addDoc, updateDoc, collection } from 'firebase/firestore';
 
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+
 import './BoardModal.css';
 
 const BoardModal = ({ isOpen, onClose, mode, board }) => {
@@ -46,14 +49,15 @@ const BoardModal = ({ isOpen, onClose, mode, board }) => {
     <div className='modal-overlay'>
       <div className='modal-content'>
         <h2>{mode === 'add' ? 'Add New Board' : 'Edit Board'}</h2>
-        <input
+        <TextField 
           type='text'
+          label='Board Name'
+          variant='outlined'
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder='Board Name'
         />
-        <button onClick={handleBoardSave}>{mode === 'add' ? 'Add' : 'Save'}</button>
-        <button onClick={onClose}>Cancel</button>
+        <Button variant='contained' onClick={handleBoardSave}>{mode === 'add' ? 'Add' : 'Save'}</Button>
+        <Button variant='contained' onClick={onClose}>Cancel</Button>
       </div>
     </div>
   );

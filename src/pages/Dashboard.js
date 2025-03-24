@@ -3,7 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { AuthContext } from '../contexts/AuthContext';
 
-import Button from '../components/Utils/Button';
+// import Button from '../components/Utils/Button';
+import Button from '@mui/material/Button';
 import BoardGrid from '../components/BoardGrid/BoardGrid';
 import BoardModal from '../components/BoardModal/BoardModal';
 
@@ -70,13 +71,14 @@ const Dashboard = () => {
       <aside className='dashboard-sidebar'>
         <h2 className='sidebar-header' href='/dashboard'>Mello</h2>
         <nav className='sidebar-nav'>
-          <Button type='primary' text='Add New Board' onClick={() => [handleAddBoard()]} />
+          <Button type='primary' variant='contained' onClick={() => [handleAddBoard()]}>Add New Board</Button>
           <Link to='/settings' className='sidebar-link'>Settings</Link>
-          <Button type='primary' text='Logout' className='sidebar-logout'
+          <Button type='primary' className='sidebar-logout'
+            variant="contained"
             onClick={async () => {
               await logout();
               navigate('/login');
-            }} />
+            }}>Logout</Button>
         </nav>
       </aside>
 

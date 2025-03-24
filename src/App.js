@@ -4,7 +4,7 @@ import { AuthContext } from './contexts/AuthContext';
 
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import Button from './components/Utils/Button';
+// import Button from './components/Utils/Button';
 
 import AboutPage from './pages/AboutPage';
 import FAQPage from './pages/FAQPage';
@@ -14,6 +14,9 @@ import Dashboard from './pages/Dashboard';
 import LoginSignUpPage from './pages/LoginSignUpPage';
 import BoardDetail from './pages/BoardDetail';
 import Settings from './pages/Settings';
+
+import Button from '@mui/material/Button';
+
 
 import spinningm from './spinningm.svg';
 
@@ -46,7 +49,7 @@ const App = () => {
                 <img src={spinningm} className='App-logo' alt='logo' style={{ cursor: 'pointer' }}
                   onClick={handleHelloMelloClick} />
                 <p className='logline'>Manage your projects with ease.</p>
-                <Button text='Hello Mello' className='App-link' onClick={handleHelloMelloClick} />
+                <Button text='Hello Mello' variant="contained" className='App-link' onClick={handleHelloMelloClick}>Hello Mello</Button>
               </>
             }
           />

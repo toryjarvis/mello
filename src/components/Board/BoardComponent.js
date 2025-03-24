@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { db } from '../../config/firebaseConfig';
 import { doc, deleteDoc } from 'firebase/firestore';
-import Button from '../Utils/Button';
+// import Button from '../Utils/Button';
+import Button from '@mui/material/Button';
 
 const Board = ({ board, onEditBoard }) => {
     // Handle Board Delete
@@ -28,8 +29,8 @@ const Board = ({ board, onEditBoard }) => {
             </Link>
 
             <div className="board-card-buttons">
-                <Button className="board-edit-btn" text="Edit" type="primary" onClick={() => onEditBoard(board)}>Edit</Button>
-                <Button className="board-delete-btn" text="Delete" type="secondary" onClick={() => handleBoardDelete(board.boardId)}>Delete</Button>
+                <Button className="board-edit-btn" variant='contained' type="primary" onClick={() => onEditBoard(board)}>Edit</Button>
+                <Button className="board-delete-btn" variant='contained' type="secondary" onClick={() => handleBoardDelete(board.boardId)}>Delete</Button>
             </div>
         </div>
     );
