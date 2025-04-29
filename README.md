@@ -1,20 +1,20 @@
 # Mello  
 
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Firebase](https://img.shields.io/badge/firebase-a08021?style=for-the-badge&logo=firebase&logoColor=ffcd34) ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)  
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Firebase](https://img.shields.io/badge/firebase-a08021?style=for-the-badge&logo=firebase&logoColor=ffcd34) ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white)
 
-Mello is a Trello-inspired task management application designed for seamless project planning and organization. Built with React, Firebase, and Node.js, Mello provides an intuitive interface for users to create, organize, and manage their boards and tasks in real time. This is an ever growing personal project that largely serves to display my ability as a software engineer.
+Mello is a task management application built for project planning and organization. Developed using React and Material UI on the frontend, and powered by Node.js, Express, and Firebase on the backend, Mello offers users an intuitive interface for creating, organizing, and managing boards and tasks in real time. As an ongoing personal project, Mello is meant to showcase my skills in full-stack development and my ability to build scalable and user-friendly software.
 
 ## Features  
 
 - Firebase Authentication for secure user sign-up, login, and authentication handling  
 - Dynamic board creation and management  
 - Real-time updates with Firestore database integration  
-- Responsive design using pure CSS  
+- Responsive design using MaterialUI  
 - Modular and reusable UI components  
 
 ## Tech Stack  
 
-- **Frontend:** React, Pure CSS (soon to be Material UI)  
+- **Frontend:** React, MaterialUI
 - **Backend:** Node.js, Express  
 - **Database:** Firebase Firestore  
 - **Authentication:** Firebase Auth  
