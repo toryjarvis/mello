@@ -10,7 +10,7 @@ import BoardModal from '../components/BoardModal/BoardModal';
 
 import { auth, db } from '../config/firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
-import { collection, query, where, onSnapshot } from 'firebase/firestore';
+import { collection, query, where, onSnapshot, orderBy } from 'firebase/firestore';
 
 import './Dashboard.css';
 
@@ -38,14 +38,21 @@ const Dashboard = () => {
   useEffect(() => {
     const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
       if (user) {
-        const q = query(collection(db, 'boards'), where('userId', '==', user.uid));
+        const q = query(
+          collection(db, 'boards'), 
+          where('userId', '==', user.uid), 
+          orderBy('updatedAt', 'desc')
+        );
+        // , orderBy('updatedAt', 'desc')
 
+        console.log('Fetching boards for user:', user.uid);
         // Listen for changes in real-time
         const unsubscribeBoards = onSnapshot(q, (querySnapshot) => {
           const userBoards = querySnapshot.docs.map((doc) => ({
             boardId: doc.id,
             ...doc.data(),
           }));
+          console.log("Fetched boards:", userBoards);
           setBoards(userBoards);
           // Set loading to false once the boards are fetched
           setLoading(false);

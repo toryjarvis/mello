@@ -53,3 +53,11 @@
     box-sizing: border-box;
     margin: 10px 0;
 }
+
+.board-grid-options {
+    display: flex;
+    align-items: center;
+    margin: 10px 0 10px 0;
+    justify-content: space-evenly;
+    /* Leave open for future options */
+}

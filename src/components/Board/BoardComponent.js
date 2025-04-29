@@ -17,7 +17,7 @@ const Board = ({ board, onEditBoard }) => {
         }
     }
     
-    // Render treats the board as a card (remember for implementing drag and drop)
+    // Render treats the board as a "card" (remember for implementing drag and drop)
     return (
         <div className='board-card'>
             <Link
