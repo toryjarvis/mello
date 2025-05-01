@@ -17,6 +17,7 @@ const BoardDetail = () => {
   const [lists, setLists] = useState([]);
   const [newListName, setNewListName] = useState('');
   const [showListForm, setShowListForm] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   // Fetch Board Details
   useEffect(() => {
@@ -47,8 +48,10 @@ const BoardDetail = () => {
       (snapshot) => {
         if (snapshot.empty) {
           console.warn('No lists found in Firestore.');
+          setLoading(false);
         } else {
           console.log('Snapshot received:', snapshot.docs.map((doc) => doc.data()));
+          setLoading(false);
         }
         setLists(snapshot.docs.map((doc) => ({ listId: doc.id, ...doc.data() })));
       },
@@ -95,7 +98,12 @@ const BoardDetail = () => {
       <h1 className='board-header'>{board ? board.name : 'Loading...'}</h1>
 
       {/* Lists Display */}
-      <div className='lists-container'>
+
+      {/* Conditionally render loading icon, board Grid or no boards message */}
+      {loading ? (
+          <div className='loading-icon'>Loading...</div>
+        ) : lists.length > 0 ? (
+          <div className='lists-container'>
         {lists.map((list, handleEditList, handleDeleteList) => (
           <List
             className='list-container'
@@ -108,6 +116,25 @@ const BoardDetail = () => {
           />
         ))}
       </div>
+        ) : (
+          <p className='no-lists-message'>
+            You have no lists yet. Click 'Add List' to create one!
+          </p>
+        )}
+
+      {/* <div className='lists-container'>
+        {lists.map((list, handleEditList, handleDeleteList) => (
+          <List
+            className='list-container'
+            key={list.listId}
+            listId={list.listId}
+            list={list}
+            boardId={boardId}
+            handleEditList={handleEditList}
+            handleDeleteList={handleDeleteList}
+          />
+        ))}
+      </div> */}
 
       {/* Add List Button */}
       {!showListForm ? (

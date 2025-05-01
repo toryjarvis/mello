@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import Board from "../Board/BoardComponent";
 
 import "./BoardGrid.css";
 import { Button, Input } from "@mui/material";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 const BoardGrid = ({ boards, handleEditBoard }) => {
+  const { currentTheme } = useContext(ThemeContext);
+
   // Render a grid of boards
   // TODO: Implement drag and drop functionality (Finish Material UI migration before implementing drag and drop)
 
@@ -25,24 +28,39 @@ const BoardGrid = ({ boards, handleEditBoard }) => {
   };
 
   return (
-    <div className="board-grid-container">
+    <div className={`board-grid-container ${currentTheme}`}>
       <div className="board-grid-options">
-        <Button className="grid-option-btn" variant="contained" type="primary" onClick={() => handleEditBoard(null)}>
-          Add Board 
+        <Button
+          className="grid-option-btn"
+          variant="contained"
+          type="primary"
+          onClick={() => handleEditBoard(null)}
+        >
+          Add Board
         </Button>
-        <Button className="grid-option-btn" variant="contained" type="primary" onClick={() => handleBoardSort(boards)}>
+        <Button
+          className="grid-option-btn"
+          variant="contained"
+          type="primary"
+          onClick={() => handleBoardSort(boards)}
+        >
           Sort
         </Button>
-        <Button className="grid-option-btn" variant="contained" type="primary" onClick={() => handleBoardFilter(boards)}>
+        <Button
+          className="grid-option-btn"
+          variant="contained"
+          type="primary"
+          onClick={() => handleBoardFilter(boards)}
+        >
           Filter
         </Button>
         <Input
-          type="search"  
-          className="board-search-input" 
-          placeholder="Search" 
+          type="search"
+          className="board-search-input"
+          placeholder="Search..."
           variant="outlined"
-          onChange={(e) => console.log("Searching boards:", e.target.value)} 
-          />
+          onChange={(e) => console.log("Searching boards:", e.target.value)}
+        />
       </div>
       <div className="board-grid">
         {boards.map((board) => (

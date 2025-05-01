@@ -2,11 +2,13 @@ import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import './Header.css';
+import { ThemeContext } from '../../contexts/ThemeContext';
 
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const { currentTheme } = useContext(ThemeContext);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -23,7 +25,7 @@ const Header = () => {
   };
 
   return (
-    <header className='App-header'>
+    <header className={`App-header ${currentTheme}`}>
       <div className='Header-container'>
         {/* Logo Button - navigates conditionally */}
         <button className='Header-logo' onClick={handleLogoClick}>m.</button>

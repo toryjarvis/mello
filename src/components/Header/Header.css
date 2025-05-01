@@ -2,13 +2,53 @@
   min-height: 8vh;
   display: flex;
   align-items: center;
-  background-color: #282c34;
-  color: white;
+  /* background-color: #282c34;
+  color: white; */
   font-size: 1.0rem;
   font-weight: bold;
   padding: 10px 20px;
   justify-content: space-between;
   position: relative;
+}
+
+/* Light Theme */
+.App-header.light {
+  background-color: #f5f5f5;
+  color: #000000;
+}
+
+.Menu-toggle.light{
+  color: #000000;
+}
+
+/* Dark Theme */
+.App-header.dark {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+.Menu-toggle.light{
+  color: #ffffff;
+}
+
+/* Ember Theme */
+.App-header.ember {
+  background-color: #4e342e;
+  color: #ffccbc;
+}
+
+.Menu-toggle.ember {
+  color: #ffccbc;
+}
+
+/* Cyberpunk Theme */
+.App-header.cyberpunk {
+  background-color: #424242;
+  color: #00e5ff;
+}
+
+.Menu-toggle.cyberpunk {
+  color: #00e5ff;
 }
 
 .Header-logo {
