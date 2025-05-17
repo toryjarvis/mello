@@ -1,0 +1,96 @@
+/* Ember Theme */
+.App.ember {
+  --bg: #3e2723;
+  --text: #ffccbc;
+  --btn-primary-bg: #ff7043;
+  --btn-primary-color: #3e2723;
+  --btn-secondary-bg: #c62828;
+  --btn-secondary-color: #fff;
+
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+/* Layout */
+.App-main.ember {
+  background-color: #4e342e;
+  color: var(--text);
+}
+
+.App-intro.ember,
+.App-header.ember,
+.App-footer.ember {
+  background-color: #3f2823;
+  color: var(--text);
+}
+
+.Header-nav.ember {
+  background-color: #3f2823;
+}
+
+.Menu-toggle.ember,
+.privacy-footer-link.ember {
+  color: var(--text);
+}
+
+/* Dashboard */
+.dashboard-container.ember {
+  background-color: #4e342e;
+  color: var(--text);
+}
+
+.dashboard-sidebar.ember {
+  background-color: #3f2823;
+  color: var(--text);
+}
+
+/* Contact Cards */
+.Contact-LinkedIn.ember,
+.Contact-GitHub.ember,
+.Contact-Email.ember {
+  background-color: #b80000;
+}
+
+.Contact-LinkedIn a.ember,
+.Contact-GitHub a.ember,
+.Contact-Email a.ember {
+  color: var(--text);
+}
+
+.Contact-LinkedIn a:hover.ember,
+.Contact-GitHub a:hover.ember,
+.Contact-Email a:hover.ember {
+  color: #c70000;
+}
+
+/* Board UI */
+.board-grid-container.ember,
+.board-card-header.ember {
+  background-color: inherit;
+  color: var(--text);
+}
+
+.board-card.ember {
+  background-color: #4e342e;
+}
+
+.board-card.ember:hover {
+  background-color: #5d4037;
+}
+
+/* Modal & Form Inputs */
+.modal-content.ember {
+  background-color: #4e342e;
+  color: var(--text);
+}
+
+.list-input.ember {
+  background-color: #3f2823;
+  color: var(--text);
+  border: 1px solid #944635;
+}
+
+.Logout-button.ember {
+  background-color: var(--btn-secondary-bg);
+  color: var(--btn-secondary-color);
+}

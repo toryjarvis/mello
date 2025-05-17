@@ -21,7 +21,6 @@ import spinningm from "./spinningm.svg";
 
 import "./App.css";
 
-import ThemeSwitcher from "./components/ThemeSwitcher";
 import { ThemeContext } from "./contexts/ThemeContext";
 
 const App = () => {
@@ -43,20 +42,12 @@ const App = () => {
     <div className={`App ${currentTheme}`}>
       <Header />
 
-      {/* Theme Switcher */}
-      <div
-        className="theme-switcher-container"
-        style={{ display: "flex", justifyContent: "center", margin: "10px 0" }}
-      >
-        <ThemeSwitcher />
-      </div>
-
-      <div className="App-main">
+      <div className={`App-main ${currentTheme}`}>
         <Routes>
           <Route
             path="/"
             element={
-              <>
+              <div className={`App-intro ${currentTheme}`}>
                 <img
                   src={spinningm}
                   className="App-logo"
@@ -73,7 +64,7 @@ const App = () => {
                 >
                   Hello Mello
                 </Button>
-              </>
+              </div>
             }
           />
           <Route path="/about" element={<AboutPage />} />

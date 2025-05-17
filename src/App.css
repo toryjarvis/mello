@@ -1,3 +1,7 @@
+@import "./styles/App.theme.dark.css";
+@import "./styles/App.theme.ember.css";
+@import "./styles/App.theme.light.css";
+
 * {
   margin: 0;
   padding: 0;
@@ -12,9 +16,8 @@ body {
   width: 100%;
   height: 100%;
   /* background-color: #201f2a; */
-  overflow: hidden;
+  /* overflow: scroll; */
   position: relative;
-
 }
 
 #root {
@@ -26,36 +29,11 @@ body {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-/* Set themes */
-/* Light Theme */
-.App.light {
-  background-color: #ffffff;
-  color: #000000;
-}
-
-/* Dark Theme */
-.App.dark {
-  background-color: #121212;
-  color: #ffffff;
-}
-
-/* Ember Theme */
-.App.ember {
-  background-color: #3e2723;
-  color: #ffccbc;
-}
-
-/* Cyberpunk Theme */
-.App.cyberpunk {
-  background-color: #212121;
-  color: #00e5ff;
 }
 
 .App {
@@ -68,7 +46,7 @@ body {
   display: flex;
   flex-direction: column;
   flex: 1;
-  overflow: scroll;
+  /* overflow: scroll; */
 }
 
 .App-logo {
@@ -91,7 +69,6 @@ body {
   }
 }
 
-
 .Header-button {
   display: flex;
   align-items: center;
@@ -109,14 +86,25 @@ body {
 }
 
 .App-main {
-  background-color: #201f2a;
+  /* background-color: #201f2a; */
+  /* background-color: inherit; */
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: inherit;
+}
+
+.App-intro {
+  width: 50%;
+  text-align: center;
+  font-size: calc(8px + 2vmin);
+  margin: 20px;
+  padding: 20px;
+  /* background-color: #282c34; */
+  border-radius: 10px;
 }
 
 .App-link {

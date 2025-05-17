@@ -1,6 +1,10 @@
+@import "../../styles/App.theme.light.css";
+@import "../../styles/App.theme.ember.css";
+@import "../../styles/App.theme.dark.css";
+
 .card {
-  background: #282c34;
-  color: white;
+  background: inherit;
+  color: inherit;
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -10,7 +14,6 @@
   flex-direction: column;
   gap: 8px;
 }
-
 
 .card-content {
   display: flex;
@@ -27,12 +30,12 @@
 .card h3 {
   margin: 0;
   font-size: 1.2rem;
-  color: #b4d2db;
+  color: inherit;
 }
 
 .card p {
   font-size: 0.9rem;
-  color: #d1d1d1;
+  color: inherit;
   margin: 5px 0;
 }
 
@@ -42,13 +45,13 @@
 }
 
 .card-actions .btn-primary {
-  background-color: #61dafb;
-  color: black;
+  background-color: var(--btn-primary-bg, #61dafb);
+  color: var(--btn-primary-color, black);
 }
 
 .card-actions .btn-secondary {
-  background-color: #b22222;
-  color: white;
+  background-color: var(--btn-secondary-bg, #b22222);
+  color: var(--btn-secondary-color, white);
 }
 
 .card-edit-form {

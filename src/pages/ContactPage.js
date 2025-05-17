@@ -20,7 +20,7 @@ export default class ContactPage extends Component {
             <Link to="https://www.linkedin.com/in/victorjarvis/">LinkedIn</Link>
           </div>
           <div className="Contact-GitHub">
-            <Link to="https://github.com/vctrjrvs">Github</Link>
+            <Link to="https://github.com/toryjarvis">Github</Link>
           </div>
         </div>
       </div>

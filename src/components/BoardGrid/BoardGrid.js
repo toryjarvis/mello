@@ -28,7 +28,10 @@ const BoardGrid = ({ boards, handleEditBoard }) => {
   };
 
   return (
-    <div className={`board-grid-container ${currentTheme}`}>
+    <div
+      className={`board-grid-container ${currentTheme}`}
+      data-testid="board-grid-container"
+    >
       <div className="board-grid-options">
         <Button
           className="grid-option-btn"

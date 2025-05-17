@@ -1,8 +1,9 @@
-import React, { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../contexts/AuthContext';
-import './Header.css';
-import { ThemeContext } from '../../contexts/ThemeContext';
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
+import "./Header.css";
+import { ThemeContext } from "../../contexts/ThemeContext";
+import ThemeSwitcher from "./../ThemeSwitcher";
 
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
@@ -16,39 +17,72 @@ const Header = () => {
 
   const handleLogoClick = () => {
     if (user) {
-      // Redirect to dashboard if logged in      
-      navigate('/dashboard');
+      // Redirect to dashboard if logged in
+      navigate("/dashboard");
     } else {
-      // Redirect to home if not logged in    
-      navigate('/');
+      // Redirect to home if not logged in
+      navigate("/");
     }
   };
 
   return (
     <header className={`App-header ${currentTheme}`}>
-      <div className='Header-container'>
-        {/* Logo Button - navigates conditionally */}
-        <button className='Header-logo' onClick={handleLogoClick}>m.</button>
+      <div className="Header-container">
+        {/* /* Logo Button - navigates conditionally */}
+        <button className="Header-logo" onClick={handleLogoClick}>
+          m.
+        </button>
 
         {/* Menu Toggle Button */}
         <button
-          className={`Menu-toggle ${isOpen ? 'open' : ''}`}
+          className={`Menu-toggle ${isOpen ? "open" : ""}`}
           onClick={toggleMenu}
-          aria-label='Toggle menu'
+          aria-label="Toggle menu"
         >
-          {isOpen ? '×' : '☰'}
+          {isOpen ? "✖" : "☰"}
         </button>
 
         {/* Navigation Menu */}
-        <nav className={`Header-nav ${isOpen ? 'open' : ''}`}>
-          <ul className='Header-list'>
+        <nav className={`Header-nav ${isOpen ? "open" : ""} ${currentTheme}`}>
+          <ul className="Header-list">
+            {/* Theme Switcher */}
+            <div
+              className="theme-switcher-container"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                height: "fit-content",
+              }}
+            >
+              <ThemeSwitcher />
+            </div>
             {/* TODO: Set Home link conditional redirect to dashboard based on user authentication */}
-            <li><Link to='/' onClick={toggleMenu}>Home</Link></li>
-            <li><Link to='/about' onClick={toggleMenu}>About Mello</Link></li>
-            <li><Link to='/faq' onClick={toggleMenu}>FAQ</Link></li>
-            <li><Link to='/contact' onClick={toggleMenu}>Contact</Link></li>
+            <li>
+              <Link to="/" onClick={toggleMenu}>
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/about" onClick={toggleMenu}>
+                About Mello
+              </Link>
+            </li>
+            <li>
+              <Link to="/faq" onClick={toggleMenu}>
+                FAQ
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" onClick={toggleMenu}>
+                Contact
+              </Link>
+            </li>
             {user && (
-              <li><button onClick={logout} className='Logout-button'>Logout</button></li>
+              <li>
+                <button onClick={logout} className="Logout-button">
+                  Logout
+                </button>
+              </li>
             )}
           </ul>
         </nav>

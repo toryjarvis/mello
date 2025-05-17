@@ -1,17 +1,22 @@
+@import "../../styles/App.theme.light.css";
+@import "../../styles/App.theme.ember.css";
+@import "../../styles/App.theme.dark.css";
+
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: black;
+  opacity: 0.8;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .modal-content {
-  background: white;
+  background-color: inherit;
   padding: 20px;
   border-radius: 8px;
   width: 70%;

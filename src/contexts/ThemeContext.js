@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 export const ThemeContext = createContext();
@@ -32,17 +32,6 @@ const themes = {
       text: { primary: "#ffffff", secondary: "#ffccbc" },
     },
   }),
-
-  // "Cyberpunk" mode
-  cyberpunk: createTheme({
-    palette: {
-      mode: "dark",
-      primary: { main: "#00e5ff" },
-      secondary: { main: "#ff3d00" },
-      background: { default: "#212121", paper: "#424242" },
-      text: { primary: "#e1f5fe", secondary: "#ff8a80" },
-    },
-  }),
 };
 
 export const ThemeContextProvider = ({ children }) => {
@@ -51,6 +40,11 @@ export const ThemeContextProvider = ({ children }) => {
   const switchTheme = (themeName) => {
     setCurrentTheme(themeName);
   };
+
+  useEffect(() => {
+    document.body.classList.remove("light", "dark", "ember");
+    document.body.classList.add(currentTheme);
+  }, [currentTheme]);
 
   return (
     <ThemeContext.Provider value={{ currentTheme, switchTheme }}>

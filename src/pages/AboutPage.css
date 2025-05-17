@@ -1,12 +1,20 @@
+@import "./../styles/App.theme.light.css";
+@import "./../styles/App.theme.ember.css";
+@import "./../styles/App.theme.dark.css";
+
 .About-Container {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: inherit;
+  color: inherit;
 }
 .About-Text {
-    color: white;
-    margin-top: 20px;
-    width:auto;
-    max-width: 1000px;
+  color: inherit;
+  margin-top: 20px;
+  width: auto;
+  max-width: 1000px;
+  line-height: 1.5;
+  font-size: 1.1rem;
 }
