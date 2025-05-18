@@ -1,10 +1,16 @@
 import React from 'react';
+import './Settings.css';
+import { ThemeContext } from "../contexts/ThemeContext";
+import { useContext } from 'react';
+
 
 const Settings = () => {
+      const { currentTheme } = useContext(ThemeContext);
+    
     return (
-        <div>
+        <div className={`settings-container ${currentTheme}`}>
             <h1>Settings</h1>
-            <form>
+            <form className="settings-form">
                 <div>
                     <label htmlFor='username'>Username:</label>
                     <input type='text' id='username' name='username' />

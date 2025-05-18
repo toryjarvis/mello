@@ -91,7 +91,7 @@ const Dashboard = () => {
         <Link className="sidebar-header" href="/dashboard">
           Mello
         </Link>
-        <nav className="sidebar-nav">
+        <nav className={`sidebar-nav ${currentTheme}`}>
           <Button
             type="primary"
             variant="contained"
@@ -117,7 +117,7 @@ const Dashboard = () => {
       </aside>
 
       {/* Main Dashboard */}
-      <main className="dashboard-main">
+      <main className={`dashboard-main ${currentTheme}`}>
         <h1>Your Dashboard</h1>
         <p>Manage your projects and boards here.</p>
 

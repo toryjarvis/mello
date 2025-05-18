@@ -32,7 +32,7 @@ const BoardGrid = ({ boards, handleEditBoard }) => {
       className={`board-grid-container ${currentTheme}`}
       data-testid="board-grid-container"
     >
-      <div className="board-grid-options">
+      <div className={`board-grid-options ${currentTheme}`}>
         <Button
           className="grid-option-btn"
           variant="contained"
@@ -68,6 +68,7 @@ const BoardGrid = ({ boards, handleEditBoard }) => {
       <div className="board-grid">
         {boards.map((board) => (
           <Board
+            className="board-grid-item"
             key={board.boardId}
             board={board}
             onEditBoard={handleEditBoard}

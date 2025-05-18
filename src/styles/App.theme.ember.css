@@ -1,11 +1,21 @@
-/* Ember Theme */
+/* Ember Theme Overview */
 .App.ember {
-  --bg: #3e2723;
-  --text: #ffccbc;
-  --btn-primary-bg: #ff7043;
-  --btn-primary-color: #3e2723;
-  --btn-secondary-bg: #c62828;
-  --btn-secondary-color: #fff;
+  --bg: #2d1a13;
+  --surface: #43281c;
+  --text: #ffe5d0;
+  --text-secondary: #ffd6b3;
+  --btn-primary-bg: #ff7847;
+  --btn-primary-color: #2d1a13;
+  --btn-secondary-bg: #c0392b;
+  --btn-secondary-color: #ffe5d0;
+  --accent: #ff7847;
+  --accent-secondary: #ffb26b;
+  --accent-hover: #ff9e5c;
+  --danger: #c0392b;
+  --danger-hover: #e74c3c;
+  --border: #461700;
+  --board-card-bg: #633022;
+  --board-card-bg-hover: #5c1f1f;
 
   background-color: var(--bg);
   color: var(--text);
@@ -13,34 +23,50 @@
 
 /* Layout */
 .App-main.ember {
-  background-color: #4e342e;
+  background-color: var(--bg);
   color: var(--text);
 }
 
-.App-intro.ember,
-.App-header.ember,
-.App-footer.ember {
-  background-color: #3f2823;
+.App-header.ember {
+  background-color: var(--surface);
   color: var(--text);
+  border-bottom: 1px solid var(--border);
+}
+
+.App-intro.ember {
+  background-color: var(--surface);
+  color: var(--text);
+  border: none;
+}
+
+.App-footer.ember {
+  background-color: var(--surface);
+  color: var(--text);
+  border-top: 1px solid var(--border);
 }
 
 .Header-nav.ember {
-  background-color: #3f2823;
+  background-color: var(--surface);
 }
 
 .Menu-toggle.ember,
 .privacy-footer-link.ember {
-  color: var(--text);
+  color: var(--accent);
 }
 
 /* Dashboard */
+.dashboard-main.ember {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
 .dashboard-container.ember {
-  background-color: #4e342e;
+  background-color: var(--surface);
   color: var(--text);
 }
 
 .dashboard-sidebar.ember {
-  background-color: #3f2823;
+  background-color: var(--bg);
   color: var(--text);
 }
 
@@ -48,49 +74,71 @@
 .Contact-LinkedIn.ember,
 .Contact-GitHub.ember,
 .Contact-Email.ember {
-  background-color: #b80000;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
 }
 
 .Contact-LinkedIn a.ember,
 .Contact-GitHub a.ember,
 .Contact-Email a.ember {
-  color: var(--text);
+  color: var(--accent);
 }
 
 .Contact-LinkedIn a:hover.ember,
 .Contact-GitHub a:hover.ember,
 .Contact-Email a:hover.ember {
-  color: #c70000;
+  color: var(--accent-hover);
 }
 
 /* Board UI */
 .board-grid-container.ember,
 .board-card-header.ember {
-  background-color: inherit;
+  background-color: var(--surface);
   color: var(--text);
 }
 
 .board-card.ember {
-  background-color: #4e342e;
+  background-color: var(--board-card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
 }
 
 .board-card.ember:hover {
-  background-color: #5d4037;
+  background-color: var(--board-card-bg-hover);
+  color: var(--accent-secondary);
+  border-color: var(--accent);
 }
 
 /* Modal & Form Inputs */
 .modal-content.ember {
-  background-color: #4e342e;
+  background-color: var(--surface);
   color: var(--text);
 }
 
 .list-input.ember {
-  background-color: #3f2823;
+  background-color: var(--bg);
   color: var(--text);
-  border: 1px solid #944635;
+  border: 1px solid var(--border);
 }
 
 .Logout-button.ember {
-  background-color: var(--btn-secondary-bg);
+  background-color: var(--danger);
   color: var(--btn-secondary-color);
+  border: none;
+}
+
+.Logout-button.ember:hover {
+  background-color: var(--danger-hover);
+  color: var(--btn-secondary-color);
+}
+
+/* Settings */
+.settings-container.ember {
+  background-color: var(--board-card-bg);
+  color: var(--text);
+}
+
+.settings-form.ember {
+  background-color: var(--board-card-bg);
+  color: var(--text);
 }

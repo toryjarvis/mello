@@ -39,7 +39,7 @@
   flex: 1;
   min-width: 220px;
   padding: 20px;
-  background-color: inherit;
+  background-color: var(--board-card-bg, #e6e6e6);
   border-radius: 10px;
   font-size: 2rem;
   font-weight: bold;
@@ -47,6 +47,13 @@
   color: inherit;
   text-decoration: none;
   transition: transform 0.3s ease;
+}
+
+.Contact-LinkedIn:hover,
+.Contact-GitHub:hover,
+.Contact-Email:hover {
+  transform: scale(1.05);
+  background-color: var(--board-card-bg-hover, #d4d4d4);
 }
 
 .Contact-LinkedIn a,

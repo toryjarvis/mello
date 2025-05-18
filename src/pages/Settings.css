@@ -1,0 +1,102 @@
+@import "./../styles/App.theme.light.css";
+@import "./../styles/App.theme.ember.css";
+@import "./../styles/App.theme.dark.css";
+
+.settings-container {
+  max-width: 420px;
+  margin: 40px auto;
+  padding: 32px 24px;
+  background-color: inherit;
+  color: inherit;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.settings-container h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 28px;
+  color: inherit;
+}
+
+.settings-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.settings-form label {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: inherit;
+}
+
+.settings-form input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border, #e5e7eb);
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #f3f4f6;
+  color: #23272f;
+  transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+}
+
+/* force a regular input look on chrome, edge, and safari */
+.settings-form input:-webkit-autofill,
+.settings-form input:-webkit-autofill:focus,
+.settings-form input:-webkit-autofill:hover,
+.settings-form input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
+  box-shadow: 0 0 0 1000px #fff inset !important;
+  -webkit-text-fill-color: #23272f !important;
+  color: #23272f !important;
+  background-color: #fff !important;
+  caret-color: #23272f !important;
+  border: 1px solid var(--border, #e5e7eb) !important;
+  transition: background-color 0s 600000s, color 0s 600000s;
+}
+
+/* force a regular input look on firefox */
+.settings-form input:autofill {
+  box-shadow: 0 0 0 1000px #fff inset !important;
+  -webkit-text-fill-color: #23272f !important;
+  color: #23272f !important;
+  background-color: #fff !important;
+  caret-color: #23272f !important;
+  border: 1px solid var(--border, #e5e7eb) !important;
+}
+
+.settings-form input:focus {
+  border-color: var(--accent, #2563eb);
+  outline: none;
+}
+
+.settings-form button[type="submit"] {
+  margin-top: 18px;
+  padding: 12px 0;
+  width: 100%;
+  background-color: var(--btn-primary-bg, #2563eb);
+  color: var(--btn-primary-color, #fff);
+  border: none;
+  border-radius: 5px;
+  font-size: 1.08rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.settings-form button[type="submit"]:hover {
+  background-color: var(--accent, #1d4ed8);
+}
+
+@media (max-width: 600px) {
+  .settings-container {
+    padding: 18px 6px;
+  }
+}

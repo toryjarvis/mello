@@ -4,8 +4,12 @@ import { db } from '../../config/firebaseConfig';
 import { doc, deleteDoc } from 'firebase/firestore';
 // import Button from '../Utils/Button';
 import Button from '@mui/material/Button';
+import { useContext } from "react";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 const Board = ({ board, onEditBoard }) => {
+    const { currentTheme } = useContext(ThemeContext);
+
     // Handle Board Delete
     const handleBoardDelete = async (boardId) => {
         try {
@@ -19,7 +23,7 @@ const Board = ({ board, onEditBoard }) => {
     
     // Render treats the board as a "card" (remember for implementing drag and drop)
     return (
-        <div className='board-card'>
+        <div className={`board-card ${currentTheme}`}>
             <Link
                 key={board.boardId}
                 board={board}

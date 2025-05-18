@@ -1,91 +1,121 @@
-/* Dark Theme */
+/* Dark Theme Overview*/
 .App.dark {
-  --bg: #121212;
-  --text: #ffffff;
-  --btn-primary-bg: #90caf9;
-  --btn-primary-color: black;
+  --bg: #181a1b;
+  --surface: #23272f;
+  --text: #f3f4f6;
+  --text-secondary: #b0b8c1;
+  --btn-primary-bg: #2563eb;
+  --btn-primary-color: #fff;
   --btn-secondary-bg: #b22222;
-  --btn-secondary-color: white;
+  --btn-secondary-color: #fff;
+  --accent: #60a5fa;
+  --accent-secondary: #818cf8;
+  --accent-hover: #2563eb;
+  --danger: #e11d48;
+  --danger-hover: #be123c;
+  --border: #23272f;
+  --board-card-bg: #1c1f24;
+  --board-card-bg-hover: #1f2125;
 
   background-color: var(--bg);
   color: var(--text);
 }
 
 /* Layout */
-.App-intro.dark,
-.App-header.dark,
-.App-footer.dark {
-  background-color: #1e1e1e;
+.App-main.dark {
+  background-color: var(--bg);
   color: var(--text);
 }
 
-.App-main.dark {
-  background-color: #121212;
+.App-header.dark {
+  background-color: var(--surface);
   color: var(--text);
+  border-bottom: 1px solid var(--border);
+}
+
+.App-intro.dark {
+  background-color: var(--surface);
+  color: var(--text);
+  border: none;
+}
+
+.App-footer.dark {
+  background-color: var(--surface);
+  color: var(--text);
+  border-top: 1px solid var(--border);
 }
 
 .Header-nav.dark {
-  background-color: #1e1e1e;
+  background-color: var(--surface);
 }
 
 .Menu-toggle.dark,
 .privacy-footer-link.dark {
-  color: var(--text);
+  color: var(--accent);
 }
 
 /* Dashboard */
+.dashboard-main.dark {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
 .dashboard-container.dark {
-  background-color: #1e1e1e;
+  background-color: var(--surface);
   color: var(--text);
 }
 
 .dashboard-sidebar.dark {
-  background-color: #0d0d0d;
-  color: var(--text);
+  background-color: var(--bg);
+  color: var(--text-secondary);
+  border-right: 1px solid var(--border);
 }
 
 /* Contact Cards */
 .Contact-LinkedIn.dark,
 .Contact-GitHub.dark,
 .Contact-Email.dark {
-  background-color: #2b2b2b;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
 }
 
 .Contact-LinkedIn a.dark,
 .Contact-GitHub a.dark,
 .Contact-Email a.dark {
-  color: #f1f1f1;
+  color: var(--accent);
 }
 
 .Contact-LinkedIn a:hover.dark,
 .Contact-GitHub a:hover.dark,
 .Contact-Email a:hover.dark {
-  color: #c3c3c3;
+  color: var(--accent-hover);
 }
 
 /* Board UI */
 .board-grid-container.dark,
 .board-card-header.dark {
-  background-color: inherit;
+  background-color: var(--surface);
   color: var(--text);
 }
 
 .board-card.dark {
-  background-color: #2a2a2a;
+  background-color: var(--board-card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
 }
 
 .board-card.dark:hover {
-  background-color: #2a2a2a;
+  background-color: var(--board-card-bg-hover);
 }
 
 /* Modal & Form Inputs */
 .modal-content.dark {
-  background-color: #1e1e1e;
+  background-color: var(--surface);
   color: var(--text);
 }
 
 .list-input.dark {
-  background-color: #2b2b2b;
+  background-color: #181a1b;
   color: var(--text);
   border: 1px solid #444;
 }
@@ -93,4 +123,21 @@
 .Logout-button.dark {
   background-color: var(--btn-secondary-bg);
   color: var(--btn-secondary-color);
+  border: none;
+}
+
+.Logout-button.dark:hover {
+  background-color: var(--danger);
+  color: var(--btn-secondary-color);
+}
+
+/* Settings */
+.settings-container.dark {
+  background-color: var(--board-card-bg);
+  color: var(--text);
+}
+
+.settings-form.dark {
+  background-color: var(--board-card-bg);
+  color: var(--text);
 }
