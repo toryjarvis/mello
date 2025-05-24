@@ -1,51 +1,51 @@
 @import "./../styles/App.theme.light.css";
 @import "./../styles/App.theme.ember.css";
 @import "./../styles/App.theme.dark.css";
+@import "./../styles/global.css";
 
 .FAQ-Container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 50px;
+  padding: var(--spacing-xl);
   min-height: 100vh;
   background-color: inherit;
   color: inherit;
 }
 
 .FAQ-Title {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 20px;
+  font-size: var(--font-heading);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-lg);
   color: inherit;
 }
 
 .FAQ-Questions {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: var(--spacing-md);
   width: 100%;
 }
 
 .FAQ-Item {
   display: flex;
   flex-direction: column;
-  margin: 20px 0;
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
+  padding: var(--spacing-md) 0;
+  border-bottom: 1px solid var(--border,#ccc);
 }
 
 .FAQ-Question {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 5px;
+  font-size: var(--font-subheading);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-xs);
   color: inherit;
 }
 
 .FAQ-Answer {
-  font-size: 1.1rem;
+  font-size: var(--font-body);
   color: inherit;
-  margin-top: 5px;
-  padding-left: 20px;
-  line-height: 1.5;
+  margin-top: var(--spacing-xs);
+  padding-left: var(--spacing-sm);
+  line-height: var(--line-height);
 }

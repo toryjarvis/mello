@@ -142,3 +142,13 @@
   background-color: var(--board-card-bg);
   color: var(--text);
 }
+
+.card.ember {
+  background-color: var(--board-card-bg);
+  color: var(--text);
+}
+
+.list-container.ember {
+  background-color: var(--list-container-bg);
+  color: var(--text);
+}

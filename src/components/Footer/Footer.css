@@ -1,17 +1,27 @@
 @import "../../styles/App.theme.light.css";
 @import "../../styles/App.theme.ember.css";
 @import "../../styles/App.theme.dark.css";
+@import "../../styles/global.css";
 
 .App-footer {
   min-height: 5vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
+  font-size: var(--font-small);
+  padding: var(--spacing-sm);
+  background-color: inherit;
+  color: inherit;
 }
 
 .privacy-footer-link {
-  margin: 0 5px;
+  margin: 0 var(--spacing-xs);
   text-decoration: none;
-  font-weight: bold;
+  font-weight: var(--font-weight-bold);
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.privacy-footer-link:hover {
+  color: var(--btn-primary-bg);
 }

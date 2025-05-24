@@ -1,24 +1,32 @@
 @import "../../styles/App.theme.light.css";
 @import "../../styles/App.theme.ember.css";
 @import "../../styles/App.theme.dark.css";
+@import "../../styles/global.css";
 
+/* Card Wrapper */
 .card {
   background: inherit;
   color: inherit;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  margin-bottom: 12px;
-  width: 50%;
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  margin-bottom: var(--spacing-md);
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--spacing-sm);
+  transition: box-shadow 0.2s ease;
 }
 
+.card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+/* Card Content */
 .card-content {
   display: flex;
-  gap: 10px;
   flex-direction: column;
+  gap: var(--spacing-sm);
   align-items: center;
 }
 
@@ -29,49 +37,65 @@
 
 .card h3 {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: var(--font-subheading);
+  font-weight: var(--font-weight-bold);
   color: inherit;
 }
 
+/* Card Description */
 .card p {
-  font-size: 0.9rem;
+  font-size: var(--font-small);
+  margin: var(--spacing-xs) 0;
   color: inherit;
-  margin: 5px 0;
 }
 
+/* Card Actions */
 .card-actions {
   display: flex;
-  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-sm);
 }
 
 .card-actions .btn-primary {
+  composes: button from "../../styles/global.css";
   background-color: var(--btn-primary-bg, #61dafb);
   color: var(--btn-primary-color, black);
 }
 
 .card-actions .btn-secondary {
+  composes: button from "../../styles/global.css";
   background-color: var(--btn-secondary-bg, #b22222);
   color: var(--btn-secondary-color, white);
 }
 
+/* Inline Edit Form */
 .card-edit-form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--spacing-sm);
 }
 
+/* Card Text Input */
 .card-input {
-  padding: 8px;
+  padding: var(--spacing-sm);
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   width: 100%;
   background: white;
   color: black;
+  box-sizing: border-box;
+}
+
+.card-actions .button,
+.button-group .button {
+  max-width: 100%;
+  flex: 1 1 auto;
 }
 
 @media (max-width: 768px) {
   .card {
-    padding: 12px;
+    padding: var(--spacing-sm);
   }
 
   .card h3 {

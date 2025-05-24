@@ -1,52 +1,52 @@
 @import "./../styles/App.theme.light.css";
 @import "./../styles/App.theme.ember.css";
 @import "./../styles/App.theme.dark.css";
+@import "./../styles/global.css";
 
 .Contact-Container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 50px;
+  padding: var(--spacing-xl);
   min-height: 100vh;
   background-color: inherit;
   color: inherit;
 }
 
 .Contact-Title {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 20px;
+  font-size: var(--font-heading);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-lg);
   color: inherit;
 }
 
 .Contact-Options {
   display: flex;
-  margin: 20px 0;
-  flex-direction: row;
-  gap: 20px;
-  width: 100%;
   flex-wrap: wrap;
+  gap: var(--spacing-lg);
+  width: 100%;
+  margin: var(--spacing-md) 0;
 }
 
 .Contact-LinkedIn,
 .Contact-GitHub,
 .Contact-Email {
+  flex: 1;
+  min-width: 220px;
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  background-color: var(--board-card-bg, #e6e6e6);
+  color: inherit;
+  font-size: 1.75rem;
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  text-decoration: none;
+  transition: transform 0.25s ease, background-color 0.25s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex: 1;
-  min-width: 220px;
-  padding: 20px;
-  background-color: var(--board-card-bg, #e6e6e6);
-  border-radius: 10px;
-  font-size: 2rem;
-  font-weight: bold;
-  text-align: center;
-  color: inherit;
-  text-decoration: none;
-  transition: transform 0.3s ease;
 }
 
 .Contact-LinkedIn:hover,
@@ -61,6 +61,8 @@
 .Contact-Email a {
   color: inherit;
   text-decoration: none;
+  font-size: 1rem;
+  margin-top: var(--spacing-sm);
 }
 
 .Contact-LinkedIn a:hover,

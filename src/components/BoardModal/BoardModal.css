@@ -1,6 +1,7 @@
 @import "../../styles/App.theme.light.css";
 @import "../../styles/App.theme.ember.css";
 @import "../../styles/App.theme.dark.css";
+@import "../../styles/global.css";
 
 .modal-overlay {
   position: fixed;
@@ -15,14 +16,15 @@
   justify-content: center;
 }
 
+/* Modal Content */
 .modal-content {
   background-color: var(--surface, #fff);
   color: var(--text, #23272f);
-  padding: 32px 24px 24px 24px;
-  border-radius: 12px;
+  padding: var(--spacing-xl) var(--spacing-lg) var(--spacing-lg);
+  border-radius: var(--radius-lg);
   max-width: 400px;
   width: 95%;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  box-shadow: var(--shadow-lg);
   position: relative;
   text-align: center;
   display: flex;
@@ -31,13 +33,15 @@
 }
 
 .modal-content h2 {
-  margin-bottom: 24px;
+  margin-bottom: var(--spacing-lg);
+  font-size: var(--font-heading);
 }
 
+/* Close Icon */
 .modal-close {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: var(--spacing-sm);
+  right: var(--spacing-sm);
   background: transparent;
   border: none;
   color: var(--text, #23272f);
@@ -48,41 +52,14 @@
 
 .modal-actions {
   display: flex;
-  gap: 12px;
+  gap: var(--spacing-md);
   justify-content: center;
-  margin-top: 18px;
+  margin-top: var(--spacing-md);
 }
-
-/* .modal-content input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.modal-content button {
-  padding: 10px 20px;
-  margin: 5px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.modal-content button:first-of-type {
-  background-color: #007bff;
-  color: white;
-}
-
-.modal-content button:last-of-type {
-  background-color: #ccc;
-} */
-
-
 
 @media (max-width: 600px) {
   .modal-content {
     max-width: 98vw;
-    padding: 18px 6px 12px 6px;
+    padding: var(--spacing-md);
   }
 }

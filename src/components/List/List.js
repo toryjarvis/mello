@@ -140,6 +140,7 @@ const List = ({ list, listId, boardId }) => {
       )}
 
       {/* Display Cards */}
+      <div className="cards-container">
       {cards.map((card, handleEditCard, handleDeleteCard) => (
         <Card
           key={card.cardId}
@@ -151,6 +152,7 @@ const List = ({ list, listId, boardId }) => {
           handleEditCard={handleEditCard}
         />
       ))}
+      </div>
 
       {/* Add Card Button */}
       {!showCardForm ? (

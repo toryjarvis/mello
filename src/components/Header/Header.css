@@ -1,25 +1,24 @@
 @import "../../styles/App.theme.light.css";
 @import "../../styles/App.theme.ember.css";
 @import "../../styles/App.theme.dark.css";
+@import "../../styles/global.css";
 
+/* Header Wrapper */
 .App-header {
   min-height: 8vh;
   display: flex;
   align-items: center;
-  font-size: 1rem;
-  font-weight: bold;
-  padding: 10px 20px;
   justify-content: space-between;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: var(--font-body);
+  font-weight: var(--font-weight-bold);
   position: relative;
+  background-color: inherit;
+  color: inherit;
+  box-shadow: var(--shadow-md);
 }
 
-.theme-switcher-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
+/* Header Logo */
 .Header-logo {
   font-size: 1.8rem;
   font-weight: bold;
@@ -29,6 +28,15 @@
   cursor: pointer;
 }
 
+/* Header Theme Switcher */
+.theme-switcher-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+}
+
+/* Hamburger Menu */
 .Menu-toggle {
   font-size: 1.5rem;
   background: none;
@@ -36,10 +44,11 @@
   color: inherit;
   cursor: pointer;
   position: absolute;
-  right: 10px;
+  right: var(--spacing-sm);
   z-index: 30;
 }
 
+/* Slide-out Navigation */
 .Header-nav {
   position: absolute;
   top: 0;
@@ -60,15 +69,15 @@
 .Header-nav.open {
   width: fit-content;
   height: 100%;
-  padding: 0 50px 0 15px;
+  padding: 0 var(--spacing-xl) 0 var(--spacing-md);
   transform: translateX(0);
-  /* background-color: rgba(0,0,0,0.9); */
 }
 
+/* Header Navigation List */
 .Header-list {
   list-style: none;
   display: flex;
-  gap: 1rem;
+  gap: var(--spacing-md);
   margin: 0;
   padding: 0;
   align-items: center;
@@ -83,25 +92,28 @@
   color: inherit;
   text-decoration: none;
   font-size: 1.1rem;
-  padding: 8px;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  transition: color 0.2s ease;
 }
 
 .Header-list a:hover {
   text-decoration: underline;
+  color: var(--btn-secondary-color);
 }
 
 .Logout-button {
-  background-color: #b22222;
-  color: white;
-  padding: 8px 15px;
+  background-color: var(--btn-secondary-bg, #b22222);
+  color: var(--btn-secondary-color, white);
+  padding: var(--spacing-sm) var(--spacing-md);
   border: none;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  font-size: 1rem;
+  font-size: var(--font-body);
+  transition: background-color 0.2s ease;
 }
 
 .Logout-button:hover {
-  background-color: #a11d1d;
+  background-color: var(--btn-secondary-hover,#a11d1d);
 }
 
 @media (max-width: 768px) {
@@ -111,34 +123,25 @@
     right: 0;
     height: 100vh;
     width: 0;
-    /* background-color: rgba(24, 23, 31, 0.95); */
     flex-direction: column;
     justify-content: flex-start;
     padding-top: 60px;
-    transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
     transform: translateX(100%);
   }
 
   .Header-nav.open {
     width: 100vw;
-    padding: 0 10px;
+    padding: 0 var(--spacing-md);
     transform: translateX(0);
   }
 
   .Header-list {
     flex-direction: column;
     align-items: center;
-    padding: 15px;
+    padding: var(--spacing-md);
   }
 
   .Menu-toggle {
-    position: absolute;
-    right: 10px;
     z-index: 40;
-  }
-
-  .Menu-toggle.open::before {
-    /* content: "×"; */
-    font-size: 2rem;
   }
 }

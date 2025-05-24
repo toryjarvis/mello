@@ -5,6 +5,8 @@ import App from "./App";
 import { AuthProvider } from "./contexts/AuthContext";
 import { ThemeContextProvider } from "./contexts/ThemeContext";
 
+import './styles/global.css';
+
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

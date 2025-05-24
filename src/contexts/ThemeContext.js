@@ -1,54 +1,98 @@
-import React, { createContext, useState, useEffect } from "react";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import React, { createContext, useContext, useState, useMemo } from "react";
+import { createTheme, ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
 
-export const ThemeContext = createContext();
+const ThemeContext = createContext();
 
-const themes = {
-  // Light mode
-  light: createTheme({
-    palette: {
-      mode: "light",
-      primary: { main: "#1976d2" },
-      secondary: { main: "#ff4081" },
-    },
-  }),
-
-  // Dark mode
-  dark: createTheme({
-    palette: {
-      mode: "dark",
-      primary: { main: "#90caf9" },
-      secondary: { main: "#f48fb1" },
-    },
-  }),
-
-  // "Ember" mode
-  ember: createTheme({
-    palette: {
-      mode: "dark",
-      primary: { main: "#ff6f00" },
-      secondary: { main: "#d84315" },
-      background: { default: "#3e2723", paper: "#4e342e" },
-      text: { primary: "#ffffff", secondary: "#ffccbc" },
-    },
-  }),
-};
-
-export const ThemeContextProvider = ({ children }) => {
+export const ThemeProvider = ({ children }) => {
   const [currentTheme, setCurrentTheme] = useState("light");
 
-  const switchTheme = (themeName) => {
-    setCurrentTheme(themeName);
-  };
+  const themes = useMemo(() => ({
+    light: createTheme({
+      palette: {
+        mode: "light",
+        primary: {
+          main: "#2563eb",
+          contrastText: "#ffffff",
+        },
+        secondary: {
+          main: "#e11d48",
+          contrastText: "#ffffff",
+        },
+        background: {
+          default: "#f8fafc",
+          paper: "#ffffff",
+        },
+        text: {
+          primary: "#23272f",
+          secondary: "#4b5563",
+        },
+      },
+    }),
 
-  useEffect(() => {
-    document.body.classList.remove("light", "dark", "ember");
-    document.body.classList.add(currentTheme);
-  }, [currentTheme]);
+    dark: createTheme({
+      palette: {
+        mode: "dark",
+        primary: {
+          main: "#3d003a",
+          contrastText: "#ffffff",
+        },
+        secondary: {
+          main: "#b22222",
+          contrastText: "#ffffff",
+        },
+        background: {
+          default: "#181a1b",
+          paper: "#23272f",
+        },
+        text: {
+          primary: "#f3f4f6",
+          secondary: "#b0b8c1",
+        },
+      },
+    }),
+
+    ember: createTheme({
+      palette: {
+        mode: "dark",
+        primary: {
+          main: "#ff6f00",
+          contrastText: "#ffffff",
+        },
+        secondary: {
+          main: "#d84315",
+          contrastText: "#ffffff",
+        },
+        background: {
+          default: "#3e2723",
+          paper: "#4e342e",
+        },
+        text: {
+          primary: "#ffffff",
+          secondary: "#ffccbc",
+        },
+      },
+    }),
+  }), []);
+
+  const theme = themes[currentTheme];
+
+  const switchTheme = (themeName) => {
+    if (themes[themeName]) {
+      setCurrentTheme(themeName);
+    }
+  };
 
   return (
     <ThemeContext.Provider value={{ currentTheme, switchTheme }}>
-      <ThemeProvider theme={themes[currentTheme]}>{children}</ThemeProvider>
+      <MuiThemeProvider theme={theme}>
+        <div className={`App ${currentTheme}`}>{children}</div>
+      </MuiThemeProvider>
     </ThemeContext.Provider>
   );
 };
+
+export const useThemeContext = () => useContext(ThemeContext);
+
+export { ThemeContext };
+
+export { ThemeProvider as ThemeContextProvider };

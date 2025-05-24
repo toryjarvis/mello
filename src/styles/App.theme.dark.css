@@ -4,7 +4,7 @@
   --surface: #23272f;
   --text: #f3f4f6;
   --text-secondary: #b0b8c1;
-  --btn-primary-bg: #2563eb;
+  --btn-primary-bg: #3d003a;
   --btn-primary-color: #fff;
   --btn-secondary-bg: #b22222;
   --btn-secondary-color: #fff;
@@ -139,5 +139,15 @@
 
 .settings-form.dark {
   background-color: var(--board-card-bg);
+  color: var(--text);
+}
+
+.card.dark {
+  background-color: var(--board-card-bg);
+  color: var(--text);
+}
+
+.list-container.dark {
+  background-color: var(--list-container-bg);
   color: var(--text);
 }

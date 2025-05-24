@@ -1,124 +1,84 @@
 @import "../../styles/App.theme.light.css";
 @import "../../styles/App.theme.ember.css";
 @import "../../styles/App.theme.dark.css";
+@import "../../styles/global.css";
 
+/* Main Container*/
 .Form-container {
   background-color: inherit;
   color: inherit;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
   max-width: 400px;
   width: 100%;
-  margin: 20px auto;
+  margin: var(--spacing-lg) auto;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+/* Form Wrapper */
 .Form-wrapper {
   width: 100%;
   max-width: 350px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: var(--spacing-md);
 }
 
+/* Form Group */
 .Form-group {
   width: 100%;
-  margin-bottom: 15px;
   display: flex;
   flex-direction: column;
-}
-
-.Form-group label {
-  font-size: 14px;
-  font-weight: bold;
-  margin-bottom: 5px;
-  color: inherit;
+  gap: var(--spacing-xs);
 }
 
 .Form-group input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 14px;
-  transition: border-color 0.3s ease-in-out;
   background-color: white;
   color: black;
 }
 
-.Form-group input:focus {
-  border-color: var(--btn-primary-bg, #007bff);
-  outline: none;
-}
-
 .Form-button {
+  composes: button from "../../styles/global.css";
   width: 100%;
-  background-color: var(--btn-primary-bg, #007bff);
-  color: var(--btn-primary-color, white);
-  border: none;
-  padding: 12px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 5px;
-  transition: background-color 0.3s ease-in-out;
-  margin-top: 15px;
+  margin-top: var(--spacing-md);
 }
 
-.Form-button:hover {
-  opacity: 0.8;
-}
-
-.Toggle-button {
-  width: 100%;
+/* Toggle Links */
+.Toggle-button, .Toggle-text {
   background: none;
   border: none;
   color: var(--btn-primary-bg, #007bff);
   cursor: pointer;
-  margin-top: 25px;
-  font-size: 14px;
-  transition: color 0.2s ease-in-out;
+  font-size: var(--font-small);
   text-align: center;
+  transition: opacity 0.2s ease;
+  margin-top: var(--spacing-md);
 }
 
-.Toggle-button:hover {
+.Toggle-button:hover, .Toggle-text:hover {
   text-decoration: underline;
-  opacity: 0.8;
-}
-
-.Toggle-text {
-  color: var(--btn-primary-bg, #007bff);
-  cursor: pointer;
-  margin-top: 15px;
-  font-size: 14px;
-  transition: color 0.2s ease-in-out;
-  text-align: center;
-}
-
-.Toggle-text:hover {
-  text-decoration: underline;
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 .Error-message {
   color: red;
-  font-size: 14px;
-  margin-bottom: 10px;
+  font-size: var(--font-small);
+  margin-bottom: var(--spacing-sm);
 }
 
 .Success-message {
   color: green;
-  font-size: 14px;
-  margin-bottom: 10px;
+  font-size: var(--font-small);
+  margin-bottom: var(--spacing-sm);
 }
 
 @media (max-width: 500px) {
   .Form-container {
     width: 90%;
-    padding: 15px;
+    padding: var(--spacing-md);
   }
 
   .Form-wrapper {

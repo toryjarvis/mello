@@ -1,29 +1,31 @@
 @import "./../styles/App.theme.light.css";
 @import "./../styles/App.theme.ember.css";
 @import "./../styles/App.theme.dark.css";
+@import "./../styles/global.css";
 
 .Privacy-Container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 50px;
+  padding: var(--spacing-xl);
   min-height: 100vh;
   background-color: inherit;
   color: inherit;
 }
 
 .Privacy-Title {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 20px;
+  font-size: var(--font-heading);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-lg);
   color: inherit;
 }
 
 .Privacy-Text {
   color: inherit;
-  width: auto;
+  width: 100%;
   max-width: 900px;
-  line-height: 1.5;
-  font-size: 1.1rem;
+  font-size: var(--font-body);
+  line-height: var(--line-height);
+  padding-top: var(--spacing-sm);
 }

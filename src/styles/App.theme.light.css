@@ -16,6 +16,7 @@
   --border: #e5e7eb;
   --board-card-bg: #ededed;
   --board-card-bg-hover: #f3f4f6;
+  --list-container-bg: #ffffff;
 
   background-color: var(--bg);
   color: var(--text);
@@ -140,4 +141,20 @@
 .settings-form.light {
   background-color: var(--board-card-bg);
   color: var(--text);
+}
+
+.card.light {
+  background-color: var(--board-card-bg);
+  color: var(--text);
+}
+
+.list-container.light {
+  background-color: var(--list-container-bg);
+  color: var(--text);
+}
+
+.Header-nav.light {
+  background-color: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-md);
 }

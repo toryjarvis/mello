@@ -19,7 +19,8 @@ import Button from "@mui/material/Button";
 
 import spinningm from "./spinningm.svg";
 
-import "./App.css";
+import "./styles/App.css";
+import './styles/global.css';
 
 import { ThemeContext } from "./contexts/ThemeContext";
 
