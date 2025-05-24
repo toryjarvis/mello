@@ -33,7 +33,7 @@ export const ThemeProvider = ({ children }) => {
       palette: {
         mode: "dark",
         primary: {
-          main: "#3d003a",
+          main: "#7e0078",
           contrastText: "#ffffff",
         },
         secondary: {

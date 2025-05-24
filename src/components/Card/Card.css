@@ -82,8 +82,8 @@
   border: 1px solid #ccc;
   border-radius: var(--radius-sm);
   width: 100%;
-  background: white;
-  color: black;
+  background: var(--surface, #fff);
+  color: var(--text, #23272f);
   box-sizing: border-box;
 }
 

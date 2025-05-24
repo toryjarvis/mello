@@ -1,10 +1,10 @@
-/* Dark Theme Overview*/ 
+/* Dark Theme Overview*/
 .App.dark {
   --bg: #181a1b;
   --surface: #23272f;
   --text: #f3f4f6;
   --text-secondary: #b0b8c1;
-  --btn-primary-bg: #3d003a;
+  --btn-primary-bg: #7e0078;
   --btn-primary-color: #fff;
   --btn-secondary-bg: #b22222;
   --btn-secondary-color: #fff;

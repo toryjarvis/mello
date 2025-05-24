@@ -5,7 +5,7 @@ import "./BoardGrid.css";
 import { Button, Input } from "@mui/material";
 import { ThemeContext } from "../../contexts/ThemeContext";
 
-const BoardGrid = ({ boards, handleEditBoard }) => {
+const BoardGrid = ({ boards, handleEditBoard, handleAddBoard }) => {
   const { currentTheme } = useContext(ThemeContext);
 
   // Render a grid of boards
@@ -27,6 +27,14 @@ const BoardGrid = ({ boards, handleEditBoard }) => {
     console.log("Filtering boards:", boards);
   };
 
+    // TODO: Search functionality
+  //Use a drop down to decide which way to filter
+  const handleBoardSearch = (e) => {
+    // Filter boards by name, status, starred
+    // For now, just log the boards to console
+    console.log("Searching boards:", e.target.value);
+  };
+
   return (
     <div
       className={`board-grid-container ${currentTheme}`}
@@ -37,7 +45,7 @@ const BoardGrid = ({ boards, handleEditBoard }) => {
           className="grid-option-btn"
           variant="contained"
           type="primary"
-          onClick={() => handleEditBoard(null)}
+          onClick={handleAddBoard}
         >
           Add Board
         </Button>
@@ -62,7 +70,7 @@ const BoardGrid = ({ boards, handleEditBoard }) => {
           className="board-search-input"
           placeholder="Search..."
           variant="outlined"
-          onChange={(e) => console.log("Searching boards:", e.target.value)}
+          onChange={handleBoardSearch}
         />
       </div>
       <div className="board-grid">

@@ -31,7 +31,6 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const { currentTheme } = useContext(ThemeContext);
 
-
   const handleAddBoard = () => {
     setModalMode("add");
     setSelectedBoard(null);
@@ -125,7 +124,11 @@ const Dashboard = () => {
         {loading ? (
           <div className="loading-icon">Loading...</div>
         ) : boards.length > 0 ? (
-          <BoardGrid boards={boards} handleEditBoard={handleEditBoard} />
+          <BoardGrid
+            boards={boards}
+            handleAddBoard={handleAddBoard}
+            handleEditBoard={handleEditBoard}
+          />
         ) : (
           <p className="no-boards-message">
             You have no boards yet. Click 'Add New Board' to create one!
