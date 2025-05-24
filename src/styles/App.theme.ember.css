@@ -116,8 +116,8 @@
 }
 
 .list-input.ember {
-  background-color: var(--bg);
-  color: var(--text);
+  /* background-color: var(--bg);
+  color: var(--text); */
   border: 1px solid var(--border);
 }
 

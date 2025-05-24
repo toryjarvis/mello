@@ -36,6 +36,24 @@ export default class FAQPage extends Component {
               description.
             </div>
           </li>
+          <li className="FAQ-Item">
+            <div class="FAQ-Question">
+              <strong>Can I edit or delete a board?</strong>
+            </div>
+            <div class="FAQ-Answer">
+              Yes, you can edit or delete a board by clicking the 'Edit' or
+              'Delete' buttons on the board card.
+            </div>
+          </li>
+          <li className="FAQ-Item">
+            <div class="FAQ-Question">
+              <strong>How do I change my account settings?</strong>
+            </div>
+            <div class="FAQ-Answer">
+              You can change your account settings by going to the 'Settings'
+              page. Here you can update your username, email, and password.
+            </div>
+          </li>
         </ol>
       </div>
     );

@@ -28,6 +28,12 @@
   cursor: pointer;
 }
 
+.Header-Logo-Image {
+  height: 40px;
+  width: auto;
+  vertical-align: middle;
+}
+
 /* Header Theme Switcher */
 .theme-switcher-container {
   display: flex;

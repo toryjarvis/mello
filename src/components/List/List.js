@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { auth, db } from "../../config/firebaseConfig";
 import { collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import Card from "../Card/Card";
@@ -6,6 +6,7 @@ import "./List.css";
 
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
+import { ThemeContext } from "@emotion/react";
 
 const List = ({ list, listId, boardId }) => {
   const [cards, setCards] = useState([]);
@@ -14,6 +15,7 @@ const List = ({ list, listId, boardId }) => {
   const [showCardForm, setShowCardForm] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editedName, setEditedName] = useState(list.name);
+  const { currentTheme } = useContext(ThemeContext);
 
   // Fetch cards in real-time
   useEffect(() => {
@@ -92,7 +94,7 @@ const List = ({ list, listId, boardId }) => {
   };
 
   return (
-    <div className="list-container">
+    <div className={`list-container ${currentTheme}`}>
       {isEditing ? (
         <div className="list-edit-form">
           <TextField
@@ -157,7 +159,7 @@ const List = ({ list, listId, boardId }) => {
       {/* Add Card Button */}
       {!showCardForm ? (
         <Button
-          className="add-card-btn"
+          className={`add-card-btn ${currentTheme}`}
           variant="contained"
           text="Add Card"
           type="primary"

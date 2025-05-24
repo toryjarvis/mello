@@ -3,6 +3,7 @@
 @import "./App.theme.light.css";
 @import "./global.css";
 
+/* Reset Styles */
 * {
   margin: 0;
   padding: 0;
@@ -10,6 +11,7 @@
   box-sizing: border-box;
 }
 
+/* Base Styles */
 html, body {
   width: 100%;
   height: 100%;
@@ -50,6 +52,7 @@ html, body {
   padding: 0 var(--spacing-lg);
 }
 
+/* Intro Section */
 .App-intro {
   width: 50%;
   text-align: center;
@@ -58,6 +61,12 @@ html, body {
   padding: var(--spacing-md);
   border-radius: var(--radius-md);
   color: inherit;
+}
+
+.logline {
+  font-size: var(--font-small);
+  color: var(--text-secondary);
+  margin: var(--spacing-sm);
 }
 
 .App-logo {
@@ -70,7 +79,7 @@ html, body {
   transform: scale(1.2);
 }
 
-@keyframes App-logo-spin {
+/* @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
@@ -79,7 +88,7 @@ html, body {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
+} */
 
 /* Link */
 .App-link {
@@ -132,15 +141,68 @@ html, body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+@media (max-width: 1024px) {
+  .App-main {
+    padding: var(--spacing-md);
+  }
+
+  .App-intro {
+    width: 80%;
+    font-size: calc(12px + 1vmin);
+  }
+
+  .App-logo {
+    height: 30vmin;
+  }
+
+  .Header-button {
+    width: 48px;
+    height: 48px;
+    font-size: 1.2rem;
+  }
+}
+
 @media (max-width: 768px) {
   .App-main {
     font-size: calc(8px + 2vmin);
-    padding: var(--spacing-md);
+    padding: var(--spacing-sm);
   }
 
   .Header-button {
     width: 36px;
     height: 36px;
     font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .App-main {
+    padding: var(--spacing-xs);
+    font-size: 0.98rem;
+    max-width: 100vw;
+  }
+
+  .App-intro {
+    width: 100%;
+    padding: var(--spacing-xs);
+    font-size: 1rem;
+    max-width: 100vw;
+  }
+
+  .App-logo {
+    height: 22vmin;
+  }
+}
+
+@media (max-width: 400px) {
+  .App-main,
+  .App-intro {
+    padding: 4px;
+    font-size: 0.92rem;
+  }
+  .Header-button {
+    width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
   }
 }

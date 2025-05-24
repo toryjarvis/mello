@@ -15,7 +15,7 @@
 }
 
 .FAQ-Title {
-  font-size: var(--font-heading);
+  font-size: var(--font-subheading);
   font-weight: var(--font-weight-bold);
   margin-bottom: var(--spacing-lg);
   color: inherit;

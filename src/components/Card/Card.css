@@ -5,7 +5,7 @@
 
 /* Card Wrapper */
 .card {
-  background: inherit;
+  background: var(--board-card-bg, inherit);
   color: inherit;
   padding: var(--spacing-md);
   border-radius: var(--radius-md);

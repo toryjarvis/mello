@@ -4,6 +4,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import "./Header.css";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import ThemeSwitcher from "./../ThemeSwitcher";
+import spinnimgm from "../../spinningm.svg";
 
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
@@ -30,7 +31,11 @@ const Header = () => {
       <div className="Header-container">
         {/* /* Logo Button - navigates conditionally */}
         <button className="Header-logo" onClick={handleLogoClick}>
-          m.
+          <img
+            src={spinnimgm}
+            alt="Mello Logo"
+            className="Header-Logo-Image"
+          />
         </button>
 
         {/* Menu Toggle Button */}
