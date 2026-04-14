@@ -6,9 +6,8 @@
 
 ## Features
 
-- **Secure Authentication**: Firebase Auth with email/password login
+- **Secure Authentication**: Email/password login with JWT
 - **Board/Task System**: Dynamic board creation, task card organization
-- **Real-Time Sync**: Firestore-backed updates across sessions
 - **Responsive Design**: Built with Material UI for desktop and mobile
 - **Reusable Components**: Modular, testable frontend structure
 
@@ -16,60 +15,14 @@
 
 - **Frontend**: React, Material UI (MUI)
 - **Backend**: Node.js, Express
-- **Database**: Firebase Firestore
-- **Authentication**: Firebase Auth
-- **Hosting**: Local (for now), CI/CD planned
+- **Database**: Postgres
+- **Authentication**: JWT
 
-## Setup & Installation  
+## Current Phase: Database Migration and Spring Cleaning
 
-1. **Clone the repository**  
+Last Updated: April 2026
 
-   ```sh
-   git clone https://github.com/your-username/mello.git
-   cd mello
-   ```
-
-2. **Install dependencies**
-
-   ```sh
-   npm install
-   ```
-
-3. **Set up Firebase**
-
-   - Create a Firebase project in the [Firebase Console](https://console.firebase.google.com/)  
-   - Enable Firestore and Authentication (Email/Password)  
-   - Copy your Firebase config into `firebaseConfig.js`  
-
-4. **Run the application**  
-
-   ```sh
-   npm start
-   ```
-
-## Roadmap
-
-Last Updated: June 2025
-
-### (Current) Phase 1: Structural and Feature Foundations
-
-Shift focus to becoming an internal enterprise tool: Board and card enhancements, account and user preferences, and Firestore optimizations (a migration to Postgres is being considered).
-
-### Phase 2: UX/UI Rebuild/Refinements
-
-Continue UI integrations and refine to align with modern internal tools: Complete Material UI migration, streamline design, continue attention to accessibility, establish drag and drop enhancements and real-time updates.
-
-### Phase 3: Collaboration and Organizational Features
-
-Build like internal HR/DevOps: Multi-user support, tracking, advanced notifications, comments, mentions.
-
-### Phase 4: Security and Scaling
-
-Making Mello production-grade: Auth and RBAC features, scale the infrastructure
-
-### Phase 5: AI Enhancement
-
-Introduce machine learning where it matters: Task analytics, integrate GPT features.
+Currently migrating the database from Firebase to Postgres, and switching from FireAuth to utilizing JWT for authentication. Many small quality of life updates and tying up any loose dev ends.
 
 ## Contributions  
 
