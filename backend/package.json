@@ -1,0 +1,21 @@
+{
+    "name": "mello-backend",
+    "version": "0.0.1",
+    "private": true,
+    "description": "",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.17.1",
+        "pg": "^8.7.1",
+        "cors": "^2.8.5",
+        "dotenv": "^10.0.0",
+        "bcrypt": "^6.0.0",
+        "jsonwebtoken": "^9.0.3"
+    }
+}
