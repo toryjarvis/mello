@@ -5,7 +5,12 @@ import "./BoardGrid.css";
 import { Button, Input } from "@mui/material";
 import { ThemeContext } from "../../contexts/ThemeContext";
 
-const BoardGrid = ({ boards, handleEditBoard, handleAddBoard }) => {
+const BoardGrid = ({
+  boards,
+  handleEditBoard,
+  handleAddBoard,
+  handleBoardFilter,
+}) => {
   const { currentTheme } = useContext(ThemeContext);
 
   // Render a grid of boards
@@ -14,23 +19,16 @@ const BoardGrid = ({ boards, handleEditBoard, handleAddBoard }) => {
   // TODO: Sort functionality
   //Use a drop down to decide which way to sort
   const handleBoardSort = (boards) => {
-    // Options: by name (A-Z or Z-A), by creation date (recent or older), by last changed date(recent or older)
+    // Sort by name (A-Z or Z-A)
+    // Sort by creation date (recent or older)
+    // Sort by last changed date(recent or older)
     // For now, just log the boards to console
     console.log("Sorting boards:", boards);
   };
 
-  // TODO: Filter functionality
-  //Use a drop down to decide which way to filter
-  const handleBoardFilter = (boards) => {
-    // Filter boards by name, status, starred
-    // For now, just log the boards to console
-    console.log("Filtering boards:", boards);
-  };
-
-    // TODO: Search functionality
-  //Use a drop down to decide which way to filter
+  // TODO: Search functionality
+  //Use a text input to search boards and filter in real time
   const handleBoardSearch = (e) => {
-    // Filter boards by name, status, starred
     // For now, just log the boards to console
     console.log("Searching boards:", e.target.value);
   };
@@ -61,23 +59,22 @@ const BoardGrid = ({ boards, handleEditBoard, handleAddBoard }) => {
           className="grid-option-btn"
           variant="contained"
           type="primary"
-          onClick={() => handleBoardFilter(boards)}
+          onClick={handleBoardFilter}
         >
           Filter
         </Button>
         <Input
-          type="search"
           className="board-search-input"
-          placeholder="Search..."
-          variant="outlined"
+          placeholder="Search"
           onChange={handleBoardSearch}
+          inputProps={{ "aria-label": "search boards" }}
         />
       </div>
       <div className="board-grid">
         {boards.map((board) => (
           <Board
             className="board-grid-item"
-            key={board.boardId}
+            key={board.id || board.boardId}
             board={board}
             onEditBoard={handleEditBoard}
           />

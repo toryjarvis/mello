@@ -7,6 +7,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import Button from "@mui/material/Button";
 import BoardGrid from "../components/BoardGrid/BoardGrid";
 import BoardModal from "../components/BoardModal/BoardModal";
+import FilterModal from "../components/FilterModal/FilterModal";
 
 import { auth, db } from "../config/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
@@ -27,9 +28,12 @@ const Dashboard = () => {
   const [boards, setBoards] = useState([]);
   const [modalMode, setModalMode] = useState("add");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [filterModalOpen, setFilterModalOpen] = useState(false);
   const [selectedBoard, setSelectedBoard] = useState(null);
   const [loading, setLoading] = useState(true);
   const { currentTheme } = useContext(ThemeContext);
+  const [user, setUser] = useState(null);
+  const [filterText, setFilterText] = useState("");
 
   const handleAddBoard = () => {
     setModalMode("add");
@@ -43,17 +47,25 @@ const Dashboard = () => {
     setIsModalOpen(true);
   };
 
+  const handleBoardFilter = () => {
+    setFilterModalOpen(true);
+  };
+
+  const handleApplyFilter = (text) => {
+    setFilterText(text);
+  };
+
   useEffect(() => {
-    const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
-      if (user) {
+    const unsubscribeAuth = onAuthStateChanged(auth, (firebaseUser) => {
+      setUser(firebaseUser);
+      if (firebaseUser) {
         const q = query(
           collection(db, "boards"),
-          where("userId", "==", user.uid),
+          where("userId", "==", firebaseUser.uid),
           orderBy("updatedAt", "desc")
         );
-        // , orderBy('updatedAt', 'desc')
 
-        console.log("Fetching boards for user:", user.uid);
+        console.log("Fetching boards for user:", firebaseUser.uid);
         // Listen for changes in real-time
         const unsubscribeBoards = onSnapshot(
           q,
@@ -83,11 +95,17 @@ const Dashboard = () => {
     return () => unsubscribeAuth();
   }, []);
 
+  const filteredBoards = filterText
+    ? boards.filter((board) =>
+        board.name.toLowerCase().includes(filterText.toLowerCase())
+      )
+    : boards;
+
   return (
     <div className={`dashboard-container ${currentTheme}`}>
       {/* Sidebar */}
       <aside className={`dashboard-sidebar ${currentTheme}`}>
-        <Link className="sidebar-header" href="/dashboard">
+        <Link className="sidebar-header" to="/dashboard">
           Mello
         </Link>
         <nav className={`sidebar-nav ${currentTheme}`}>
@@ -115,19 +133,23 @@ const Dashboard = () => {
         </nav>
       </aside>
 
-      {/* Main Dashboard */}
       <main className={`dashboard-main ${currentTheme}`}>
+        <p className="user-greeting">
+          Hello {user && user.email ? user.email : "User"}!
+        </p>
         <h1>Your Dashboard</h1>
         <p>Manage your projects and boards here.</p>
 
-        {/* Conditionally render loading icon, board Grid or no boards message */}
+        {/* Conditionally render loading icon, board grid or no boards message */}
         {loading ? (
           <div className="loading-icon">Loading...</div>
-        ) : boards.length > 0 ? (
+        ) : filteredBoards.length > 0 ? (
           <BoardGrid
-            boards={boards}
+            boards={filteredBoards}
             handleAddBoard={handleAddBoard}
             handleEditBoard={handleEditBoard}
+            handleBoardFilter={handleBoardFilter}
+            handleApplyFilter={handleApplyFilter}
           />
         ) : (
           <p className="no-boards-message">
@@ -141,6 +163,13 @@ const Dashboard = () => {
         mode={modalMode}
         board={selectedBoard}
       />
+      {/* Filter Modal */}
+      {filterModalOpen && (
+        <FilterModal
+          isOpen={filterModalOpen}
+          onClose={() => setFilterModalOpen(false)}
+        />
+      )}
     </div>
   );
 };

@@ -1,0 +1,75 @@
+@import "../../styles/App.theme.light.css";
+@import "../../styles/App.theme.ember.css";
+@import "../../styles/App.theme.dark.css";
+@import "../../styles/global.css";
+
+.filter-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.filter-modal {
+  background-color: var(--surface, #fff);
+  color: var(--text, #23272f);
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+.filter-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.filter-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.filter-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.filter-status-radio-group {
+  display: flex;
+  gap: 10px;
+}
+
+.filter-starred-radio-group {
+  display: flex;
+  gap: 10px;
+}
+
+.filter-last-changed-dropdown {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.filter-creation-date-dropdown {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.filter-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}

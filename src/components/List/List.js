@@ -6,7 +6,7 @@ import "./List.css";
 
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
-import { ThemeContext } from "@emotion/react";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 const List = ({ list, listId, boardId }) => {
   const [cards, setCards] = useState([]);

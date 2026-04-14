@@ -3,8 +3,6 @@
 @import "./../styles/App.theme.dark.css";
 @import "./../styles/global.css";
 
-/* BUG FIX: Remove composes (not supported by default CSS) and use only standard CSS properties */
-
 .dashboard-container {
   display: flex;
   flex: 1 1 auto;
@@ -12,6 +10,13 @@
   overflow: visible;
   background-color: inherit;
   color: inherit;
+}
+
+.user-greeting {
+  font-size: 0.5rem;
+  color: var(--text-secondary, #4b5563);
+  margin-bottom: var(--spacing-md);
+  font-weight: 500;
 }
 
 .dashboard-sidebar {
@@ -136,6 +141,7 @@
   .dashboard-container {
     flex-direction: column;
     width: 100%;
+    overflow: auto;
   }
 
   .dashboard-sidebar {
@@ -165,10 +171,6 @@
 
   .sidebar-header {
     display: none;
-  }
-
-  .dashboard-container {
-    overflow: auto;
   }
 }
 
