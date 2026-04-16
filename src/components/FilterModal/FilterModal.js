@@ -8,7 +8,7 @@ import CloseIcon from "@mui/icons-material/Close";
 
 import "./FilterModal.css";
 
-const FilterModal = ({ isOpen, onClose }) => {
+const FilterModal = ({ isOpen, onClose, onApplyFilter }) => {
   const [filterText, setFilterText] = useState("");
   const [status, setStatus] = useState("all");
   const [lastChanged, setLastChanged] = useState("all");
@@ -28,10 +28,10 @@ const FilterModal = ({ isOpen, onClose }) => {
     }
   }, [isOpen]);
 
-  //   const handleApplyFilter = () => {
-  //     handleApplyFilter(filterText);
-  //     onClose();
-  //   };
+     const handleApplyFilter = () => {
+       onApplyFilter(filterText);
+       onClose();
+     };
 
   if (!isOpen) return null;
 
@@ -150,7 +150,7 @@ const FilterModal = ({ isOpen, onClose }) => {
         <div className="filter-modal-footer">
           <Button
             variant="contained"
-            onClick={() => console.log("Filter applied: ", filterText)}
+            onClick={handleApplyFilter}
           >
             Apply Filter
           </Button>
