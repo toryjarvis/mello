@@ -31,11 +31,7 @@ const Header = () => {
       <div className="Header-container">
         {/* /* Logo Button - navigates conditionally */}
         <button className="Header-logo" onClick={handleLogoClick}>
-          <img
-            src={spinnimgm}
-            alt="Mello Logo"
-            className="Header-Logo-Image"
-          />
+          <img src={spinnimgm} alt="Mello Logo" className="Header-Logo-Image" />
         </button>
 
         {/* Menu Toggle Button */}

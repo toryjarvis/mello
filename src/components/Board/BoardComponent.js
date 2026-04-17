@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
+//TODO: Remove Firebase and Firestore, replace with DELETE
 import { db } from "../../config/firebaseConfig";
 import { doc, deleteDoc } from "firebase/firestore";
+
 import Button from "@mui/material/Button";
 import { useContext } from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-// new imports for after the postgres migration
+//new imports for after the postgres migration
 
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -13,7 +13,7 @@ const FilterModal = ({ isOpen, onClose, onApplyFilter }) => {
   const [status, setStatus] = useState("all");
   const [lastChanged, setLastChanged] = useState("all");
   const [creationDate, setCreationDate] = useState("all");
-  //   const [team, setTeam] = useState("");
+  //const [team, setTeam] = useState("");
   const [starred, setStarred] = useState("all");
   const { currentTheme } = useContext(ThemeContext);
 
@@ -23,15 +23,15 @@ const FilterModal = ({ isOpen, onClose, onApplyFilter }) => {
       setStatus("all");
       setLastChanged("all");
       setCreationDate("all");
-      //   setTeam("");
+      //setTeam("");
       setStarred("all");
     }
   }, [isOpen]);
 
-     const handleApplyFilter = () => {
-       onApplyFilter(filterText);
-       onClose();
-     };
+  const handleApplyFilter = () => {
+    onApplyFilter(filterText);
+    onClose();
+  };
 
   if (!isOpen) return null;
 
@@ -148,10 +148,7 @@ const FilterModal = ({ isOpen, onClose, onApplyFilter }) => {
           </div>
         </div>
         <div className="filter-modal-footer">
-          <Button
-            variant="contained"
-            onClick={handleApplyFilter}
-          >
+          <Button variant="contained" onClick={handleApplyFilter}>
             Apply Filter
           </Button>
         </div>

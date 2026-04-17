@@ -18,7 +18,6 @@
   gap: var(--spacing-md);
 }
 
-
 /* List Header */
 .list-header {
   display: flex;
@@ -72,7 +71,7 @@
   padding: var(--spacing-sm);
   border: 1px solid #ccc;
   border-radius: var(--radius-sm);
-  background-color: var(--surface, #fff);;
+  background-color: var(--surface, #fff);
   color: var(--text, #23272f);
   min-width: 300px;
   box-sizing: border-box;

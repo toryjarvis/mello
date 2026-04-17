@@ -33,7 +33,9 @@
   box-shadow: var(--shadow-sm);
   padding: var(--spacing-lg) var(--spacing-md) var(--spacing-md);
   z-index: 2;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
 .dashboard-sidebar h2,
@@ -73,7 +75,9 @@
   text-decoration: none;
   border: none;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
 
 .sidebar-link:hover,
@@ -113,7 +117,9 @@
   color: inherit;
   display: flex;
   flex-direction: column;
-  transition: background 0.2s, color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
 
 .dashboard-main h1 {

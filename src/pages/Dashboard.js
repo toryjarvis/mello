@@ -22,17 +22,18 @@ import {
 import "./Dashboard.css";
 import { ThemeContext } from "../contexts/ThemeContext";
 
+// TODO: remove Firebase functionality and replace with new auth and state
+
 const Dashboard = () => {
-  const { logout } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
   const [boards, setBoards] = useState([]);
   const [modalMode, setModalMode] = useState("add");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [filterModalOpen, setFilterModalOpen] = useState(false);
   const [selectedBoard, setSelectedBoard] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const { currentTheme } = useContext(ThemeContext);
-  const [user, setUser] = useState(null);
   const [filterText, setFilterText] = useState("");
 
   const handleAddBoard = () => {
@@ -55,49 +56,9 @@ const Dashboard = () => {
     setFilterText(text);
   };
 
-  useEffect(() => {
-    const unsubscribeAuth = onAuthStateChanged(auth, (firebaseUser) => {
-      setUser(firebaseUser);
-      if (firebaseUser) {
-        const q = query(
-          collection(db, "boards"),
-          where("userId", "==", firebaseUser.uid),
-          orderBy("updatedAt", "desc")
-        );
-
-        console.log("Fetching boards for user:", firebaseUser.uid);
-        // Listen for changes in real-time
-        const unsubscribeBoards = onSnapshot(
-          q,
-          (querySnapshot) => {
-            const userBoards = querySnapshot.docs.map((doc) => ({
-              boardId: doc.id,
-              ...doc.data(),
-            }));
-            console.log("Fetched boards:", userBoards);
-            setBoards(userBoards);
-            // Set loading to false once the boards are fetched
-            setLoading(false);
-          },
-          (error) => {
-            console.error("Error fetching boards:", error);
-            // Set loading to false in case there is an error
-            setLoading(false);
-          }
-        );
-        // Cleanup listener when user logs out or unmounts
-        return () => unsubscribeBoards();
-      } else {
-        setLoading(false); // Set loading to false if user is not authenticated
-      }
-    });
-    // Cleanup auth listener when component unmounts
-    return () => unsubscribeAuth();
-  }, []);
-
   const filteredBoards = filterText
     ? boards.filter((board) =>
-        board.name.toLowerCase().includes(filterText.toLowerCase())
+        board.name.toLowerCase().includes(filterText.toLowerCase()),
       )
     : boards;
 
@@ -168,6 +129,7 @@ const Dashboard = () => {
         <FilterModal
           isOpen={filterModalOpen}
           onClose={() => setFilterModalOpen(false)}
+          onApplyFilter={handleApplyFilter}
         />
       )}
     </div>

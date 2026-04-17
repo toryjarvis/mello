@@ -3,6 +3,7 @@ import "./Settings.css";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { useContext } from "react";
 
+// TODO: Rewire form for PUT users:id and PUT users:id/password
 const Settings = () => {
   const { currentTheme } = useContext(ThemeContext);
 

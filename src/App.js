@@ -11,7 +11,7 @@ import FAQPage from "./pages/FAQPage";
 import ContactPage from "./pages/ContactPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import Dashboard from "./pages/Dashboard";
-import LoginSignUpPage from "./pages/LoginSignUpPage";
+import AuthPage from "./pages/AuthPage";
 import BoardDetail from "./pages/BoardDetail";
 import Settings from "./pages/Settings";
 
@@ -78,12 +78,12 @@ const App = () => {
           />
           <Route
             path="/login"
-            element={!user ? <LoginSignUpPage /> : <Navigate to="/dashboard" />}
+            element={!user ? <AuthPage /> : <Navigate to="/dashboard" />}
           />
           <Route path="/boards/:boardId" element={<BoardDetail />} />
           <Route
             path="/settings"
-            element={!user ? <LoginSignUpPage /> : <Settings />}
+            element={!user ? <AuthPage /> : <Settings />}
           />
         </Routes>
       </div>

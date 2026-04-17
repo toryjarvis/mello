@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
+
+// TODO: remove Firebase and Firestore, replace with GETs
 import { db, auth } from "../../config/firebaseConfig";
 import { doc, addDoc, updateDoc, collection } from "firebase/firestore";
 

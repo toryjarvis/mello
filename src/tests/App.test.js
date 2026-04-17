@@ -22,7 +22,7 @@ const renderWithProviders = ({
           <App />
         </ThemeContext.Provider>
       </AuthContext.Provider>
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 };
 
@@ -35,7 +35,7 @@ describe("App component", () => {
   test("renders intro page when not authenticated", () => {
     renderWithProviders({ user: null });
     expect(
-      screen.getByText(/manage your projects with ease/i)
+      screen.getByText(/manage your projects with ease/i),
     ).toBeInTheDocument();
   });
 
@@ -66,7 +66,7 @@ describe("App component", () => {
 
     // redirected to home, should see the splash page
     expect(
-      screen.getByText(/manage your projects with ease/i)
+      screen.getByText(/manage your projects with ease/i),
     ).toBeInTheDocument();
   });
 

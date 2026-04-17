@@ -1,33 +1,50 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import { auth } from '../config/firebaseConfig';
+// Authentication service
+import { jwtDecode } from "jwt-decode";
+import api from "../config/apiConfig"
 
-/* Sign Up */
-export const signUpUser = async (email, password) => {
+export const register = async (username, email, password) => {
   try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    return userCredential.user;
+    const response = await api.post(`/auth/register`, {
+      username,
+      email,
+      password,
+    });
+    return response.data;
   } catch (error) {
-    throw error.message;
+    throw error.response ? error.response.data : new Error("Network error");
   }
 };
 
-/* Sign In */
-export const signInUser = async (email, password) => {
+export const login = async (email, password) => {
   try {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    return userCredential.user;
+    const response = await api.post(`/auth/login`, {
+      email,
+      password,
+    });
+    return response.data;
   } catch (error) {
-    throw error.message;
+    throw error.response ? error.response.data : new Error("Network error");
   }
 };
 
-/* Sign Out */
-export const signOutUser = async () => {
-  try {
-    await signOut(auth);
-  } catch (error) {
-    throw error.message;
-  }
+export const authLogout = () => {
+  localStorage.removeItem("token");
 };
 
-export default auth;
+export const getCurrentUser = () => {
+  const token = localStorage.getItem("token");
+  if (!token) return null;
+  return jwtDecode(token);
+};
+
+export const isAuthenticated = () => {
+  return !!localStorage.getItem("token");
+};
+
+export const setAuthToken = (token) => {
+  if (token) {
+    localStorage.setItem("token", token);
+  } else {
+    localStorage.removeItem("token");
+  }
+};

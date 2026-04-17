@@ -1,6 +1,16 @@
 import React, { useState, useEffect, useContext } from "react";
+
+// TODO: remove Firebase
 import { auth, db } from "../../config/firebaseConfig";
-import { collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  onSnapshot,
+  doc,
+  updateDoc,
+  deleteDoc,
+} from "firebase/firestore";
+
 import Card from "../Card/Card";
 import "./List.css";
 
@@ -79,7 +89,7 @@ const List = ({ list, listId, boardId }) => {
           description: newCardDescription,
           createdAt: new Date(),
           userId: auth.currentUser?.uid,
-        }
+        },
       );
 
       console.log("New card added with ID:", docRef.id);
@@ -117,7 +127,7 @@ const List = ({ list, listId, boardId }) => {
         </div>
       ) : (
         <div className="list-content">
-          <h3 className="list-name-h3">{list.name}</h3>
+          <h3 className="list-name-h3">{list.list_name}</h3>
           <div className="list-actions">
             <Button
               className="list-edit-btn"
@@ -143,17 +153,18 @@ const List = ({ list, listId, boardId }) => {
 
       {/* Display Cards */}
       <div className="cards-container">
-      {cards.map((card, handleEditCard, handleDeleteCard) => (
-        <Card
-          key={card.cardId}
-          card={card}
-          cardId={card.cardId}
-          listId={listId}
-          boardId={boardId}
-          handleDeleteCard={handleDeleteCard}
-          handleEditCard={handleEditCard}
-        />
-      ))}
+        {/* TODO: fix map misuse */}
+        {cards.map((card, handleEditCard, handleDeleteCard) => (
+          <Card
+            key={card.cardId}
+            card={card}
+            cardId={card.cardId}
+            listId={listId}
+            boardId={boardId}
+            handleDeleteCard={handleDeleteCard}
+            handleEditCard={handleEditCard}
+          />
+        ))}
       </div>
 
       {/* Add Card Button */}

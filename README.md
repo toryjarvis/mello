@@ -1,4 +1,4 @@
-# Mello  
+# Mello
 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white) ![ExpressJS](https://img.shields.io/badge/Express%20js-000000?style=for-the-badge&logo=express&logoColor=white) ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white) ![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white)
 
@@ -24,7 +24,7 @@ Last Updated: April 2026
 
 Currently migrating the database from Firebase to Postgres, and switching from FireAuth to utilizing JWT for authentication. Many small quality of life updates and tying up any loose dev ends.
 
-## Contributions  
+## Contributions
 
 While this is a personal portfolio project, contributions are always welcome. If you notice any potential improvements or issues that could help the application run more smoothly, feel free to reach out, or fork the repository, submit issues, or open pull requests to help improve Mello!
 

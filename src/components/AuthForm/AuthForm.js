@@ -1,12 +1,17 @@
-import React, { useState } from "react";
-import { signUpUser, signInUser } from "../../services/authService";
+import React, { useState, useContext } from "react";
+import { register, login } from "../../services/authService";
+import { AuthContext } from "../../contexts/AuthContext";
 import Button from "../Utils/Button";
 import InputField from "../Utils/InputField";
-import "./SignInSignUpForm.css";
+import "./AuthForm.css";
 
-const SignInSignUpForm = () => {
+const AuthForm = () => {
   const [isSignUp, setIsSignUp] = useState(false);
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
@@ -18,9 +23,11 @@ const SignInSignUpForm = () => {
 
   const toggleForm = () => {
     setIsSignUp((prev) => !prev);
-    setError("Invalid credentials!");
-    setSuccess("Success!");
+    setError("");
+    setSuccess("");
   };
+
+  const { login: authLogin } = useContext(AuthContext);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -33,10 +40,11 @@ const SignInSignUpForm = () => {
 
     try {
       if (isSignUp) {
-        await signUpUser(formData.email, formData.password);
+        await register(formData.username, formData.email, formData.password);
         setSuccess("Sign-up successful! You can now log in.");
       } else {
-        await signInUser(formData.email, formData.password);
+        const response = await login(formData.email, formData.password);
+        authLogin(response.token);
         setSuccess("Login successful!");
       }
     } catch (err) {
@@ -51,6 +59,18 @@ const SignInSignUpForm = () => {
       {success && <p className="Success-message">{success}</p>}
 
       <form onSubmit={handleSubmit}>
+        {isSignUp && (
+          <InputField
+            id="username"
+            label="Username"
+            type="text"
+            placeholder="Enter your username"
+            value={formData.username}
+            onChange={handleChange}
+            required
+          />
+        )}
+
         <InputField
           id="email"
           label="Email"
@@ -87,4 +107,4 @@ const SignInSignUpForm = () => {
   );
 };
 
-export default SignInSignUpForm;
+export default AuthForm;

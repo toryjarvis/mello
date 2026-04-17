@@ -8,12 +8,11 @@ import { ThemeContext } from "../contexts/ThemeContext";
 jest.mock(
   "../components/Board/BoardComponent",
   () =>
-    ({ board, onEditBoard }) =>
-      (
-        <div data-testid="board" data-board-id={board.boardId}>
-          {board.title}
-        </div>
-      )
+    ({ board, onEditBoard }) => (
+      <div data-testid="board" data-board-id={board.boardId}>
+        {board.title}
+      </div>
+    ),
 );
 
 // mock console.log
@@ -37,7 +36,7 @@ const renderBoardGrid = (props = {}) => {
   return render(
     <ThemeContext.Provider value={{ currentTheme: "light" }}>
       <BoardGrid {...defaultProps} {...props} />
-    </ThemeContext.Provider>
+    </ThemeContext.Provider>,
   );
 };
 
@@ -61,7 +60,7 @@ describe("BoardGrid component", () => {
     fireEvent.click(screen.getByText(/sort/i));
     expect(console.log).toHaveBeenCalledWith(
       expect.stringContaining("Sorting"),
-      expect.any(Array)
+      expect.any(Array),
     );
   });
 
@@ -70,7 +69,7 @@ describe("BoardGrid component", () => {
     fireEvent.click(screen.getByText(/filter/i));
     expect(console.log).toHaveBeenCalledWith(
       expect.stringContaining("Filtering"),
-      expect.any(Array)
+      expect.any(Array),
     );
   });
 
@@ -80,7 +79,7 @@ describe("BoardGrid component", () => {
     fireEvent.change(input, { target: { value: "test search" } });
     expect(console.log).toHaveBeenCalledWith(
       "Searching boards:",
-      "test search"
+      "test search",
     );
   });
 

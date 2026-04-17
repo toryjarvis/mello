@@ -65,7 +65,9 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
+  transition:
+    width 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
   white-space: nowrap;
   z-index: 20;
   transform: translateX(100%);
@@ -119,7 +121,7 @@
 }
 
 .Logout-button:hover {
-  background-color: var(--btn-secondary-hover,#a11d1d);
+  background-color: var(--btn-secondary-hover, #a11d1d);
 }
 
 @media (max-width: 768px) {

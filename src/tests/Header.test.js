@@ -33,7 +33,7 @@ const renderHeader = ({
           <Header />
         </ThemeContext.Provider>
       </AuthContext.Provider>
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 };
 

@@ -4,14 +4,14 @@ import "./Card.css";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
 
-// Firebase imports
+// Firebase imports - NEED TO REMOVE
 import { doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { auth, db } from "../../config/firebaseConfig";
 
 const Card = ({ card, listId, cardId, boardId }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(card.title);
-  const [editedDescription, setEditedDescription] = useState(card.description);
+  const [editedDescription, setEditedDescription] = useState(card.card_description);
 
   // Handle Card Edit
   const handleEditCard = async () => {
@@ -21,7 +21,7 @@ const Card = ({ card, listId, cardId, boardId }) => {
     try {
       const cardRef = doc(
         db,
-        `boards/${boardId}/lists/${listId}/cards/${cardId}`
+        `boards/${boardId}/lists/${listId}/cards/${cardId}`,
       );
       await updateDoc(cardRef, {
         title: editedTitle,
@@ -46,7 +46,7 @@ const Card = ({ card, listId, cardId, boardId }) => {
     try {
       const cardRef = doc(
         db,
-        `boards/${boardId}/lists/${listId}/cards/${cardId}`
+        `boards/${boardId}/lists/${listId}/cards/${cardId}`,
       );
       await deleteDoc(cardRef);
       setIsEditing(false);
@@ -89,7 +89,7 @@ const Card = ({ card, listId, cardId, boardId }) => {
         <div className="card-content">
           <div className="card-text">
             <h3>{card.title}</h3>
-            <p>{card.description}</p>
+            <p>{card.card_description}</p>
           </div>
           <div className="card-actions">
             <Button

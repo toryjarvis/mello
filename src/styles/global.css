@@ -38,7 +38,9 @@ body {
   padding: 0;
   background-color: var(--bg);
   color: var(--text);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 /* Headings */
@@ -95,7 +97,9 @@ select {
   border-radius: var(--radius-sm);
   border: 1px solid #ccc;
   width: 100%;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 input:focus,
@@ -175,6 +179,6 @@ select:focus {
 
 input::placeholder,
 textarea::placeholder {
-  color: var(--text-secondary, #4b5563); 
-  opacity: 1; 
+  color: var(--text-secondary, #4b5563);
+  opacity: 1;
 }

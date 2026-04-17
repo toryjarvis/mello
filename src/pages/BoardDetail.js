@@ -57,17 +57,17 @@ const BoardDetail = () => {
         } else {
           console.log(
             "Snapshot received:",
-            snapshot.docs.map((doc) => doc.data())
+            snapshot.docs.map((doc) => doc.data()),
           );
           setLoading(false);
         }
         setLists(
-          snapshot.docs.map((doc) => ({ listId: doc.id, ...doc.data() }))
+          snapshot.docs.map((doc) => ({ listId: doc.id, ...doc.data() })),
         );
       },
       (error) => {
         console.error("Error fetching lists:", error);
-      }
+      },
     );
 
     return () => unsubscribe();
@@ -117,6 +117,7 @@ const BoardDetail = () => {
         <div className="loading-icon">Loading...</div>
       ) : lists.length > 0 ? (
         <div className="lists-container">
+          {/* TODO: fix map misuse */}
           {lists.map((list, handleEditList, handleDeleteList) => (
             <List
               className="list-container"

@@ -47,7 +47,8 @@
 }
 
 /* Toggle Links */
-.Toggle-button, .Toggle-text {
+.Toggle-button,
+.Toggle-text {
   background: none;
   border: none;
   color: var(--btn-primary-bg, #007bff);
@@ -58,7 +59,8 @@
   margin-top: var(--spacing-md);
 }
 
-.Toggle-button:hover, .Toggle-text:hover {
+.Toggle-button:hover,
+.Toggle-text:hover {
   text-decoration: underline;
   opacity: 0.85;
 }
