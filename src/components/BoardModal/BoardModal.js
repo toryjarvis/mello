@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-
-// TODO: remove Firebase and Firestore, replace with GETs
-import { db, auth } from "../../config/firebaseConfig";
-import { doc, addDoc, updateDoc, collection } from "firebase/firestore";
-
+import { AuthContext } from "../../contexts/AuthContext";
+import api from "../../config/apiConfig";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { ThemeContext } from "../../contexts/ThemeContext";
@@ -11,9 +8,10 @@ import CloseIcon from "@mui/icons-material/Close";
 
 import "./BoardModal.css";
 
-const BoardModal = ({ isOpen, onClose, mode, board }) => {
+const BoardModal = ({ isOpen, onClose, mode, board, onBoardSaved }) => {
   const [name, setName] = useState("");
   const { currentTheme } = useContext(ThemeContext);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     if (isOpen) {
@@ -25,25 +23,16 @@ const BoardModal = ({ isOpen, onClose, mode, board }) => {
     }
   }, [isOpen, mode, board]);
 
+  // replace with api.post('/boards')
   const handleBoardSave = async () => {
-    if (!auth.currentUser) {
-      console.error("User not authenticated");
-      return;
-    }
+    if (!user || !user.id) return;
     try {
       if (mode === "add") {
-        await addDoc(collection(db, "boards"), {
-          name,
-          userId: auth.currentUser.uid,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        });
-        console.log("Board added successfully!");
+        await api.post("/boards", { name, userId: user.id });
       } else if (mode === "edit" && board) {
-        const boardRef = doc(db, "boards", board.boardId);
-        await updateDoc(boardRef, { name, updatedAt: new Date() });
-        console.log("Board updated successfully!");
+        await api.put(`/boards/${board.id}/name`, { board_name: name });
       }
+      onBoardSaved();
       onClose();
     } catch (error) {
       console.error("Error saving board:", error);

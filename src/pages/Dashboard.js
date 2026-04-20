@@ -1,28 +1,16 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 import { AuthContext } from "../contexts/AuthContext";
 
-// import Button from '../components/Utils/Button';
 import Button from "@mui/material/Button";
 import BoardGrid from "../components/BoardGrid/BoardGrid";
 import BoardModal from "../components/BoardModal/BoardModal";
 import FilterModal from "../components/FilterModal/FilterModal";
 
-import { auth, db } from "../config/firebaseConfig";
-import { onAuthStateChanged } from "firebase/auth";
-import {
-  collection,
-  query,
-  where,
-  onSnapshot,
-  orderBy,
-} from "firebase/firestore";
+import api from "../config/apiConfig";
 
 import "./Dashboard.css";
 import { ThemeContext } from "../contexts/ThemeContext";
-
-// TODO: remove Firebase functionality and replace with new auth and state
 
 const Dashboard = () => {
   const { user, logout } = useContext(AuthContext);
@@ -55,6 +43,26 @@ const Dashboard = () => {
   const handleApplyFilter = (text) => {
     setFilterText(text);
   };
+
+  const fetchBoards = useCallback(async () => {
+    if (!user || !user.id) {
+      console.error("User ID is missing. Cannot fetch boards.");
+      return;
+    }
+    setLoading(true);
+    try {
+      const response = await api.get(`/boards/user/${user.id}`);
+      setBoards(response.data);
+    } catch (err) {
+      console.error("Failed to fetch boards:", err);
+    } finally {
+      setLoading(false);
+    }
+  }, [user]);
+
+  useEffect(() => {
+    fetchBoards();
+  }, [fetchBoards]);
 
   const filteredBoards = filterText
     ? boards.filter((board) =>
@@ -123,6 +131,7 @@ const Dashboard = () => {
         onClose={() => setIsModalOpen(false)}
         mode={modalMode}
         board={selectedBoard}
+        onBoardSaved={fetchBoards}
       />
       {/* Filter Modal */}
       {filterModalOpen && (

@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
 import { register, login } from "../../services/authService";
 import { AuthContext } from "../../contexts/AuthContext";
+// TODO: Rewire with Material UI components and styles
+// also need to add error handling and success messages
 import Button from "../Utils/Button";
 import InputField from "../Utils/InputField";
 import "./AuthForm.css";

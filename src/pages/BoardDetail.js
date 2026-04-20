@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+
+// TODO: remove Firebase and Firestore, replace with GETs and POSTs
 import { db, auth } from "../config/firebaseConfig";
 import {
   collection,
@@ -8,8 +10,8 @@ import {
   where,
   onSnapshot,
 } from "firebase/firestore";
+
 import List from "../components/List/List";
-// import Button from '../components/Utils/Button';
 import "./BoardDetail.css";
 
 import Button from "@mui/material/Button";

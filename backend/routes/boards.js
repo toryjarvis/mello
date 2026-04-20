@@ -6,6 +6,7 @@ import {
   updateBoardName,
   updateBoardDescription,
   updateBoardVisibility,
+  getBoardById
 } from "../services/boardService.js";
 
 const router = express.Router();
@@ -20,6 +21,18 @@ router.get("/user/:userId", async (req, res) => {
     res.status(500).json({ error: "Failed to get boards" });
   }
 });
+
+//get board by board id
+router.get("/:id", async (req, res) => {
+  try {
+    const board = await getBoardById(req.params.id);
+    res.json(board);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to get board" });
+  }
+});
+
 
 //create board
 router.post("/", async (req, res) => {
