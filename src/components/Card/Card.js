@@ -2,54 +2,33 @@ import React, { useState } from "react";
 import "./Card.css";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
-
-// Firebase imports - NEED TO REMOVE
-import { doc, updateDoc, deleteDoc } from "firebase/firestore";
-import { auth, db } from "../../config/firebaseConfig";
+import api from "../../config/apiConfig";
 
 const Card = ({ card, listId, cardId, boardId }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(card.title);
-  const [editedDescription, setEditedDescription] = useState(card.card_description);
+  const [editedDescription, setEditedDescription] = useState(
+    card.card_description,
+  );
 
   // Handle Card Edit
   const handleEditCard = async () => {
-    console.log("Auth User ID:", auth.currentUser?.uid);
-    if (!editedTitle.trim()) return;
-
     try {
-      const cardRef = doc(
-        db,
-        `boards/${boardId}/lists/${listId}/cards/${cardId}`,
-      );
-      await updateDoc(cardRef, {
+      await api.put(`/cards/${cardId}`, {
         title: editedTitle,
-        description: editedDescription,
-        userId: auth.currentUser.uid,
-        // cardId: cardId
+        card_description: editedDescription,
       });
       setIsEditing(false);
-      console.log("Card updated successfully!");
     } catch (error) {
-      console.error("Error updating card:", error);
+      console.error("Error editing card:", error);
     }
   };
 
   // Handle Card Delete
-  const handleDeleteCard = async (cardId, listId, boardId) => {
-    console.log("Auth User ID:", auth.currentUser?.uid);
-    console.log("Card ID received in handleDeleteCard:", cardId);
-    console.log("List ID:", listId);
-    console.log("Board ID:", boardId);
-
+  const handleDeleteCard = async (cardId) => {
     try {
-      const cardRef = doc(
-        db,
-        `boards/${boardId}/lists/${listId}/cards/${cardId}`,
-      );
-      await deleteDoc(cardRef);
+      await api.delete(`/cards/${cardId}`);
       setIsEditing(false);
-      console.log("Card deleted successfully!");
     } catch (error) {
       console.error("Error deleting card:", error);
     }

@@ -6,8 +6,8 @@ import { AuthContext } from "../contexts/AuthContext";
 import { ThemeContext } from "../contexts/ThemeContext";
 
 // dummy dash and login pages to test the routing
-jest.mock("../pages/Dashboard", () => () => <div>Dashboard Page</div>);
-jest.mock("../pages/LoginSignUpPage", () => () => <div>Login Page</div>);
+vi.mock("../pages/Dashboard", () => ({ default: () => <div>Dashboard Page</div> }));
+vi.mock("../pages/AuthPage", () => ({ default: () => <div>Auth Page</div> }));
 
 const renderWithProviders = ({
   user = null,
@@ -46,7 +46,7 @@ describe("App component", () => {
     fireEvent.click(helloBtn);
 
     await waitFor(() => {
-      expect(screen.getByText(/login page/i)).toBeInTheDocument();
+      expect(screen.getByText(/Auth Page/i)).toBeInTheDocument();
     });
   });
 

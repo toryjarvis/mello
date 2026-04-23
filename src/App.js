@@ -1,11 +1,8 @@
 import React, { useContext } from "react";
 import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "./contexts/AuthContext";
-
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-// import Button from './components/Utils/Button';
-
 import AboutPage from "./pages/AboutPage";
 import FAQPage from "./pages/FAQPage";
 import ContactPage from "./pages/ContactPage";
@@ -14,14 +11,11 @@ import Dashboard from "./pages/Dashboard";
 import AuthPage from "./pages/AuthPage";
 import BoardDetail from "./pages/BoardDetail";
 import Settings from "./pages/Settings";
-
 import Button from "@mui/material/Button";
 
 import spinningm from "./spinningm.svg";
-
 import "./styles/App.css";
 import "./styles/global.css";
-
 import { ThemeContext } from "./contexts/ThemeContext";
 
 const App = () => {

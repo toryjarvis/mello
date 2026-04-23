@@ -30,3 +30,4 @@ INSERT INTO card_history (id, card_id, user_id, change_type, changed_at) VALUES
 (2, 1, 1, 'Moved to To Do list', '2024-06-20 09:05:00'),
 (3, 2, 2, 'Card created', '2024-06-21 10:00:00'),
 (4, 2, 2, 'Moved to In Progress list', '2024-06-22 11:00:00');
+-- add setval calls to avoid auto increment conflict

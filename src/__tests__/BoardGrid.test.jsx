@@ -5,19 +5,20 @@ import BoardGrid from "../components/BoardGrid/BoardGrid";
 import { ThemeContext } from "../contexts/ThemeContext";
 
 // mock board
-jest.mock(
+vi.mock(
   "../components/Board/BoardComponent",
-  () =>
-    ({ board, onEditBoard }) => (
+  () => ({
+    default: ({ board, onEditBoard }) => (
       <div data-testid="board" data-board-id={board.boardId}>
-        {board.title}
+        {board.name}
       </div>
     ),
+  }),
 );
 
 // mock console.log
 beforeEach(() => {
-  jest.spyOn(console, "log").mockImplementation(() => {});
+  vi.spyOn(console, "log").mockImplementation(() => {});
 });
 afterEach(() => {
   console.log.mockRestore();
@@ -25,12 +26,12 @@ afterEach(() => {
 
 const renderBoardGrid = (props = {}) => {
   const defaultBoards = [
-    { boardId: "1", title: "Board One" },
-    { boardId: "2", title: "Board Two" },
+    { boardId: "1", name: "Board One" },
+    { boardId: "2", name: "Board Two" },
   ];
   const defaultProps = {
     boards: defaultBoards,
-    handleEditBoard: jest.fn(),
+    handleEditBoard: vi.fn(),
   };
 
   return render(
@@ -48,7 +49,7 @@ describe("BoardGrid component", () => {
   });
 
   test("calls handleEditBoard(null) when Add Board button is clicked", () => {
-    const handleEditBoard = jest.fn();
+    const handleEditBoard = vi.fn();
     renderBoardGrid({ handleEditBoard });
 
     fireEvent.click(screen.getByText(/add board/i));
@@ -64,11 +65,11 @@ describe("BoardGrid component", () => {
     );
   });
 
-  test("calls console.log when Filter button is clicked", () => {
+  test("calls a console.log when Filter button is clicked", () => {
     renderBoardGrid();
     fireEvent.click(screen.getByText(/filter/i));
     expect(console.log).toHaveBeenCalledWith(
-      expect.stringContaining("Filtering"),
+      expect.stringContaining("Searching"),
       expect.any(Array),
     );
   });

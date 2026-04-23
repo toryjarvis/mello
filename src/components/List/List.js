@@ -1,22 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
-
-// TODO: remove Firebase
-import { auth, db } from "../../config/firebaseConfig";
-import {
-  collection,
-  addDoc,
-  onSnapshot,
-  doc,
-  updateDoc,
-  deleteDoc,
-} from "firebase/firestore";
-
+import React, { useState, useEffect, useContext, useCallback } from "react";
+import api from "../../config/apiConfig";
 import Card from "../Card/Card";
-import "./List.css";
-
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
 import { ThemeContext } from "../../contexts/ThemeContext";
+import "./List.css";
 
 const List = ({ list, listId, boardId }) => {
   const [cards, setCards] = useState([]);
@@ -28,50 +16,34 @@ const List = ({ list, listId, boardId }) => {
   const { currentTheme } = useContext(ThemeContext);
 
   // Fetch cards in real-time
+  const fetchCards = useCallback(async () => {
+    try {
+      const response = await api.get(`/cards/list/${listId}`);
+      setCards(response.data);
+    } catch (error) {
+      console.error("Error fetching cards:", error);
+    }
+  }, [listId]);
+
   useEffect(() => {
-    if (!listId) return;
-
-    const cardsRef = collection(db, `boards/${boardId}/lists/${listId}/cards`);
-
-    // Listen for changes in real-time
-    const unsubscribe = onSnapshot(cardsRef, (snapshot) => {
-      setCards(snapshot.docs.map((doc) => ({ cardId: doc.id, ...doc.data() })));
-    });
-
-    // Cleanup listener on unmount
-    return () => unsubscribe();
-  }, [listId, boardId]);
+    fetchCards();
+  }, [fetchCards]);
 
   // Handle List Edit
   const handleEditList = async () => {
-    console.log("Auth User ID:", auth.currentUser?.uid);
-    console.log("List ID received in handleEditList:", listId);
-    console.log("Board ID:", boardId);
-
     try {
-      const listRef = doc(db, `boards/${boardId}/lists/${listId}`);
-      await updateDoc(listRef, {
-        name: editedName,
-        userId: auth.currentUser.uid,
-      });
+      await api.put(`/lists/${listId}/name`, { list_name: editedName });
       setIsEditing(false);
-      console.log("List updated successfully!", editedName);
     } catch (error) {
-      console.error("Error updating list:", error);
+      console.error("Error editing list:", error);
     }
   };
 
   // Handle List Delete
   const handleDeleteList = async (listId, boardId) => {
-    console.log("Auth User ID:", auth.currentUser?.uid);
-    console.log("List ID received in handleDeleteList:", listId);
-    console.log("Board ID:", boardId);
-
     try {
-      const listRef = doc(db, `boards/${boardId}/lists/${listId}`);
-      await deleteDoc(listRef);
+      await api.delete(`/lists/${listId}`);
       setIsEditing(false);
-      console.log("List deleted successfully!");
     } catch (error) {
       console.error("Error deleting list:", error);
     }
@@ -79,25 +51,18 @@ const List = ({ list, listId, boardId }) => {
 
   // Add Card
   const handleAddCard = async () => {
-    if (!newCardTitle.trim()) return;
-
+    if (newCardTitle.trim() === "") return;
     try {
-      const docRef = await addDoc(
-        collection(db, `boards/${boardId}/lists/${listId}/cards`),
-        {
-          title: newCardTitle,
-          description: newCardDescription,
-          createdAt: new Date(),
-          userId: auth.currentUser?.uid,
-        },
-      );
-
-      console.log("New card added with ID:", docRef.id);
-
+      await api.post("/cards", {
+        title: newCardTitle,
+        card_description: newCardDescription,
+        list_id: listId,
+        board_id: boardId,
+      });
       setNewCardTitle("");
       setNewCardDescription("");
       setShowCardForm(false);
-      console.log("Card added successfully!");
+      fetchCards();
     } catch (error) {
       console.error("Error adding card:", error);
     }
@@ -153,16 +118,13 @@ const List = ({ list, listId, boardId }) => {
 
       {/* Display Cards */}
       <div className="cards-container">
-        {/* TODO: fix map misuse */}
-        {cards.map((card, handleEditCard, handleDeleteCard) => (
+        {cards.map((card) => (
           <Card
             key={card.cardId}
             card={card}
             cardId={card.cardId}
             listId={listId}
             boardId={boardId}
-            handleDeleteCard={handleDeleteCard}
-            handleEditCard={handleEditCard}
           />
         ))}
       </div>
