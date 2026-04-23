@@ -23,12 +23,11 @@ const BoardModal = ({ isOpen, onClose, mode, board, onBoardSaved }) => {
     }
   }, [isOpen, mode, board]);
 
-  // replace with api.post('/boards')
   const handleBoardSave = async () => {
     if (!user || !user.id) return;
     try {
       if (mode === "add") {
-        await api.post("/boards", { name, userId: user.id });
+        await api.post("/boards", { userId: user.id, board_name: name });
       } else if (mode === "edit" && board) {
         await api.put(`/boards/${board.id}/name`, { board_name: name });
       }

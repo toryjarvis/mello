@@ -1,29 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-//TODO: Remove Firebase and Firestore, replace with DELETE
-import { db } from "../../config/firebaseConfig";
-import { doc, deleteDoc } from "firebase/firestore";
+import api from "../../config/apiConfig";
 
 import Button from "@mui/material/Button";
 import { useContext } from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
 
-const Board = ({ board, onEditBoard }) => {
+const Board = ({ board, onEditBoard, onBoardDeleted }) => {
   const { currentTheme } = useContext(ThemeContext);
 
   // Handle Board Delete
   const handleBoardDelete = async (boardId) => {
     try {
-      const boardRef = doc(db, `boards/${boardId}`);
-      await deleteDoc(boardRef);
-      console.log("Board ID " + boardId + " deleted successfully!");
+      await api.delete(`/boards/${boardId}`);
+      // Refresh of the board list
+      onBoardDeleted();
     } catch (error) {
-      console.error("Error deleting board: ", error);
+      console.error("Error deleting board:", error);
     }
   };
 
-  // Render treats the board as a "card" (remember for implementing drag and drop)
+  // Render treats the board as a "card" (remember this for implementing drag and drop)
   return (
     <div className={`board-card ${currentTheme}`}>
       <Link

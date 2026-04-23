@@ -1,19 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-
-// TODO: remove Firebase and Firestore, replace with GETs and POSTs
-import { db, auth } from "../config/firebaseConfig";
-import {
-  collection,
-  addDoc,
-  query,
-  where,
-  onSnapshot,
-} from "firebase/firestore";
-
+import api from "../config/apiConfig";
 import List from "../components/List/List";
 import "./BoardDetail.css";
-
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
 
@@ -26,70 +15,44 @@ const BoardDetail = () => {
   const [showListForm, setShowListForm] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  // Fetch Board Details
+  //api.get(/boards/${boardId}) → setBoard(response.data)
   useEffect(() => {
-    const boardRef = collection(db, "boards");
-    const q = query(boardRef, where("__name__", "==", boardId));
-
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      if (!querySnapshot.empty) {
-        setBoard(querySnapshot.docs[0].data());
+    const fetchBoard = async () => {
+      try {
+        const response = await api.get(`/boards/${boardId}`);
+        setBoard(response.data);
+      } catch (error) {
+        console.error("Error fetching board:", error);
       }
-    });
+    };
 
-    return () => unsubscribe();
+    if (boardId) {
+      fetchBoard();
+    }
   }, [boardId]);
 
-  // Fetch Lists in Real-Time
+  // api.get(/lists/board/${boardId}) → setLists(response.data)
   useEffect(() => {
-    if (!boardId) {
-      console.error("Board ID is missing!");
-      return;
-    }
-
-    const listsRef = collection(db, `boards/${boardId}/lists`);
-    console.log("Listening to:", `boards/${boardId}/lists`);
-
-    const unsubscribe = onSnapshot(
-      listsRef,
-      (snapshot) => {
-        if (snapshot.empty) {
-          console.warn("No lists found in Firestore.");
-          setLoading(false);
-        } else {
-          console.log(
-            "Snapshot received:",
-            snapshot.docs.map((doc) => doc.data()),
-          );
-          setLoading(false);
-        }
-        setLists(
-          snapshot.docs.map((doc) => ({ listId: doc.id, ...doc.data() })),
-        );
-      },
-      (error) => {
+    const fetchLists = async () => {
+      try {
+        const response = await api.get(`/lists/board/${boardId}`);
+        setLists(response.data);
+        setLoading(false);
+      } catch (error) {
         console.error("Error fetching lists:", error);
-      },
-    );
+      }
+    };
 
-    return () => unsubscribe();
+    if (boardId) {
+      fetchLists();
+    }
   }, [boardId]);
 
   // Handle List Creation
   const handleAddList = async () => {
     if (newListName.trim() === "") return;
-    if (!auth.currentUser) {
-      console.error("User not authenticated");
-      return;
-    }
-
     try {
-      await addDoc(collection(db, `boards/${boardId}/lists`), {
-        name: newListName,
-        boardId,
-        userId: auth.currentUser.uid,
-        createdAt: new Date(),
-      });
+      await api.post("/lists", { boardId: boardId, list_name: newListName });
       setNewListName("");
       setShowListForm(false);
     } catch (error) {
@@ -119,16 +82,13 @@ const BoardDetail = () => {
         <div className="loading-icon">Loading...</div>
       ) : lists.length > 0 ? (
         <div className="lists-container">
-          {/* TODO: fix map misuse */}
-          {lists.map((list, handleEditList, handleDeleteList) => (
+          {lists.map((list) => (
             <List
               className="list-container"
               key={list.listId}
               listId={list.listId}
               list={list}
               boardId={boardId}
-              handleEditList={handleEditList}
-              handleDeleteList={handleDeleteList}
             />
           ))}
         </div>
@@ -137,20 +97,6 @@ const BoardDetail = () => {
           You have no lists yet. Click 'Add List' to create one!
         </p>
       )}
-
-      {/* <div className='lists-container'>
-        {lists.map((list, handleEditList, handleDeleteList) => (
-          <List
-            className='list-container'
-            key={list.listId}
-            listId={list.listId}
-            list={list}
-            boardId={boardId}
-            handleEditList={handleEditList}
-            handleDeleteList={handleDeleteList}
-          />
-        ))}
-      </div> */}
 
       {/* Add List Button */}
       {!showListForm ? (

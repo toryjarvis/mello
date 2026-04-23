@@ -10,11 +10,14 @@ const BoardGrid = ({
   handleEditBoard,
   handleAddBoard,
   handleBoardFilter,
+  onBoardDeleted,
 }) => {
   const { currentTheme } = useContext(ThemeContext);
 
   // Render a grid of boards
-  // TODO: Implement drag and drop functionality (Finish Material UI migration before implementing drag and drop)
+  // TODO: Implement drag and drop functionality 
+  // (Finish Material UI migration before implementing drag and drop)
+  // (Also finish postgres migration before implementing drag and drop)
 
   // TODO: Sort functionality
   //Use a drop down to decide which way to sort
@@ -77,6 +80,7 @@ const BoardGrid = ({
             key={board.id || board.boardId}
             board={board}
             onEditBoard={handleEditBoard}
+            onBoardDeleted={onBoardDeleted}
           />
         ))}
       </div>

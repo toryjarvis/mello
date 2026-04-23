@@ -44,6 +44,17 @@ const Dashboard = () => {
     setFilterText(text);
   };
 
+  const handleBoardDelete = async (boardId) => {
+    try {
+      await api.delete(`/boards/${boardId}`);
+      // Refresh the board list
+      window.location.reload();
+    } catch (error) {
+      console.error("Error deleting board:", error);
+    }
+  };
+
+
   const fetchBoards = useCallback(async () => {
     if (!user || !user.id) {
       console.error("User ID is missing. Cannot fetch boards.");
@@ -119,6 +130,8 @@ const Dashboard = () => {
             handleEditBoard={handleEditBoard}
             handleBoardFilter={handleBoardFilter}
             handleApplyFilter={handleApplyFilter}
+            handleBoardDelete={handleBoardDelete}
+            onBoardDeleted={fetchBoards}
           />
         ) : (
           <p className="no-boards-message">
