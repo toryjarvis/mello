@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [
     {
         name: 'treat-js-as-jsx',
+        enforce: 'pre',
         async transform(code, id) {
           if (!id.match(/src\/.*\.js$/)) return null;{
             return transformWithOxc(code, id, { 

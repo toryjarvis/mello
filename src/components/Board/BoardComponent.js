@@ -8,6 +8,7 @@ import { useContext } from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
 
 const Board = ({ board, onEditBoard, onBoardDeleted }) => {
+  console.log('board prop:', board);
   const { currentTheme } = useContext(ThemeContext);
 
   // Handle Board Delete
@@ -25,9 +26,9 @@ const Board = ({ board, onEditBoard, onBoardDeleted }) => {
   return (
     <div className={`board-card ${currentTheme}`}>
       <Link
-        key={board.boardId}
+        key={board.id}
         board={board}
-        to={`/boards/${board.boardId}`}
+        to={`/boards/${board.id}`}
         className="board-card-header"
       >
         <h3>{board.name}</h3>
@@ -46,7 +47,10 @@ const Board = ({ board, onEditBoard, onBoardDeleted }) => {
           className="board-delete-btn"
           variant="contained"
           type="secondary"
-          onClick={() => handleBoardDelete(board.boardId)}
+          onClick={() => {
+            console.log("board at click:", board);
+            handleBoardDelete(board.id);
+          }}
         >
           Delete
         </Button>

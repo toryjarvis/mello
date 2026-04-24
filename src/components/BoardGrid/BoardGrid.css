@@ -22,7 +22,7 @@
 
 /* Individual Board Card */
 .board-card {
-  background: var(surface, inherit);
+  background: var(--surface, inherit);
   padding: var(--spacing-md);
   border-radius: var(--radius-lg);
   text-align: center;
