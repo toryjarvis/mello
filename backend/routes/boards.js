@@ -8,8 +8,10 @@ import {
   updateBoardVisibility,
   getBoardById
 } from "../services/boardService.js";
+import authenticateToken from "../middleware/auth.js";
 
 const router = express.Router();
+router.use(authenticateToken);
 
 //get boards by user id
 router.get("/user/:userId", async (req, res) => {

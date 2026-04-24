@@ -7,8 +7,10 @@ import {
   updateCardDescription,
   updateCardPosition,
 } from "../services/cardService.js";
+import authenticateToken from "../middleware/auth.js";
 
 const router = express.Router();
+router.use(authenticateToken);
 
 //get cards by list id
 router.get("/list/:listId", async (req, res) => {

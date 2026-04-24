@@ -6,8 +6,10 @@ import {
   updateListName,
   updateListPosition,
 } from "../services/listService.js";
+import authenticateToken from "../middleware/auth.js";
 
 const router = express.Router();
+router.use(authenticateToken);
 
 //get lists by board id
 router.get("/board/:boardId", async (req, res) => {
