@@ -1,6 +1,9 @@
 @import "../../styles/App.theme.light.css";
 @import "../../styles/App.theme.ember.css";
 @import "../../styles/App.theme.dark.css";
+@import "../../styles/App.theme.dusk.css";
+@import "../../styles/App.theme.forest.css";
+@import "../../styles/App.theme.midnight.css";
 @import "../../styles/global.css";
 
 /* Wrapper */
@@ -25,14 +28,14 @@
   background: var(--surface, inherit);
   padding: var(--spacing-md);
   border-radius: var(--radius-lg);
-  text-align: center;
+  text-align: left;
   font-size: 1.2rem;
   font-weight: var(--font-weight-bold);
   text-decoration: none;
-  transition: box-shadow 0.2s ease;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
   min-height: 150px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
   cursor: pointer;
   position: relative;
@@ -42,7 +45,6 @@
 .board-card:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
-  opacity: 0.95;
 }
 
 /* Card Title */
@@ -63,7 +65,7 @@
 
 .board-input {
   padding: var(--spacing-sm);
-  border: 1px solid #ccc;
+  border: var(--border, #ccc);
   border-radius: var(--radius-sm);
   width: 100%;
   box-sizing: border-box;
@@ -76,8 +78,9 @@
 .board-grid-options {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  gap: var(--spacing-sm);
   margin: var(--spacing-sm) 0;
+  padding: 0 var(--spacing-sm);
 }
 
 /* Responsive Styles */

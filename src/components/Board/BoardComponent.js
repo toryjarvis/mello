@@ -1,15 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import api from "../../config/apiConfig";
-
-import Button from "@mui/material/Button";
 import { useContext } from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
+import Button from "@mui/material/Button";
 
 const Board = ({ board, onEditBoard, onBoardDeleted }) => {
-  console.log('board prop:', board);
   const { currentTheme } = useContext(ThemeContext);
+  const navigate = useNavigate();
 
   // Handle Board Delete
   const handleBoardDelete = async (boardId) => {
@@ -24,31 +22,29 @@ const Board = ({ board, onEditBoard, onBoardDeleted }) => {
 
   // Render treats the board as a "card" (remember this for implementing drag and drop)
   return (
-    <div className={`board-card ${currentTheme}`}>
-      <Link
-        key={board.id}
-        board={board}
-        to={`/boards/${board.id}`}
-        className="board-card-header"
-      >
-        <h3>{board.name}</h3>
-      </Link>
+    <div
+      className={`board-card ${currentTheme}`}
+      onClick={() => navigate(`/boards/${board.id}`)}
+    >
+      <h3 className="board-card-header">{board.name}</h3>
 
       <div className="board-card-buttons">
         <Button
-          className="board-edit-btn"
           variant="contained"
-          type="primary"
-          onClick={() => onEditBoard(board)}
+          onClick={(e) => {
+            e.stopPropagation();
+            onEditBoard(board);
+          }}
         >
           Edit
         </Button>
         <Button
-          className="board-delete-btn"
           variant="contained"
-          type="secondary"
-          onClick={() => {
-            console.log("board at click:", board);
+          sx={{
+            "&:hover": { backgroundColor: "var(--danger)" },
+          }}
+          onClick={(e) => {
+            e.stopPropagation();
             handleBoardDelete(board.id);
           }}
         >

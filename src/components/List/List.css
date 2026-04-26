@@ -1,21 +1,27 @@
 @import "../../styles/App.theme.light.css";
 @import "../../styles/App.theme.ember.css";
 @import "../../styles/App.theme.dark.css";
+@import "../../styles/App.theme.dusk.css";
+@import "../../styles/App.theme.forest.css";
+@import "../../styles/App.theme.midnight.css";
 @import "../../styles/global.css";
 
 /* Main List Container */
 .list-container {
   display: flex;
   flex-direction: column;
-  background-color: --list-container-bg;
+  background-color: var(--list-container-bg);
   border-radius: var(--radius-md);
   padding: var(--spacing-md);
-  width: 100%;
+  width: 280px;
+  min-width: 280px;
   min-height: 100px;
   box-shadow: var(--shadow-md);
   color: inherit;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--spacing-md);
+  flex-shrink: 0;
+  margin: var(--spacing-sm) 0;
 }
 
 /* List Header */
@@ -31,7 +37,7 @@
 
 .list-name-h3 {
   margin: var(--spacing-sm);
-  font-size: var(--font-heading);
+  font-size: var(--font-subheading);
   color: inherit;
 }
 
@@ -48,14 +54,12 @@
 
 /* Add Card Button */
 .add-card-btn {
-  composes: button from "../../styles/global.css";
   margin: 10px;
 }
 
 /* Add Card Form */
 .add-card-form {
   display: flex;
-  background-color: var(--form-bg, inherit);
   flex-direction: column;
   gap: var(--spacing-sm);
   background: inherit;
@@ -69,11 +73,11 @@
 /* Card Title Input */
 .card-input {
   padding: var(--spacing-sm);
-  border: 1px solid #ccc;
+  border: 1px solid var(--border, #ccc);
   border-radius: var(--radius-sm);
   background-color: var(--surface, #fff);
   color: var(--text, #23272f);
-  min-width: 300px;
+  width: 100%;
   box-sizing: border-box;
 }
 
@@ -85,18 +89,10 @@
   box-sizing: border-box;
 }
 
-/* Form Actions */
-.button-group {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--spacing-sm);
-}
-
 /* Form Action Buttons */
 .list-actions {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: var(--spacing-sm);
   margin-bottom: var(--spacing-sm);
 }
@@ -108,9 +104,9 @@
   border-radius: var(--radius-md);
   display: flex;
   flex-direction: column;
-  gap: var(--radius-sm);
+  gap: var(--spacing-sm);
   margin-bottom: var(--spacing-sm);
-  align-items: center;
+  align-items: flex-start;
 }
 
 /* Edit List Form */

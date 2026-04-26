@@ -30,17 +30,18 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow-y: scroll;
+}
+
 body {
-  font-family: system-ui, sans-serif;
+  font-family: "Roboto", system-ui, sans-serif;
   font-size: var(--font-body);
   line-height: var(--line-height);
   margin: 0;
   padding: 0;
   background-color: var(--bg);
   color: var(--text);
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
 }
 
 /* Headings */
@@ -92,10 +93,11 @@ h2 {
 input,
 textarea,
 select {
+  font-family: inherit;
   font-size: 1rem;
   padding: var(--spacing-sm);
   border-radius: var(--radius-sm);
-  border: 1px solid #ccc;
+  border: 1px solid var(--border, #ccc);
   width: 100%;
   transition:
     border-color 0.2s ease,
@@ -106,8 +108,9 @@ input:focus,
 textarea:focus,
 select:focus {
   outline: none;
-  border-color: var(--btn-primary-bg);
-  box-shadow: 0 0 0 3px rgba(100, 149, 237, 0.2);
+  border-color: var(--accent, #2563eb);
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--accent, #2563eb) 25%, transparent);
 }
 
 /* Util Classes */

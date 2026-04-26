@@ -1,6 +1,9 @@
 @import "./../styles/App.theme.light.css";
 @import "./../styles/App.theme.ember.css";
 @import "./../styles/App.theme.dark.css";
+@import "./../styles/App.theme.dusk.css";
+@import "./../styles/App.theme.forest.css";
+@import "./../styles/App.theme.midnight.css";
 @import "./../styles/global.css";
 
 .settings-container {
@@ -28,13 +31,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
-}
-
-.settings-form label {
-  font-size: var(--font-body);
-  font-weight: 500;
-  color: inherit;
-  margin-bottom: var(--spacing-xs);
+  margin-top: var(--spacing-xl)
 }
 
 .settings-form input {
@@ -43,8 +40,8 @@
   border: 1px solid var(--border, #e5e7eb);
   border-radius: var(--radius-sm);
   font-size: var(--font-body);
-  background-color: #f3f4f6;
-  color: #23272f;
+  background-color: var(--surface);
+  color: var(--text);
   transition:
     border-color 0.2s ease,
     background-color 0.2s ease,
@@ -71,22 +68,6 @@
 .settings-form input:focus {
   border-color: var(--accent, #2563eb);
   outline: none;
-}
-
-/* Submit button */
-.settings-form button[type="submit"] {
-  composes: button from "../styles/button.css";
-  width: 100%;
-  font-size: 1.08rem;
-  padding: var(--spacing-md) 0;
-  font-weight: bold;
-  margin-top: var(--spacing-md);
-  background-color: var(--btn-primary-bg);
-  color: var(--btn-primary-color);
-}
-
-.settings-form button[type="submit"]:hover {
-  background-color: var(--btn-primary-hover, #1d4ed8);
 }
 
 @media (max-width: 600px) {

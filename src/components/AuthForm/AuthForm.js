@@ -1,13 +1,13 @@
 import React, { useState, useContext } from "react";
 import { register, login } from "../../services/authService";
 import { AuthContext } from "../../contexts/AuthContext";
-// TODO: Rewire with Material UI components and styles
-// also need to add error handling and success messages
-import Button from "../Utils/Button";
-import InputField from "../Utils/InputField";
+import { ThemeContext } from "../../contexts/ThemeContext";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 import "./AuthForm.css";
 
 const AuthForm = () => {
+  const { currentTheme } = useContext(ThemeContext);
   const [isSignUp, setIsSignUp] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
@@ -16,12 +16,6 @@ const AuthForm = () => {
   });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-
-  // providers for other logins, might need to refactor to use Material SignIn
-  // const providers = [
-  //   { id: "github", name: "GitHub" },
-  //   { id: "google", name: "Google" },
-  // ];
 
   const toggleForm = () => {
     setIsSignUp((prev) => !prev);
@@ -55,49 +49,59 @@ const AuthForm = () => {
   };
 
   return (
-    <div className="Form-container">
+    <div className={`Form-container ${currentTheme}`}>
       <h2>{isSignUp ? "Sign Up" : "Sign In"}</h2>
       {error && <p className="Error-message">{error}</p>}
       {success && <p className="Success-message">{success}</p>}
 
-      <form onSubmit={handleSubmit}>
+      <form className="Form-wrapper" onSubmit={handleSubmit}>
         {isSignUp && (
-          <InputField
+          <TextField
             id="username"
             label="Username"
             type="text"
-            placeholder="Enter your username"
             value={formData.username}
             onChange={handleChange}
             required
+            fullWidth
+            size="small"
+            variant="outlined"
           />
         )}
 
-        <InputField
+        <TextField
           id="email"
           label="Email"
           type="email"
-          placeholder="Enter your email"
           value={formData.email}
           onChange={handleChange}
           required
+          fullWidth
+          size="small"
+          variant="outlined"
         />
 
-        <InputField
+        <TextField
           id="password"
           label="Password"
           type="password"
-          placeholder="Enter your password"
           value={formData.password}
           onChange={handleChange}
           required
+          fullWidth
+          size="small"
+          variant="outlined"
         />
 
         <Button
-          type="primary"
-          text={isSignUp ? "Sign Up" : "Sign In"}
-          onClick={handleSubmit}
-        />
+          type="submit"
+          variant="contained"
+          color="primary"
+          fullWidth
+          sx={{ marginTop: 1 }}
+        >
+          {isSignUp ? "Sign Up" : "Sign In"}
+        </Button>
       </form>
 
       <p className="Toggle-text" onClick={toggleForm}>

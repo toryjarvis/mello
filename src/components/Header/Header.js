@@ -1,10 +1,13 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
-import "./Header.css";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import ThemeSwitcher from "./../ThemeSwitcher";
+
+import "./Header.css";
 import spinnimgm from "../../spinningm.svg";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
@@ -40,23 +43,12 @@ const Header = () => {
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >
-          {isOpen ? "✖" : "☰"}
+          {isOpen ? <CloseIcon /> : <MenuIcon />}
         </button>
 
         {/* Navigation Menu */}
         <nav className={`Header-nav ${isOpen ? "open" : ""} ${currentTheme}`}>
           <ul className="Header-list">
-            {/* Theme Switcher */}
-            <div
-              className="theme-switcher-container"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                height: "fit-content",
-              }}
-            >
-              <ThemeSwitcher />
-            </div>
             {/* TODO: Set Home link conditional redirect to dashboard based on user authentication */}
             <li>
               <Link to="/" onClick={toggleMenu}>
@@ -80,13 +72,23 @@ const Header = () => {
             </li>
             {user && (
               <li>
-                <button onClick={logout} className="Logout-button">
+                <button
+                  onClick={() => {
+                    logout();
+                    navigate("/");
+                  }}
+                  className="Logout-button"
+                >
                   Logout
                 </button>
               </li>
             )}
           </ul>
         </nav>
+        {/* Theme Switcher */}
+        <div className="theme-switcher-container">
+          <ThemeSwitcher />
+        </div>
       </div>
     </header>
   );

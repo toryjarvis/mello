@@ -1,6 +1,9 @@
 @import "../../styles/App.theme.light.css";
 @import "../../styles/App.theme.ember.css";
 @import "../../styles/App.theme.dark.css";
+@import "../../styles/App.theme.dusk.css";
+@import "../../styles/App.theme.forest.css";
+@import "../../styles/App.theme.midnight.css";
 @import "../../styles/global.css";
 
 /* Main Container*/
@@ -27,31 +30,12 @@
   gap: var(--spacing-md);
 }
 
-/* Form Group */
-.Form-group {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xs);
-}
-
-.Form-group input {
-  background-color: white;
-  color: black;
-}
-
-.Form-button {
-  composes: button from "../../styles/global.css";
-  width: 100%;
-  margin-top: var(--spacing-md);
-}
-
 /* Toggle Links */
 .Toggle-button,
 .Toggle-text {
   background: none;
   border: none;
-  color: var(--btn-primary-bg, #007bff);
+  color: var(--accent, #2563eb);
   cursor: pointer;
   font-size: var(--font-small);
   text-align: center;
@@ -66,13 +50,13 @@
 }
 
 .Error-message {
-  color: red;
+  color: var(--danger);
   font-size: var(--font-small);
   margin-bottom: var(--spacing-sm);
 }
 
 .Success-message {
-  color: green;
+  color: var(--success);
   font-size: var(--font-small);
   margin-bottom: var(--spacing-sm);
 }

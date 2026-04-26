@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-//new imports for after the postgres migration
-
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { ThemeContext } from "../../contexts/ThemeContext";

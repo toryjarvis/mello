@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
 import Board from "../Board/BoardComponent";
-
 import "./BoardGrid.css";
-import { Button, Input } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import { ThemeContext } from "../../contexts/ThemeContext";
 
 const BoardGrid = ({
@@ -26,14 +25,12 @@ const BoardGrid = ({
     // Sort by creation date (recent or older)
     // Sort by last changed date(recent or older)
     // For now, just log the boards to console
-    console.log("Sorting boards:", boards);
   };
 
   // TODO: Search functionality
   //Use a text input to search boards and filter in real time
   const handleBoardSearch = (e) => {
-    // For now, just log the boards to console
-    console.log("Searching boards:", e.target.value);
+    // Filter boards by name based on search query
   };
 
   return (
@@ -66,7 +63,9 @@ const BoardGrid = ({
         >
           Filter
         </Button>
-        <Input
+        <TextField
+          size="small"
+          variant="outlined"
           className="board-search-input"
           placeholder="Search"
           onChange={handleBoardSearch}
@@ -77,7 +76,7 @@ const BoardGrid = ({
         {boards.map((board) => (
           <Board
             className="board-grid-item"
-            key={board.id || board.boardId}
+            key={board.id}
             board={board}
             onEditBoard={handleEditBoard}
             onBoardDeleted={onBoardDeleted}

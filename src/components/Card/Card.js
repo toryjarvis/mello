@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import api from "../../config/apiConfig";
+import { ThemeContext } from "../../contexts/ThemeContext";
+import { useContext } from "react";
 import "./Card.css";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
-import api from "../../config/apiConfig";
 
-const Card = ({ card, listId, cardId, boardId }) => {
+const Card = ({ card, listId, cardId, onCardUpdated }) => {
+  const { currentTheme } = useContext(ThemeContext);
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(card.title);
   const [editedDescription, setEditedDescription] = useState(
@@ -14,28 +17,32 @@ const Card = ({ card, listId, cardId, boardId }) => {
   // Handle Card Edit
   const handleEditCard = async () => {
     try {
-      await api.put(`/cards/${cardId}`, {
+      await api.put(`/cards/${cardId}/name`, {
         title: editedTitle,
+      });
+      await api.put(`/cards/${cardId}/description`, {
         card_description: editedDescription,
       });
       setIsEditing(false);
+      onCardUpdated();
     } catch (error) {
       console.error("Error editing card:", error);
     }
   };
 
   // Handle Card Delete
-  const handleDeleteCard = async (cardId) => {
+  const handleDeleteCard = async () => {
     try {
       await api.delete(`/cards/${cardId}`);
       setIsEditing(false);
+      onCardUpdated();
     } catch (error) {
       console.error("Error deleting card:", error);
     }
   };
 
   return (
-    <div className="card">
+    <div className={`card ${currentTheme}`}>
       {isEditing ? (
         <div className="card-edit-form">
           <TextField
@@ -78,9 +85,15 @@ const Card = ({ card, listId, cardId, boardId }) => {
               Edit
             </Button>
             <Button
-              variant="outlined"
-              type="secondary"
-              onClick={() => handleDeleteCard(cardId, listId, boardId)}
+              variant="contained"
+              sx={{
+                "&:hover": {
+                  backgroundColor: "var(--danger)",
+                  color: "#fff",
+                  borderColor: "var(--danger)",
+                },
+              }}
+              onClick={() => handleDeleteCard()}
             >
               Delete
             </Button>

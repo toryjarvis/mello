@@ -6,13 +6,13 @@ import { TextField } from "@mui/material";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import "./List.css";
 
-const List = ({ list, listId, boardId }) => {
+const List = ({ list, listId, boardId, onListUpdated }) => {
   const [cards, setCards] = useState([]);
   const [newCardTitle, setNewCardTitle] = useState("");
   const [newCardDescription, setNewCardDescription] = useState("");
   const [showCardForm, setShowCardForm] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [editedName, setEditedName] = useState(list.name);
+  const [editedName, setEditedName] = useState(list.list_name);
   const { currentTheme } = useContext(ThemeContext);
 
   // Fetch cards in real-time
@@ -34,16 +34,18 @@ const List = ({ list, listId, boardId }) => {
     try {
       await api.put(`/lists/${listId}/name`, { list_name: editedName });
       setIsEditing(false);
+      onListUpdated();
     } catch (error) {
       console.error("Error editing list:", error);
     }
   };
 
   // Handle List Delete
-  const handleDeleteList = async (listId, boardId) => {
+  const handleDeleteList = async () => {
     try {
       await api.delete(`/lists/${listId}`);
       setIsEditing(false);
+      onListUpdated();
     } catch (error) {
       console.error("Error deleting list:", error);
     }
@@ -56,8 +58,7 @@ const List = ({ list, listId, boardId }) => {
       await api.post("/cards", {
         title: newCardTitle,
         card_description: newCardDescription,
-        list_id: listId,
-        board_id: boardId,
+        listId: listId,
       });
       setNewCardTitle("");
       setNewCardDescription("");
@@ -108,7 +109,10 @@ const List = ({ list, listId, boardId }) => {
               variant="contained"
               text="Delete"
               type="secondary"
-              onClick={() => handleDeleteList(listId, boardId)}
+              sx={{
+                "&:hover": { backgroundColor: "var(--danger)" },
+              }}
+              onClick={() => handleDeleteList()}
             >
               Delete
             </Button>
@@ -120,11 +124,11 @@ const List = ({ list, listId, boardId }) => {
       <div className="cards-container">
         {cards.map((card) => (
           <Card
-            key={card.cardId}
+            key={card.id}
             card={card}
-            cardId={card.cardId}
+            cardId={card.id}
             listId={listId}
-            boardId={boardId}
+            onCardUpdated={fetchCards}
           />
         ))}
       </div>
@@ -167,7 +171,7 @@ const List = ({ list, listId, boardId }) => {
           </Button>
           <Button
             text="Cancel"
-            variant="outline"
+            variant="outlined"
             type="secondary"
             onClick={() => setShowCardForm(false)}
           >

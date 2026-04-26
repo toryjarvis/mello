@@ -1,163 +1,163 @@
-/* Ember Theme Overview */
-.App.ember {
-  --bg: #1a0f0a;
-  --surface: #261510;
-  --text: #f5e6d8;
-  --text-secondary: #c4a882;
-  --btn-primary-bg: #e85d04;
-  --btn-primary-color: #ffffff;
-  --btn-primary-hover: #dc2f02;
-  --btn-secondary-bg: #6b3a2a;
-  --btn-secondary-color: #f5e6d8;
-  --accent: #fb923c;
-  --accent-secondary: #fbbf24;
-  --accent-hover: #f97316;
-  --danger: #ef4444;
-  --danger-hover: #dc2626;
+/* Forest Theme Overview */
+.App.forest {
+  --bg: #0c1a10;
+  --surface: #152319;
+  --text: #e0ede3;
+  --text-secondary: #7aaa80;
+  --btn-primary-bg: #16a34a;
+  --btn-primary-color: #fff5f5;
+  --btn-primary-hover: #15803d;
+  --btn-secondary-bg: #2d5a38;
+  --btn-secondary-color: #e0ede3;
+  --accent: #4ade80;
+  --accent-secondary: #86efac;
+  --accent-hover: #22c55e;
+  --danger: #f43f5e;
+  --danger-hover: #e11d48;
   --success: #16a34a;
   --success-hover: #1ac358;
-  --border: #3d1f14;
-  --board-card-bg: #261510;
-  --board-card-bg-hover: #2e1a12;
-  --list-container-bg: #2a1711;
+  --border: #1e3d26;
+  --board-card-bg: #152319;
+  --board-card-bg-hover: #1c2f21;
+  --list-container-bg: #182b1e;
 
   background-color: var(--bg);
   color: var(--text);
 }
 
 /* Layout */
-.App-main.ember {
+.App-main.forest {
   background-color: var(--bg);
   color: var(--text);
 }
 
-.App-header.ember {
+.App-header.forest {
   background-color: var(--surface);
   color: var(--text);
   border-bottom: 1px solid var(--border);
 }
 
-.App-intro.ember {
+.App-intro.forest {
   background-color: var(--surface);
   color: var(--text);
   border: none;
 }
 
-.App-footer.ember {
+.App-footer.forest {
   background-color: var(--surface);
   color: var(--text);
   border-top: 1px solid var(--border);
 }
 
-.Menu-toggle.ember,
-.privacy-footer-link.ember {
+.Menu-toggle.forest,
+.privacy-footer-link.forest {
   color: var(--accent);
 }
 
 /* Dashboard */
-.dashboard-main.ember {
+.dashboard-main.forest {
   background-color: var(--bg);
   color: var(--text);
 }
 
-.dashboard-container.ember {
+.dashboard-container.forest {
   background-color: var(--surface);
   color: var(--text);
 }
 
-.dashboard-sidebar.ember {
+.dashboard-sidebar.forest {
   background-color: var(--bg);
   color: var(--text-secondary);
   border-right: 1px solid var(--border);
 }
 
-.sidebar-header.ember {
+.sidebar-header.forest {
   color: var(--text);
 }
 
 /* Contact Cards */
-.Contact-LinkedIn.ember,
-.Contact-GitHub.ember,
-.Contact-Email.ember {
+.Contact-LinkedIn.forest,
+.Contact-GitHub.forest,
+.Contact-Email.forest {
   background-color: var(--surface);
   border: 1px solid var(--border);
 }
 
-.App.ember .Contact-LinkedIn a,
-.App.ember .Contact-GitHub a,
-.App.ember .Contact-Email a {
+.App.forest .Contact-LinkedIn a,
+.App.forest .Contact-GitHub a,
+.App.forest .Contact-Email a {
   color: var(--accent);
 }
 
-.App.ember .Contact-LinkedIn a:hover,
-.App.ember .Contact-GitHub a:hover,
-.App.ember .Contact-Email a:hover {
+.App.forest .Contact-LinkedIn a:hover,
+.App.forest .Contact-GitHub a:hover,
+.App.forest .Contact-Email a:hover {
   color: var(--accent-secondary);
 }
 
 /* Board UI */
-.board-grid-container.ember,
-.board-card-header.ember {
+.board-grid-container.forest,
+.board-card-header.forest {
   background-color: var(--surface);
   color: var(--text);
 }
 
-.board-card.ember {
+.board-card.forest {
   background-color: var(--board-card-bg);
   color: var(--text);
   border: 1px solid var(--border);
 }
 
-.board-card.ember:hover {
+.board-card.forest:hover {
   background-color: var(--board-card-bg-hover);
   box-shadow: var(--shadow-md);
 }
 
 /* Modal & Form Inputs */
-.modal-content.ember {
+.modal-content.forest {
   background-color: var(--surface);
   color: var(--text);
 }
 
-.list-input.ember {
+.list-input.forest {
   background-color: var(--surface);
   color: var(--text);
   border: 1px solid var(--border);
 }
 
-.Logout-button.ember {
+.Logout-button.forest {
   background-color: var(--danger);
   color: var(--btn-secondary-color);
   border: none;
 }
 
-.Logout-button.ember:hover {
+.Logout-button.forest:hover {
   background-color: var(--danger-hover);
   color: #fff;
 }
 
 /* Settings */
-.settings-container.ember {
+.settings-container.forest {
   background-color: var(--board-card-bg);
   color: var(--text);
 }
 
-.settings-form.ember {
+.settings-form.forest {
   background-color: var(--board-card-bg);
   color: var(--text);
 }
 
-.card.ember {
+.card.forest {
   background-color: var(--board-card-bg);
   color: var(--text);
 }
 
-.list-container.ember {
+.list-container.forest {
   background-color: var(--list-container-bg);
   color: var(--text);
 }
 
-.Header-nav.ember {
+.Header-nav.forest {
   background-color: var(--surface);
   color: var(--text);
 }

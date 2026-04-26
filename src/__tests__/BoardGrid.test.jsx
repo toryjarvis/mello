@@ -9,7 +9,7 @@ vi.mock(
   "../components/Board/BoardComponent",
   () => ({
     default: ({ board, onEditBoard }) => (
-      <div data-testid="board" data-board-id={board.boardId}>
+      <div data-testid="board" data-board-id={board.id}>
         {board.name}
       </div>
     ),
@@ -26,8 +26,8 @@ afterEach(() => {
 
 const renderBoardGrid = (props = {}) => {
   const defaultBoards = [
-    { boardId: "1", name: "Board One" },
-    { boardId: "2", name: "Board Two" },
+    { id: "1", name: "Board One" },
+    { id: "2", name: "Board Two" },
   ];
   const defaultProps = {
     boards: defaultBoards,

@@ -16,9 +16,17 @@ export const getListsByBoard = async (boardId) => {
 };
 
 export const createList = async (boardId, list_name, position) => {
+  let listPosition = position;
+  if (listPosition === undefined || listPosition === null) {
+    const { rows: posRows } = await pool.query(
+      "SELECT COALESCE(MAX(position), -1) + 1 AS next_pos FROM lists WHERE board_id = $1",
+      [boardId]
+    );
+    listPosition = posRows[0].next_pos;
+  }
   const { rows } = await pool.query(
     "INSERT INTO lists (board_id, list_name, position) VALUES ($1, $2, $3) RETURNING *",
-    [boardId, list_name, position],
+    [boardId, list_name, listPosition],
   );
   return rows[0];
 };

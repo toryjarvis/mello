@@ -1,22 +1,25 @@
 /* Light Theme Overview */
 .App.light {
-  --bg: #f7f8fa;
-  --surface: #f1f1f1;
+  --bg: #f4f5f7;
+  --surface: #f8faff;
   --text: #23272f;
   --text-secondary: #4b5563;
   --btn-primary-bg: #2563eb;
-  --btn-primary-color: #fff;
-  --btn-secondary-bg: #fbbf24;
-  --btn-secondary-color: #23272f;
+  --btn-primary-color: #f8fafc;
+  --btn-primary-hover: #1d4ed8;
+  --btn-secondary-bg: #64748b;
+  --btn-secondary-color: #f8fafc;
   --accent: #2563eb;
-  --accent-secondary: #fbbf24;
-  --accent-hover: #ff9e5c;
+  --accent-secondary: #6366f1;
+  --accent-hover: #1d4ed8;
   --danger: #e11d48;
   --danger-hover: #b91c1c;
+  --success: #16a34a;
+  --success-hover: #1ac358;
   --border: #e5e7eb;
-  --board-card-bg: #ededed;
-  --board-card-bg-hover: #f3f4f6;
-  --list-container-bg: #ffffff;
+  --board-card-bg: #f3f6ff;
+  --board-card-bg-hover: #e7edf4;
+  --list-container-bg: #f8fafc;
 
   background-color: var(--bg);
   color: var(--text);
@@ -80,15 +83,15 @@
   border: 1px solid var(--border);
 }
 
-.Contact-LinkedIn a.light,
-.Contact-GitHub a.light,
-.Contact-Email a.light {
+.App.light .Contact-LinkedIn a,
+.App.light .Contact-GitHub a,
+.App.light .Contact-Email a {
   color: var(--accent);
 }
 
-.Contact-LinkedIn a:hover.light,
-.Contact-GitHub a:hover.light,
-.Contact-Email a:hover.light {
+.App.light .Contact-LinkedIn a:hover,
+.App.light .Contact-GitHub a:hover,
+.App.light .Contact-Email a:hover {
   color: var(--accent-secondary);
 }
 
@@ -107,6 +110,7 @@
 
 .board-card.light:hover {
   background-color: var(--board-card-bg-hover);
+  box-shadow: var(--shadow-md);
 }
 
 /* Modal & Form Inputs */
@@ -116,7 +120,7 @@
 }
 
 .list-input.light {
-  background-color: #ffffff;
+  background-color: var(--surface);
   color: var(--text);
   border: 1px solid var(--border);
 }
@@ -156,5 +160,4 @@
 .Header-nav.light {
   background-color: var(--surface);
   color: var(--text);
-  box-shadow: var(--shadow-md);
 }

@@ -1,21 +1,32 @@
 @import "../../styles/App.theme.light.css";
 @import "../../styles/App.theme.ember.css";
 @import "../../styles/App.theme.dark.css";
+@import "../../styles/App.theme.dusk.css";
+@import "../../styles/App.theme.forest.css";
+@import "../../styles/App.theme.midnight.css";
 @import "../../styles/global.css";
 
 /* Header Wrapper */
 .App-header {
-  min-height: 8vh;
+  height: 64px;
+  padding: 0 var(--spacing-lg);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--spacing-sm) var(--spacing-lg);
   font-size: var(--font-body);
   font-weight: var(--font-weight-bold);
   position: relative;
   background-color: inherit;
   color: inherit;
   box-shadow: var(--shadow-md);
+}
+
+/* Header Container */
+.Header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
 /* Header Logo */
@@ -42,43 +53,28 @@
   gap: var(--spacing-sm);
 }
 
-/* Hamburger Menu */
+/* Hamburger Menu, now with better icons and styling */
 .Menu-toggle {
-  font-size: 1.5rem;
+  display: none;
   background: none;
   border: none;
   color: inherit;
   cursor: pointer;
-  position: absolute;
-  right: var(--spacing-sm);
-  z-index: 30;
+  padding: var(--spacing-xs);
+  border-radius: var(--radius-sm);
+  line-height: 0;
 }
 
-/* Slide-out Navigation */
+/* Static Navigation */
 .Header-nav {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: 0;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  transition:
-    width 0.3s ease-in-out,
-    transform 0.3s ease-in-out;
-  white-space: nowrap;
-  z-index: 20;
-  transform: translateX(100%);
-  background-color: inherit;
-}
-
-.Header-nav.open {
-  width: fit-content;
-  height: 100%;
-  padding: 0 var(--spacing-xl) 0 var(--spacing-md);
-  transform: translateX(0);
+  position: static;
+  width: auto;
+  height: auto;
+  transform: none;
+  overflow: visible;
+  background-color: transparent;
+  box-shadow: none;
+  margin-left: auto;
 }
 
 /* Header Navigation List */
@@ -105,13 +101,14 @@
 }
 
 .Header-list a:hover {
-  text-decoration: underline;
-  color: var(--btn-secondary-color);
+  color: var(--accent);
+  text-decoration: none;
+  opacity: 0.85;
 }
 
 .Logout-button {
-  background-color: var(--btn-secondary-bg, #b22222);
-  color: var(--btn-secondary-color, white);
+  background-color: var(--danger);
+  color: #ffffff;
   padding: var(--spacing-sm) var(--spacing-md);
   border: none;
   border-radius: var(--radius-sm);
@@ -121,25 +118,37 @@
 }
 
 .Logout-button:hover {
-  background-color: var(--btn-secondary-hover, #a11d1d);
+  background-color: var(--danger-hover);
 }
 
 @media (max-width: 768px) {
+  .theme-switcher-container {
+    display: none;
+  }
+
+  .Menu-toggle {
+    display: block;
+    margin-left: auto;
+    z-index: 60;
+  }
+
   .Header-nav {
+    background-color: var(--surface);
     position: fixed;
     top: 0;
     right: 0;
     height: 100vh;
     width: 0;
+    overflow: hidden;
     flex-direction: column;
     justify-content: flex-start;
-    padding-top: 60px;
     transform: translateX(100%);
+    z-index: 50;
   }
 
   .Header-nav.open {
     width: 100vw;
-    padding: 0 var(--spacing-md);
+    padding: 80px var(--spacing-md) var(--spacing-md);
     transform: translateX(0);
   }
 
@@ -148,8 +157,5 @@
     align-items: center;
     padding: var(--spacing-md);
   }
-
-  .Menu-toggle {
-    z-index: 40;
-  }
 }
+

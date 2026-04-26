@@ -44,6 +44,7 @@ CREATE TABLE cards (
     list_id integer NOT NULL,
     title VARCHAR(255) NOT NULL,
     card_description text,
+    position integer NOT NULL DEFAULT 0,
     due_date timestamp,
     priority VARCHAR(50),
     labels TEXT[],

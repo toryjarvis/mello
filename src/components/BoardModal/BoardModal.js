@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
+import { ThemeContext } from "../../contexts/ThemeContext";
 import api from "../../config/apiConfig";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { ThemeContext } from "../../contexts/ThemeContext";
 import CloseIcon from "@mui/icons-material/Close";
 
 import "./BoardModal.css";
@@ -24,6 +24,7 @@ const BoardModal = ({ isOpen, onClose, mode, board, onBoardSaved }) => {
   }, [isOpen, mode, board]);
 
   const handleBoardSave = async () => {
+    if (!name.trim()) return;
     if (!user || !user.id) return;
     try {
       if (mode === "add") {
@@ -41,8 +42,16 @@ const BoardModal = ({ isOpen, onClose, mode, board, onBoardSaved }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay" aria-modal="true" role="dialog">
-      <div className={`modal-content ${currentTheme}`}>
+    <div
+      className="modal-overlay"
+      onClick={onClose}
+      aria-modal="true"
+      role="dialog"
+    >
+      <div
+        className={`modal-content ${currentTheme}`}
+        onClick={(e) => e.stopPropagation()}
+      >
         <button className="modal-close" aria-label="Close" onClick={onClose}>
           <CloseIcon />
         </button>
@@ -57,20 +66,17 @@ const BoardModal = ({ isOpen, onClose, mode, board, onBoardSaved }) => {
           onChange={(e) => setName(e.target.value)}
           fullWidth
           sx={{ marginBottom: 3 }}
+          onKeyDown={(e) => {if (e.key === 'Enter') handleBoardSave();}}
         />
 
-        <Button
-          color="primary"
-          variant="contained"
-          className="modal-save"
-          onClick={handleBoardSave}
-        >
-          {mode === "add" ? "Add" : "Save"}
-        </Button>
-
-        <Button variant="contained" onClick={onClose} className="modal-cancel">
-          Cancel
-        </Button>
+        <div className="modal-actions">
+          <Button color="primary" variant="contained" onClick={handleBoardSave}>
+            {mode === "add" ? "Add" : "Save"}
+          </Button>
+          <Button variant="contained" onClick={onClose}>
+            Cancel
+          </Button>
+        </div>
       </div>
     </div>
   );

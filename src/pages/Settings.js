@@ -43,22 +43,41 @@ const Settings = () => {
     <div className={`settings-container ${currentTheme}`}>
       <h1>Settings</h1>
       <form className="settings-form" onSubmit={handleSaveProfile}>
-        <div>
-          <label htmlFor="username">Username:</label>
-          <TextField type="text" id="username" name="username" />
-        </div>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <TextField type="email" id="email" name="email" />
-        </div>
-        <Button type="submit">Save Changes</Button>
+        <TextField
+          label="Username"
+          type="text"
+          id="username"
+          name="username"
+          fullWidth
+          size="small"
+          variant="outlined"
+        />
+        <TextField
+          label="Email"
+          type="email"
+          id="email"
+          name="email"
+          fullWidth
+          size="small"
+          variant="outlined"
+        />
+        <Button type="submit" variant="contained" fullWidth>
+          Save Changes
+        </Button>
       </form>
       <form className="settings-form" onSubmit={handleChangePassword}>
-        <div>
-          <label htmlFor="password">New Password:</label>
-          <TextField type="password" id="password" name="password" />
-        </div>
-        <Button type="submit">Change Password</Button>
+        <TextField
+          label="New Password"
+          type="password"
+          id="password"
+          name="password"
+          fullWidth
+          size="small"
+          variant="outlined"
+        />
+        <Button type="submit" variant="contained" fullWidth>
+          Change Password
+        </Button>
       </form>
     </div>
   );

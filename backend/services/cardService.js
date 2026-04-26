@@ -21,9 +21,17 @@ export const createCard = async (
   position,
   card_description = "",
 ) => {
+  let cardPosition = position;
+  if (cardPosition === undefined || cardPosition === null) {
+    const { rows: posRows } = await pool.query(
+      "SELECT COALESCE(MAX(position), -1) + 1 AS next_pos FROM cards WHERE list_id = $1",
+      [listId]
+    );
+    cardPosition = posRows[0].next_pos;
+  }
   const { rows } = await pool.query(
     "INSERT INTO cards (list_id, title, position, card_description) VALUES ($1, $2, $3, $4) RETURNING *",
-    [listId, title, position, card_description],
+    [listId, title, cardPosition, card_description],
   );
   return rows[0];
 };

@@ -7,7 +7,9 @@ import {
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [currentTheme, setCurrentTheme] = useState("light");
+  const [currentTheme, setCurrentTheme] = useState(
+    () => localStorage.getItem("theme") || "light"
+  );
 
   const themes = useMemo(
     () => ({
@@ -76,8 +78,71 @@ export const ThemeProvider = ({ children }) => {
           },
         },
       }),
+      dusk: createTheme({
+        palette: {
+          mode: "dark",
+          primary: {
+            main: "#4a5568",
+            contrastText: "#ffffff",
+          },
+          secondary: {
+            main: "#718096",
+            contrastText: "#ffffff",
+          },
+          background: {
+            default: "#2d3748",
+            paper: "#4a5568",
+          },
+          text: {
+            primary: "#e2e8f0",
+            secondary: "#a0aec0",
+          },
+        },
+      }),
+      forest: createTheme({
+        palette: {
+          mode: "dark",
+          primary: {
+            main: "#2f855a",
+            contrastText: "#ffffff",
+          },
+          secondary: {
+            main: "#38a169",
+            contrastText: "#ffffff",
+          },
+          background: {
+            default: "#2d3748",
+            paper: "#4a5568",
+          },
+          text: {
+            primary: "#e2e8f0",
+            secondary: "#a0aec0",
+          },
+        },
+      }),
+      midnight: createTheme({
+        palette: {
+          mode: "dark",
+          primary: {
+            main: "#1a202c",
+            contrastText: "#ffffff",
+          },
+          secondary: {
+            main: "#2d3748",
+            contrastText: "#ffffff",
+          },
+          background: {
+            default: "#000000",
+            paper: "#1a202c",
+          },
+          text: {
+            primary: "#e2e8f0",
+            secondary: "#a0aec0",
+          },
+        },
+      }),
     }),
-    [],
+    []
   );
 
   const theme = themes[currentTheme];
@@ -85,6 +150,7 @@ export const ThemeProvider = ({ children }) => {
   const switchTheme = (themeName) => {
     if (themes[themeName]) {
       setCurrentTheme(themeName);
+      localStorage.setItem("theme", themeName);
     }
   };
 

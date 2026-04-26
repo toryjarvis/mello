@@ -1,23 +1,21 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { Select, MenuItem } from "@mui/material";
-import "./../components/Header/Header.css";
 
 const ThemeSwitcher = () => {
   const { currentTheme, switchTheme } = useContext(ThemeContext);
 
   return (
     <Select
-      // size="small"
+      size="small"
       value={currentTheme}
       onChange={(e) => switchTheme(e.target.value)}
       variant="standard"
-      style={{
-        margin: "10px",
+      disableUnderline
+      sx={{
         color: "inherit",
-        padding: "5px",
-        border: "none",
-        backgroundColor: "inherit",
+        "& .MuiSelect-icon": { color: "inherit" },
+        ml: 1,
       }}
     >
       <MenuItem value="light" className="switcher-text">
@@ -28,6 +26,15 @@ const ThemeSwitcher = () => {
       </MenuItem>
       <MenuItem value="ember" className="switcher-text">
         Ember
+      </MenuItem>
+      <MenuItem value="dusk" className="switcher-text">
+        Dusk
+      </MenuItem>
+      <MenuItem value="forest" className="switcher-text">
+        Forest
+      </MenuItem>
+      <MenuItem value="midnight" className="switcher-text">
+        Midnight
       </MenuItem>
     </Select>
   );

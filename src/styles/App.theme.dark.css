@@ -1,21 +1,25 @@
-/* Dark Theme Overview*/
+/* Dark Theme Overview */
 .App.dark {
-  --bg: #181a1b;
-  --surface: #23272f;
-  --text: #f3f4f6;
-  --text-secondary: #b0b8c1;
-  --btn-primary-bg: #7e0078;
-  --btn-primary-color: #fff;
-  --btn-secondary-bg: #b22222;
-  --btn-secondary-color: #fff;
+  --bg: #0f1117;
+  --surface: #1c1f26;
+  --text: #e8eaf0;
+  --text-secondary: #8b95a1;
+  --btn-primary-bg: #3b82f6;
+  --btn-primary-color: #ffffff;
+  --btn-primary-hover: #2563eb;
+  --btn-secondary-bg: #475569;
+  --btn-secondary-color: #f1f5f9;
   --accent: #60a5fa;
   --accent-secondary: #818cf8;
-  --accent-hover: #2563eb;
-  --danger: #e11d48;
-  --danger-hover: #be123c;
-  --border: #23272f;
-  --board-card-bg: #1c1f24;
-  --board-card-bg-hover: #1f2125;
+  --accent-hover: #93c5fd;
+  --danger: #f43f5e;
+  --danger-hover: #e11d48;
+  --success: #16a34a;
+  --success-hover: #1ac358;
+  --border: #2d3139;
+  --board-card-bg: #1c1f26;
+  --board-card-bg-hover: #22262f;
+  --list-container-bg: #21242b;
 
   background-color: var(--bg);
   color: var(--text);
@@ -45,10 +49,6 @@
   border-top: 1px solid var(--border);
 }
 
-.Header-nav.dark {
-  background-color: var(--surface);
-}
-
 .Menu-toggle.dark,
 .privacy-footer-link.dark {
   color: var(--accent);
@@ -71,6 +71,10 @@
   border-right: 1px solid var(--border);
 }
 
+.sidebar-header.dark {
+  color: var(--text);
+}
+
 /* Contact Cards */
 .Contact-LinkedIn.dark,
 .Contact-GitHub.dark,
@@ -79,16 +83,16 @@
   border: 1px solid var(--border);
 }
 
-.Contact-LinkedIn a.dark,
-.Contact-GitHub a.dark,
-.Contact-Email a.dark {
+.App.dark .Contact-LinkedIn a,
+.App.dark .Contact-GitHub a,
+.App.dark .Contact-Email a {
   color: var(--accent);
 }
 
-.Contact-LinkedIn a:hover.dark,
-.Contact-GitHub a:hover.dark,
-.Contact-Email a:hover.dark {
-  color: var(--accent-hover);
+.App.dark .Contact-LinkedIn a:hover,
+.App.dark .Contact-GitHub a:hover,
+.App.dark .Contact-Email a:hover {
+  color: var(--accent-secondary);
 }
 
 /* Board UI */
@@ -106,6 +110,7 @@
 
 .board-card.dark:hover {
   background-color: var(--board-card-bg-hover);
+  box-shadow: var(--shadow-md);
 }
 
 /* Modal & Form Inputs */
@@ -115,20 +120,20 @@
 }
 
 .list-input.dark {
-  background-color: #181a1b;
+  background-color: var(--surface);
   color: var(--text);
-  border: 1px solid #444;
+  border: 1px solid var(--border);
 }
 
 .Logout-button.dark {
-  background-color: var(--btn-secondary-bg);
+  background-color: var(--danger);
   color: var(--btn-secondary-color);
   border: none;
 }
 
 .Logout-button.dark:hover {
-  background-color: var(--danger);
-  color: var(--btn-secondary-color);
+  background-color: var(--danger-hover);
+  color: #fff;
 }
 
 /* Settings */
@@ -149,5 +154,10 @@
 
 .list-container.dark {
   background-color: var(--list-container-bg);
+  color: var(--text);
+}
+
+.Header-nav.dark {
+  background-color: var(--surface);
   color: var(--text);
 }

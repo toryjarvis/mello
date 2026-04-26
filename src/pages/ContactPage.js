@@ -16,13 +16,13 @@ const ContactPage = () => {
       </div>
       <div className="Contact-Options">
         <div className="Contact-Email">
-          <Link to="mailto:toryjarvisdev@gmail.com">Email</Link>
+          <a href="mailto:toryjarvisdev@gmail.com">Email</a>
         </div>
         <div className="Contact-LinkedIn">
-          <Link to="https://www.linkedin.com/in/victorjarvis/">LinkedIn</Link>
+          <a href="https://www.linkedin.com/in/victorjarvis/">LinkedIn</a>
         </div>
         <div className="Contact-GitHub">
-          <Link to="https://github.com/toryjarvis">Github</Link>
+          <a href="https://github.com/toryjarvis">Github</a>
         </div>
       </div>
     </div>

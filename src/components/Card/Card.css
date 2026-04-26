@@ -1,6 +1,9 @@
 @import "../../styles/App.theme.light.css";
 @import "../../styles/App.theme.ember.css";
 @import "../../styles/App.theme.dark.css";
+@import "../../styles/App.theme.dusk.css";
+@import "../../styles/App.theme.forest.css";
+@import "../../styles/App.theme.midnight.css";
 @import "../../styles/global.css";
 
 /* Card Wrapper */
@@ -10,7 +13,6 @@
   padding: var(--spacing-md);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
-  margin-bottom: var(--spacing-md);
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -27,7 +29,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-sm);
-  align-items: center;
+  align-items: flex-start;
 }
 
 .card-text {
@@ -53,20 +55,8 @@
 .card-actions {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: var(--spacing-sm);
-}
-
-.card-actions .btn-primary {
-  composes: button from "../../styles/global.css";
-  background-color: var(--btn-primary-bg, #61dafb);
-  color: var(--btn-primary-color, black);
-}
-
-.card-actions .btn-secondary {
-  composes: button from "../../styles/global.css";
-  background-color: var(--btn-secondary-bg, #b22222);
-  color: var(--btn-secondary-color, white);
 }
 
 /* Inline Edit Form */
@@ -79,18 +69,12 @@
 /* Card Text Input */
 .card-input {
   padding: var(--spacing-sm);
-  border: 1px solid #ccc;
+  border: 1px solid var(--border, #ccc);
   border-radius: var(--radius-sm);
   width: 100%;
   background: var(--surface, #fff);
   color: var(--text, #23272f);
   box-sizing: border-box;
-}
-
-.card-actions .button,
-.button-group .button {
-  max-width: 100%;
-  flex: 1 1 auto;
 }
 
 @media (max-width: 768px) {

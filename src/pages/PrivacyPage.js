@@ -1,11 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 import "./PrivacyPage.css";
+import { useContext } from "react";
+import { ThemeContext } from "../contexts/ThemeContext";
 
-export default class PrivacyPage extends Component {
-  render() {
-    return (
-      <div className="Privacy-Container">
-        <div className="Privacy-Title">Privacy Policy</div>
+const PrivacyPage = () => {
+  const { currentTheme } = useContext(ThemeContext);
+  return (
+    <div className={`Privacy-Container ${currentTheme}`}>
+      <div className={"Privacy-Title"}>Privacy Policy</div>
         <div className="Privacy-Text">
           If you're reading this, you probably already know that this is a
           personal portfolio project. Rest assured, I am not a company, and I do
@@ -23,4 +25,5 @@ export default class PrivacyPage extends Component {
       </div>
     );
   }
-}
+
+export default PrivacyPage;
