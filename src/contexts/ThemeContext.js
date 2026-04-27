@@ -18,15 +18,16 @@ export const ThemeProvider = ({ children }) => {
           mode: "light",
           primary: {
             main: "#2563eb",
-            contrastText: "#ffffff",
+            contrastText: "#f8fafc",
           },
           secondary: {
-            main: "#e11d48",
-            contrastText: "#ffffff",
+            main: "#64748b",
+            contrastText: "#f8fafc",
           },
+          error: { main: "#e11d48" },
           background: {
-            default: "#f8fafc",
-            paper: "#ffffff",
+            default: "#f4f5f7",
+            paper: "#f8faff",
           },
           text: {
             primary: "#23272f",
@@ -39,20 +40,21 @@ export const ThemeProvider = ({ children }) => {
         palette: {
           mode: "dark",
           primary: {
-            main: "#7e0078",
+            main: "#591f90",
             contrastText: "#ffffff",
           },
           secondary: {
-            main: "#b22222",
-            contrastText: "#ffffff",
+            main: "#475569",
+            contrastText: "#f1f5f9",
           },
+          error: { main: "#f43f5e" },
           background: {
-            default: "#181a1b",
-            paper: "#23272f",
+            default: "#0f1117",
+            paper: "#1c1f26",
           },
           text: {
-            primary: "#f3f4f6",
-            secondary: "#b0b8c1",
+            primary: "#e8eaf0",
+            secondary: "#8b95a1",
           },
         },
       }),
@@ -61,83 +63,90 @@ export const ThemeProvider = ({ children }) => {
         palette: {
           mode: "dark",
           primary: {
-            main: "#ff6f00",
+            main: "#e85d04",
             contrastText: "#ffffff",
           },
           secondary: {
-            main: "#d84315",
-            contrastText: "#ffffff",
+            main: "#6b3a2a",
+            contrastText: "#f5e6d8",
           },
+          error: { main: "#ef4444" },
           background: {
-            default: "#3e2723",
-            paper: "#4e342e",
+            default: "#1a0f0a",
+            paper: "#261510",
           },
           text: {
-            primary: "#ffffff",
-            secondary: "#ffccbc",
+            primary: "#f5e6d8",
+            secondary: "#c4a882",
           },
         },
       }),
+
       dusk: createTheme({
         palette: {
-          mode: "dark",
+          mode: "light",
           primary: {
-            main: "#4a5568",
+            main: "#7c3aed",
             contrastText: "#ffffff",
           },
           secondary: {
-            main: "#718096",
+            main: "#8b5cf6",
             contrastText: "#ffffff",
           },
+          error: { main: "#e11d48" },
           background: {
-            default: "#2d3748",
-            paper: "#4a5568",
+            default: "#f5f3ff",
+            paper: "#faf8ff",
           },
           text: {
-            primary: "#e2e8f0",
-            secondary: "#a0aec0",
+            primary: "#1e1635",
+            secondary: "#6b5b9a",
           },
         },
       }),
+
       forest: createTheme({
         palette: {
           mode: "dark",
           primary: {
-            main: "#2f855a",
-            contrastText: "#ffffff",
+            main: "#16a34a",
+            contrastText: "#fff5f5",
           },
           secondary: {
-            main: "#38a169",
-            contrastText: "#ffffff",
+            main: "#2d5a38",
+            contrastText: "#e0ede3",
           },
+          error: { main: "#f43f5e" },
           background: {
-            default: "#2d3748",
-            paper: "#4a5568",
+            default: "#0c1a10",
+            paper: "#152319",
           },
           text: {
-            primary: "#e2e8f0",
-            secondary: "#a0aec0",
+            primary: "#e0ede3",
+            secondary: "#7aaa80",
           },
         },
       }),
+
       midnight: createTheme({
         palette: {
           mode: "dark",
           primary: {
-            main: "#1a202c",
-            contrastText: "#ffffff",
+            main: "#111f7b",
+            contrastText: "#faffff",
           },
           secondary: {
-            main: "#2d3748",
-            contrastText: "#ffffff",
+            main: "#1e4d6e",
+            contrastText: "#dde8f5",
           },
+          error: { main: "#f43f5e" },
           background: {
-            default: "#000000",
-            paper: "#1a202c",
+            default: "#0d1b2a",
+            paper: "#172435",
           },
           text: {
-            primary: "#e2e8f0",
-            secondary: "#a0aec0",
+            primary: "#dde8f5",
+            secondary: "#6a9ab8",
           },
         },
       }),
@@ -157,7 +166,7 @@ export const ThemeProvider = ({ children }) => {
   return (
     <ThemeContext.Provider value={{ currentTheme, switchTheme }}>
       <MuiThemeProvider theme={theme}>
-        <div className={`App ${currentTheme}`}>{children}</div>
+        <div>{children}</div>
       </MuiThemeProvider>
     </ThemeContext.Provider>
   );

@@ -23,6 +23,10 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(false);
   const { currentTheme } = useContext(ThemeContext);
   const [filterText, setFilterText] = useState("");
+  const [filterStatus, setFilterStatus] = useState("all");
+  const [filterStarred, setFilterStarred] = useState("all");
+  const [filterLastChanged, setFilterLastChanged] = useState("all");
+  const [filterCreationDate, setFilterCreationDate] = useState("all");
 
   const handleAddBoard = () => {
     setModalMode("add");
@@ -40,20 +44,19 @@ const Dashboard = () => {
     setFilterModalOpen(true);
   };
 
-  const handleApplyFilter = (text) => {
+  const handleApplyFilter = (
+    text,
+    status,
+    lastChanged,
+    creationDate,
+    is_starred,
+  ) => {
     setFilterText(text);
+    setFilterStatus(status);
+    setFilterStarred(is_starred);
+    setFilterLastChanged(lastChanged);
+    setFilterCreationDate(creationDate);
   };
-
-  const handleBoardDelete = async (boardId) => {
-    try {
-      await api.delete(`/boards/${boardId}`);
-      // Refresh the board list
-      window.location.reload();
-    } catch (error) {
-      console.error("Error deleting board:", error);
-    }
-  };
-
 
   const fetchBoards = useCallback(async () => {
     if (!user || !user.id) {
@@ -75,11 +78,38 @@ const Dashboard = () => {
     fetchBoards();
   }, [fetchBoards]);
 
-  const filteredBoards = filterText
-    ? boards.filter((board) =>
-        board.name.toLowerCase().includes(filterText.toLowerCase()),
-      )
-    : boards;
+  const getDateCutoff = (range) => {
+    const now = new Date();
+    if (range === "last-week") return new Date(now - 7 * 24 * 60 * 60 * 1000);
+    if (range === "last-month")
+      return new Date(now.setMonth(now.getMonth() - 1));
+    if (range === "last-year")
+      return new Date(now.setFullYear(now.getFullYear() - 1));
+    return new Date(0);
+  };
+
+  const filteredBoards = boards.filter((board) => {
+    if (
+      filterText &&
+      !board.name.toLowerCase().includes(filterText.toLowerCase())
+    )
+      return false;
+    if (filterStatus === "active" && board.is_archived) return false;
+    if (filterStatus === "archived" && !board.is_archived) return false;
+    if (filterStarred === "starred" && !board.is_starred) return false;
+    if (filterStarred === "unstarred" && board.is_starred) return false;
+    if (
+      filterLastChanged !== "all" &&
+      new Date(board.updated_at) < getDateCutoff(filterLastChanged)
+    )
+      return false;
+    if (
+      filterCreationDate !== "all" &&
+      new Date(board.created_at) < getDateCutoff(filterCreationDate)
+    )
+      return false;
+    return true;
+  });
 
   return (
     <div className={`dashboard-container ${currentTheme}`}>
@@ -92,7 +122,7 @@ const Dashboard = () => {
           <Button
             type="primary"
             variant="contained"
-            onClick={() => [handleAddBoard()]}
+            onClick={handleAddBoard}
           >
             Add New Board
           </Button>
@@ -129,8 +159,6 @@ const Dashboard = () => {
             handleAddBoard={handleAddBoard}
             handleEditBoard={handleEditBoard}
             handleBoardFilter={handleBoardFilter}
-            handleApplyFilter={handleApplyFilter}
-            handleBoardDelete={handleBoardDelete}
             onBoardDeleted={fetchBoards}
           />
         ) : (

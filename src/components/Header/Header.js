@@ -3,11 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import ThemeSwitcher from "./../ThemeSwitcher";
+import Logo from '../../spinningm.svg?react'
 
 import "./Header.css";
 import spinnimgm from "../../spinningm.svg";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import Button from "@mui/material/Button";
 
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
@@ -32,9 +34,9 @@ const Header = () => {
   return (
     <header className={`App-header ${currentTheme}`}>
       <div className="Header-container">
-        {/* /* Logo Button - navigates conditionally */}
+        {/* Logo Button - navigates conditionally */}
         <button className="Header-logo" onClick={handleLogoClick}>
-          <img src={spinnimgm} alt="Mello Logo" className="Header-Logo-Image" />
+          <Logo className="Header-Logo-Image" />
         </button>
 
         {/* Menu Toggle Button */}
@@ -72,15 +74,20 @@ const Header = () => {
             </li>
             {user && (
               <li>
-                <button
+                <Button
+                  variant="contained"
+                  size="small"
+                  sx={{
+                    backgroundColor: "var(--danger)",
+                    "&:hover": { backgroundColor: "var(--danger-hover)" },
+                  }}
                   onClick={() => {
                     logout();
                     navigate("/");
                   }}
-                  className="Logout-button"
                 >
                   Logout
-                </button>
+                </Button>
               </li>
             )}
           </ul>

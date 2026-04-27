@@ -4,14 +4,14 @@
   --surface: #1c1f26;
   --text: #e8eaf0;
   --text-secondary: #8b95a1;
-  --btn-primary-bg: #3b82f6;
+  --btn-primary-bg: #591f90;
   --btn-primary-color: #ffffff;
-  --btn-primary-hover: #2563eb;
+  --btn-primary-hover: #7c3aed;
   --btn-secondary-bg: #475569;
   --btn-secondary-color: #f1f5f9;
-  --accent: #60a5fa;
-  --accent-secondary: #818cf8;
-  --accent-hover: #93c5fd;
+  --accent: #591f90;
+  --accent-secondary: #c084fc;
+  --accent-hover: #d8b4fe;
   --danger: #f43f5e;
   --danger-hover: #e11d48;
   --success: #16a34a;
@@ -27,8 +27,10 @@
 
 /* Layout */
 .App-main.dark {
-  background-color: var(--bg);
   color: var(--text);
+  background-image: url('pexels-hngstrm-1171480.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 .App-header.dark {
@@ -56,12 +58,12 @@
 
 /* Dashboard */
 .dashboard-main.dark {
-  background-color: var(--bg);
+  background-color: rgba(15, 17, 23, 0.8);
   color: var(--text);
 }
 
 .dashboard-container.dark {
-  background-color: var(--surface);
+  background-color: transparent;
   color: var(--text);
 }
 

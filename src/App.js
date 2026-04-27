@@ -12,6 +12,7 @@ import AuthPage from "./pages/AuthPage";
 import BoardDetail from "./pages/BoardDetail";
 import Settings from "./pages/Settings";
 import Button from "@mui/material/Button";
+import Logo from './spinningm.svg?react'
 
 import spinningm from "./spinningm.svg";
 import "./styles/App.css";
@@ -43,13 +44,7 @@ const App = () => {
             path="/"
             element={
               <div className={`App-intro ${currentTheme}`}>
-                <img
-                  src={spinningm}
-                  className="App-logo"
-                  alt="logo"
-                  style={{ cursor: "pointer" }}
-                  onClick={handleHelloMelloClick}
-                />
+                <Logo className="App-logo" />
                 <p className="logline">Manage your projects with ease.</p>
                 <Button
                   text="Hello Mello"
@@ -74,7 +69,10 @@ const App = () => {
             path="/login"
             element={!user ? <AuthPage /> : <Navigate to="/dashboard" />}
           />
-          <Route path="/boards/:boardId" element={<BoardDetail />} />
+          <Route
+            path="/boards/:boardId"
+            element={user ? <BoardDetail /> : <Navigate to="/login" />}
+          />
           <Route
             path="/settings"
             element={!user ? <AuthPage /> : <Settings />}

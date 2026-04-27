@@ -29,6 +29,9 @@
 .App-main.dusk {
   background-color: var(--bg);
   color: var(--text);
+  background-image: url('pexels-ridwan-gupta-1391654-12895901.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 .App-header.dusk {
@@ -56,12 +59,12 @@
 
 /* Dashboard */
 .dashboard-main.dusk {
-  background-color: var(--bg);
+  background-color: rgba(245, 243, 255, 0.8);
   color: var(--text);
 }
 
 .dashboard-container.dusk {
-  background-color: var(--surface);
+  background-color: transparent;
   color: var(--text);
 }
 

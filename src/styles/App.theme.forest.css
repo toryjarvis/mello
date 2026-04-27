@@ -29,6 +29,9 @@
 .App-main.forest {
   background-color: var(--bg);
   color: var(--text);
+  background-image: url('pexels-dariuskrs-2609107.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 .App-header.forest {
@@ -56,12 +59,12 @@
 
 /* Dashboard */
 .dashboard-main.forest {
-  background-color: var(--bg);
+  background-color: rgba(12, 26, 16, 0.8);
   color: var(--text);
 }
 
 .dashboard-container.forest {
-  background-color: var(--surface);
+  background-color: transparent;
   color: var(--text);
 }
 

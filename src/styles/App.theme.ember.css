@@ -29,6 +29,9 @@
 .App-main.ember {
   background-color: var(--bg);
   color: var(--text);
+  background-image: url('pexels-mrjducky-10482375.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 .App-header.ember {
@@ -56,12 +59,12 @@
 
 /* Dashboard */
 .dashboard-main.ember {
-  background-color: var(--bg);
+  background-color: rgba(26, 15, 10, 0.8);
   color: var(--text);
 }
 
 .dashboard-container.ember {
-  background-color: var(--surface);
+  background-color: transparent;
   color: var(--text);
 }
 

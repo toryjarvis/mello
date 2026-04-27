@@ -4,12 +4,12 @@
   --surface: #172435;
   --text: #dde8f5;
   --text-secondary: #6a9ab8;
-  --btn-primary-bg: #0ea5e9;
+  --btn-primary-bg: #0b1451;
   --btn-primary-color: #faffff;
   --btn-primary-hover: #0284c7;
   --btn-secondary-bg: #1e4d6e;
   --btn-secondary-color: #dde8f5;
-  --accent: #38bdf8;
+  --accent: #1528a5;
   --accent-secondary: #67e8f9;
   --accent-hover: #7dd3fc;
   --danger: #f43f5e;
@@ -29,6 +29,10 @@
 .App-main.midnight {
   background-color: var(--bg);
   color: var(--text);
+  background-image: url('pexels-eva-bronzini-7641220.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 .App-header.midnight {
@@ -56,12 +60,12 @@
 
 /* Dashboard */
 .dashboard-main.midnight {
-  background-color: var(--bg);
+  background-color: rgba(13, 27, 42, 0.8);
   color: var(--text);
 }
 
 .dashboard-container.midnight {
-  background-color: var(--surface);
+  background-color: transparent;
   color: var(--text);
 }
 

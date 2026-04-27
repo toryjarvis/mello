@@ -106,21 +106,6 @@
   opacity: 0.85;
 }
 
-.Logout-button {
-  background-color: var(--danger);
-  color: #ffffff;
-  padding: var(--spacing-sm) var(--spacing-md);
-  border: none;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  font-size: var(--font-body);
-  transition: background-color 0.2s ease;
-}
-
-.Logout-button:hover {
-  background-color: var(--danger-hover);
-}
-
 @media (max-width: 768px) {
   .theme-switcher-container {
     display: none;

@@ -12,7 +12,7 @@ const FilterModal = ({ isOpen, onClose, onApplyFilter }) => {
   const [lastChanged, setLastChanged] = useState("all");
   const [creationDate, setCreationDate] = useState("all");
   //const [team, setTeam] = useState("");
-  const [starred, setStarred] = useState("all");
+  const [is_starred, setIsStarred] = useState("all");
   const { currentTheme } = useContext(ThemeContext);
 
   useEffect(() => {
@@ -22,12 +22,12 @@ const FilterModal = ({ isOpen, onClose, onApplyFilter }) => {
       setLastChanged("all");
       setCreationDate("all");
       //setTeam("");
-      setStarred("all");
+      setIsStarred("all");
     }
   }, [isOpen]);
 
   const handleApplyFilter = () => {
-    onApplyFilter(filterText);
+    onApplyFilter(filterText, status, lastChanged, creationDate, is_starred);
     onClose();
   };
 
@@ -92,8 +92,8 @@ const FilterModal = ({ isOpen, onClose, onApplyFilter }) => {
                 <input
                   type="radio"
                   value="starred"
-                  checked={starred === "starred"}
-                  onChange={(e) => setStarred(e.target.value)}
+                  checked={is_starred === "is_starred"}
+                  onChange={(e) => setIsStarred(e.target.value)}
                 />
                 Starred
               </label>
@@ -101,8 +101,8 @@ const FilterModal = ({ isOpen, onClose, onApplyFilter }) => {
                 <input
                   type="radio"
                   value="unstarred"
-                  checked={starred === "unstarred"}
-                  onChange={(e) => setStarred(e.target.value)}
+                  checked={is_starred === "unstarred"}
+                  onChange={(e) => setIsStarred(e.target.value)}
                 />
                 Unstarred
               </label>

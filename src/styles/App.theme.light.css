@@ -29,6 +29,9 @@
 .App-main.light {
   background-color: var(--bg);
   color: var(--text);
+  background-image: url('pexels-markusspiske-6502327.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 .App-header.light {
@@ -56,12 +59,12 @@
 
 /* Dashboard */
 .dashboard-main.light {
-  background-color: var(--bg);
+  background-color: rgba(244, 245, 247, 0.8);
   color: var(--text);
 }
 
 .dashboard-container.light {
-  background-color: var(--surface);
+  background-color: transparent;
   color: var(--text);
 }
 
