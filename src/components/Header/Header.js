@@ -6,7 +6,6 @@ import ThemeSwitcher from "./../ThemeSwitcher";
 import Logo from '../../spinningm.svg?react'
 
 import "./Header.css";
-import spinnimgm from "../../spinningm.svg";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import Button from "@mui/material/Button";

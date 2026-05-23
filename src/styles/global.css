@@ -156,11 +156,6 @@ select:focus {
   padding: 0 var(--spacing-md);
 }
 
-.list-container {
-  background-color: var(--surface, #f9f9f9);
-  color: var(--text, #000);
-}
-
 .add-list-btn.MuiButton-contained {
   background-color: var(--btn-primary-bg) !important;
   color: var(--btn-primary-color) !important;

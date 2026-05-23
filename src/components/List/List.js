@@ -80,11 +80,10 @@ const List = ({ list, listId, boardId, onListUpdated }) => {
             placeholder="List Title"
             className="list-input"
           />
-          <Button text="Save" type="primary" onClick={handleEditList}>
+          <Button type="primary" onClick={handleEditList}>
             Save
           </Button>
           <Button
-            text="Cancel"
             type="secondary"
             onClick={() => setIsEditing(false)}
           >
@@ -97,7 +96,6 @@ const List = ({ list, listId, boardId, onListUpdated }) => {
           <div className="list-actions">
             <Button
               className="list-edit-btn"
-              text="Edit"
               variant="contained"
               type="primary"
               onClick={() => setIsEditing(true)}
@@ -107,7 +105,6 @@ const List = ({ list, listId, boardId, onListUpdated }) => {
             <Button
               className="list-delete-btn"
               variant="contained"
-              text="Delete"
               type="secondary"
               sx={{
                 "&:hover": { backgroundColor: "var(--danger)" },
@@ -138,7 +135,6 @@ const List = ({ list, listId, boardId, onListUpdated }) => {
         <Button
           className={`add-card-btn ${currentTheme}`}
           variant="contained"
-          text="Add Card"
           type="primary"
           onClick={() => setShowCardForm(true)}
         >
@@ -162,7 +158,6 @@ const List = ({ list, listId, boardId, onListUpdated }) => {
           />
 
           <Button
-            text="Create"
             variant="contained"
             type="primary"
             onClick={handleAddCard}
@@ -170,7 +165,6 @@ const List = ({ list, listId, boardId, onListUpdated }) => {
             Create
           </Button>
           <Button
-            text="Cancel"
             variant="outlined"
             type="secondary"
             onClick={() => setShowCardForm(false)}

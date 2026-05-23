@@ -74,7 +74,9 @@ body {
 }
 
 .App-logo {
-  height: clamp(150px, 18vmin, 140px);
+  height: clamp(80px, 15vmin, 140px);
+  width: auto;
+  max-width: 100%;
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
 }

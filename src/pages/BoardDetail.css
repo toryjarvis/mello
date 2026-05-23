@@ -80,11 +80,6 @@
   border: 1px solid var(--border);
 }
 
-.board-detail {
-  padding: var(--spacing-sm);
-  color: inherit;
-}
-
 @media (max-width: 768px) {
   .lists-container {
     flex-direction: column;

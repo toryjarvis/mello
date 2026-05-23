@@ -107,9 +107,9 @@
 }
 
 @media (max-width: 768px) {
-  .theme-switcher-container {
+  /* .theme-switcher-container {
     display: none;
-  }
+  } */
 
   .Menu-toggle {
     display: block;

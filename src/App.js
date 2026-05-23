@@ -14,7 +14,6 @@ import Settings from "./pages/Settings";
 import Button from "@mui/material/Button";
 import Logo from './spinningm.svg?react'
 
-import spinningm from "./spinningm.svg";
 import "./styles/App.css";
 import "./styles/global.css";
 import { ThemeContext } from "./contexts/ThemeContext";
@@ -47,7 +46,6 @@ const App = () => {
                 <Logo className="App-logo" />
                 <p className="logline">Manage your projects with ease.</p>
                 <Button
-                  text="Hello Mello"
                   variant="contained"
                   className="App-link"
                   onClick={handleHelloMelloClick}
