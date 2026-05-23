@@ -1,6 +1,11 @@
 # Mello
 
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white) ![ExpressJS](https://img.shields.io/badge/Express%20js-000000?style=for-the-badge&logo=express&logoColor=white) ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white) ![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=flat&logo=postgresql&logoColor=white)
+![ExpressJS](https://img.shields.io/badge/Express%20js-000000?style=flat&logo=express&logoColor=white)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=flat&logo=node.js&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-000000?style=flat&logo=JSON%20web%20tokens&logoColor=white)
+![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=flat&logo=mui&logoColor=white)
 
 **Mello** is a full-stack task management tool built for collaborative planning, designed to emulate the utility and structure of internal tools used in modern tech teams. Inspired by productivity platforms like Trello, Asana, and Taigi, Mello demonstrates user-friendly and scalable architecture, secure authentication, modular UI/UX, and real-time responsiveness.
 
@@ -18,11 +23,11 @@
 - **Database**: Postgres
 - **Authentication**: JWT
 
-## Current Phase: Database Migration and Spring Cleaning
+## Current Phase: Spring Cleaning
 
-Last Updated: April 2026
+Last Updated: May 2026
 
-Currently migrating the database from Firebase to Postgres, and switching from FireAuth to utilizing JWT for authentication. Many small quality of life updates and tying up any loose dev ends.
+Fully completed the migration Firebase to Postgres and switching from FireAuth to JWT. Final sprint items include functional gaps and test rewriting.
 
 ## Contributions
 
