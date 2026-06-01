@@ -36,7 +36,7 @@ const BoardModal = ({ isOpen, onClose, mode, board, onBoardSaved }) => {
       }
       onBoardSaved();
       onClose();
-      showFeedback("Board created!", "success");
+      showFeedback(mode === "add" ? "Board created!" : "Board updated!", "success");
     } catch (error) {
       console.error("Error saving board:", error);
       showFeedback("Failed to save board.", "error");

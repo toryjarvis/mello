@@ -1,8 +1,8 @@
 // BoardGrid.test.js
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import BoardGrid from "../components/BoardGrid/BoardGrid";
-import { ThemeContext } from "../contexts/ThemeContext";
+import BoardGrid from "../../components/BoardGrid/BoardGrid";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 // mock board
 vi.mock(

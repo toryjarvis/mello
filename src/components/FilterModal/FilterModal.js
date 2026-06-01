@@ -92,7 +92,7 @@ const FilterModal = ({ isOpen, onClose, onApplyFilter }) => {
                 <input
                   type="radio"
                   value="starred"
-                  checked={is_starred === "is_starred"}
+                  checked={is_starred === "starred"}
                   onChange={(e) => setIsStarred(e.target.value)}
                 />
                 Starred

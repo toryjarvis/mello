@@ -1,6 +1,3 @@
-// context for success/error messages
-// loading states, actions, triggers, etc
-
 import React, { createContext, useContext, useState } from "react";
 import { Snackbar, Alert } from "@mui/material";
 

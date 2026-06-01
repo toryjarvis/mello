@@ -35,7 +35,6 @@ router.get("/user/:userId", async (req, res) => {
 
 //get board by board id
 router.get("/:id", async (req, res) => {
-  console.log("GET board id:", req.params.id, "user:", req.user.id);
   try {
     const board = await assertOwner(req.params.id, req.user.id, res); if (!board) return;
     res.json(board);

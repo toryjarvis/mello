@@ -53,9 +53,9 @@ router.get("/list/:listId", async (req, res) => {
 //create card
 router.post("/", async (req, res) => {
   try {
+    const { listId, title, position, card_description } = req.body;
     const list = await assertOwnerViaList(listId, req.user.id, res);
     if (!list) return;
-    const { listId, title, position, card_description } = req.body;
     const newCard = await createCard(listId, title, position, card_description);
     res.status(201).json(newCard);
   } catch (error) {

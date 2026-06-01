@@ -27,7 +27,7 @@
 
 Last Updated: May 2026
 
-Fully completed the migration Firebase to Postgres and switching from FireAuth to JWT. Final sprint items include functional gaps and test rewriting.
+Fully completed the migration Firebase to Postgres and switching from FireAuth to JWT. Most major Spring Cleaning items finished (functional gaps, issues, code quality all checked/repaired). Final part is an MUI component sweep and test rewriting.
 
 ## Contributions
 
