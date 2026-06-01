@@ -4,6 +4,7 @@ import { getUserById } from "../services/userService.js";
 import pool from "../db.js";
 import authenticateToken from "../middleware/auth.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
@@ -56,7 +57,16 @@ router.put("/:userId", authenticateToken, async (req, res) => {
       "UPDATE users SET username = $1, email = $2 WHERE id = $3 RETURNING *",
       [username, email, req.params.userId],
     );
-    res.json(updatedUser.rows[0]);
+    const token = jwt.sign(
+      {
+        id: updatedUser.rows[0].id,
+        email: updatedUser.rows[0].email,
+        username: updatedUser.rows[0].username,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" },
+    );
+    res.json({ user: updatedUser.rows[0], token });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Failed to update user." });

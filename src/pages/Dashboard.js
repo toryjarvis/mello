@@ -27,6 +27,7 @@ const Dashboard = () => {
   const [filterStarred, setFilterStarred] = useState("all");
   const [filterLastChanged, setFilterLastChanged] = useState("all");
   const [filterCreationDate, setFilterCreationDate] = useState("all");
+  const [sortBy, setSortBy] = useState("last_changed");
 
   const handleAddBoard = () => {
     setModalMode("add");
@@ -58,6 +59,9 @@ const Dashboard = () => {
     setFilterCreationDate(creationDate);
   };
 
+  const handleBoardSearch = (e) => setFilterText(e.target.value);
+  const handleBoardSort = (value) => setSortBy(value);
+
   const fetchBoards = useCallback(async () => {
     if (!user || !user.id) {
       console.error("User ID is missing. Cannot fetch boards.");
@@ -88,28 +92,40 @@ const Dashboard = () => {
     return new Date(0);
   };
 
-  const filteredBoards = boards.filter((board) => {
-    if (
-      filterText &&
-      !board.name.toLowerCase().includes(filterText.toLowerCase())
-    )
-      return false;
-    if (filterStatus === "active" && board.is_archived) return false;
-    if (filterStatus === "archived" && !board.is_archived) return false;
-    if (filterStarred === "starred" && !board.is_starred) return false;
-    if (filterStarred === "unstarred" && board.is_starred) return false;
-    if (
-      filterLastChanged !== "all" &&
-      new Date(board.updated_at) < getDateCutoff(filterLastChanged)
-    )
-      return false;
-    if (
-      filterCreationDate !== "all" &&
-      new Date(board.created_at) < getDateCutoff(filterCreationDate)
-    )
-      return false;
-    return true;
-  });
+  const filteredBoards = boards
+    .filter((board) => {
+      if (
+        filterText &&
+        !board.name.toLowerCase().includes(filterText.toLowerCase())
+      )
+        return false;
+      if (filterStatus === "active" && board.is_archived) return false;
+      if (filterStatus === "archived" && !board.is_archived) return false;
+      if (filterStarred === "starred" && !board.is_starred) return false;
+      if (filterStarred === "unstarred" && board.is_starred) return false;
+      if (
+        filterLastChanged !== "all" &&
+        new Date(board.updated_at) < getDateCutoff(filterLastChanged)
+      )
+        return false;
+      if (
+        filterCreationDate !== "all" &&
+        new Date(board.created_at) < getDateCutoff(filterCreationDate)
+      )
+        return false;
+      return true;
+    })
+    .sort((a, b) => {
+      if (sortBy === "name-asc") return a.name.localeCompare(b.name);
+      if (sortBy === "name-desc") return b.name.localeCompare(a.name);
+      if (sortBy === "newest")
+        return new Date(b.created_at) - new Date(a.created_at);
+      if (sortBy === "oldest")
+        return new Date(a.created_at) - new Date(b.created_at);
+      if (sortBy === "last_changed")
+        return new Date(b.updated_at) - new Date(a.updated_at);
+      return 0;
+    });
 
   return (
     <div className={`dashboard-container ${currentTheme}`}>
@@ -119,11 +135,7 @@ const Dashboard = () => {
           Mello
         </Link>
         <nav className={`sidebar-nav ${currentTheme}`}>
-          <Button
-            type="primary"
-            variant="contained"
-            onClick={handleAddBoard}
-          >
+          <Button type="primary" variant="contained" onClick={handleAddBoard}>
             Add New Board
           </Button>
           <Link to="/settings" className="sidebar-link">
@@ -145,7 +157,7 @@ const Dashboard = () => {
 
       <main className={`dashboard-main ${currentTheme}`}>
         <p className="user-greeting">
-          Hello {user && user.email ? user.email : "User"}!
+          Hello {user && user.username ? user.username : "User"}!
         </p>
         <h1>Your Dashboard</h1>
         <p>Manage your projects and boards here.</p>
@@ -160,6 +172,8 @@ const Dashboard = () => {
             handleEditBoard={handleEditBoard}
             handleBoardFilter={handleBoardFilter}
             onBoardDeleted={fetchBoards}
+            handleBoardSearch={handleBoardSearch}
+            handleBoardSort={handleBoardSort}
           />
         ) : (
           <p className="no-boards-message">

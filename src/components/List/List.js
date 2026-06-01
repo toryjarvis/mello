@@ -4,6 +4,7 @@ import Card from "../Card/Card";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
 import { ThemeContext } from "../../contexts/ThemeContext";
+import { useFeedback } from "../../contexts/FeedbackContext";
 import "./List.css";
 
 const List = ({ list, listId, boardId, onListUpdated }) => {
@@ -14,6 +15,7 @@ const List = ({ list, listId, boardId, onListUpdated }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedName, setEditedName] = useState(list.list_name);
   const { currentTheme } = useContext(ThemeContext);
+  const { showFeedback } = useFeedback();
 
   // Fetch cards in real-time
   const fetchCards = useCallback(async () => {
@@ -22,6 +24,7 @@ const List = ({ list, listId, boardId, onListUpdated }) => {
       setCards(response.data);
     } catch (error) {
       console.error("Error fetching cards:", error);
+      showFeedback("Something's gone wrong, could not fetch cards.", "error");
     }
   }, [listId]);
 
@@ -35,8 +38,10 @@ const List = ({ list, listId, boardId, onListUpdated }) => {
       await api.put(`/lists/${listId}/name`, { list_name: editedName });
       setIsEditing(false);
       onListUpdated();
+      showFeedback("List updated!", "success");
     } catch (error) {
       console.error("Error editing list:", error);
+      showFeedback("Failed to update list.", "error");
     }
   };
 
@@ -46,8 +51,10 @@ const List = ({ list, listId, boardId, onListUpdated }) => {
       await api.delete(`/lists/${listId}`);
       setIsEditing(false);
       onListUpdated();
+      showFeedback("List deleted!", "success");
     } catch (error) {
       console.error("Error deleting list:", error);
+      showFeedback("Failed to delete list.", "error");
     }
   };
 
@@ -64,8 +71,11 @@ const List = ({ list, listId, boardId, onListUpdated }) => {
       setNewCardDescription("");
       setShowCardForm(false);
       fetchCards();
+      showFeedback("Card added!", "success");
     } catch (error) {
       console.error("Error adding card:", error);
+      showFeedback("Failed to add card.", "error");
+
     }
   };
 

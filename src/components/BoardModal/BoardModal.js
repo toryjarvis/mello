@@ -5,6 +5,7 @@ import api from "../../config/apiConfig";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import CloseIcon from "@mui/icons-material/Close";
+import { useFeedback } from "../../contexts/FeedbackContext";
 
 import "./BoardModal.css";
 
@@ -12,6 +13,7 @@ const BoardModal = ({ isOpen, onClose, mode, board, onBoardSaved }) => {
   const [name, setName] = useState("");
   const { currentTheme } = useContext(ThemeContext);
   const { user } = useContext(AuthContext);
+  const { showFeedback } = useFeedback();
 
   useEffect(() => {
     if (isOpen) {
@@ -34,8 +36,10 @@ const BoardModal = ({ isOpen, onClose, mode, board, onBoardSaved }) => {
       }
       onBoardSaved();
       onClose();
+      showFeedback("Board created!", "success");
     } catch (error) {
       console.error("Error saving board:", error);
+      showFeedback("Failed to save board.", "error");
     }
   };
 

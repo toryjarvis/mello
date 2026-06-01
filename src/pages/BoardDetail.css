@@ -27,8 +27,8 @@
 
 /* Back Button */
 .back-button {
-  background: none;
-  border: none;
+  /* background: none;
+  border: none; */
   color: inherit;
   font-size: var(--font-body);
   font-weight: var(--font-weight-bold);
@@ -60,14 +60,36 @@
 /* Add List Form */
 .add-list-form {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: var(--spacing-sm);
   background: inherit;
   color: inherit;
   padding: var(--spacing-sm);
   border-radius: var(--radius-sm);
-  width: 250px;
+  width: 280px;
+  min-width: 280px;
   align-items: center;
+}
+
+.add-list-placeholder {
+  width: 280px;
+  min-width: 280px;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  background-color: var(--surface);
+  opacity: 0.6;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-weight: var(--font-weight-bold);
+  transition: opacity 0.2s ease;
+}
+
+.add-list-placeholder:hover {
+  opacity: 1;
 }
 
 /* Input Styles */

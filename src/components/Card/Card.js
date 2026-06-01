@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import api from "../../config/apiConfig";
 import { ThemeContext } from "../../contexts/ThemeContext";
+import { useFeedback } from "../../contexts/FeedbackContext";
 import { useContext } from "react";
+
 import "./Card.css";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
@@ -13,6 +15,8 @@ const Card = ({ card, listId, cardId, onCardUpdated }) => {
   const [editedDescription, setEditedDescription] = useState(
     card.card_description,
   );
+  const { showFeedback } = useFeedback();
+  
 
   // Handle Card Edit
   const handleEditCard = async () => {
@@ -25,8 +29,11 @@ const Card = ({ card, listId, cardId, onCardUpdated }) => {
       });
       setIsEditing(false);
       onCardUpdated();
+      showFeedback("Card updated!", "success");
+
     } catch (error) {
       console.error("Error editing card:", error);
+      showFeedback("Failed to edit card", "error");
     }
   };
 
@@ -36,8 +43,10 @@ const Card = ({ card, listId, cardId, onCardUpdated }) => {
       await api.delete(`/cards/${cardId}`);
       setIsEditing(false);
       onCardUpdated();
+      showFeedback("Card deleted!", "success");
     } catch (error) {
       console.error("Error deleting card:", error);
+      showFeedback("Failed to delete card", "error");
     }
   };
 

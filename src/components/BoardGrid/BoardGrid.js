@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Board from "../Board/BoardComponent";
 import "./BoardGrid.css";
-import { Button, TextField } from "@mui/material";
+import { Button, MenuItem, Select, TextField } from "@mui/material";
 import { ThemeContext } from "../../contexts/ThemeContext";
 
 const BoardGrid = ({
@@ -10,28 +10,12 @@ const BoardGrid = ({
   handleAddBoard,
   handleBoardFilter,
   onBoardDeleted,
+  handleBoardSearch,
+  handleBoardSort,
 }) => {
   const { currentTheme } = useContext(ThemeContext);
 
-  // Render a grid of boards
-  // TODO: Implement drag and drop functionality 
-  // (Finish Material UI migration before implementing drag and drop)
-  // (Also finish postgres migration before implementing drag and drop)
-
-  // TODO: Sort functionality
-  //Use a drop down to decide which way to sort
-  const handleBoardSort = (boards) => {
-    // Sort by name (A-Z or Z-A)
-    // Sort by creation date (recent or older)
-    // Sort by last changed date(recent or older)
-    // For now, just log the boards to console
-  };
-
-  // TODO: Search functionality
-  //Use a text input to search boards and filter in real time
-  const handleBoardSearch = (e) => {
-    // Filter boards by name based on search query
-  };
+  const [sortValue, setSortValue] = useState("last_changed");
 
   return (
     <div
@@ -47,14 +31,22 @@ const BoardGrid = ({
         >
           Add Board
         </Button>
-        <Button
-          className="grid-option-btn"
-          variant="contained"
-          type="primary"
-          onClick={() => handleBoardSort(boards)}
+
+        {/* MUI Select for sort */}
+        <Select
+          value={sortValue}
+          size="small"
+          onChange={(e) => {
+            setSortValue(e.target.value);
+            handleBoardSort(e.target.value);
+          }}
         >
-          Sort
-        </Button>
+          <MenuItem value="last_changed">Last Changed</MenuItem>
+          <MenuItem value="name-asc">Name (A-Z)</MenuItem>
+          <MenuItem value="name-desc">Name (Z-A)</MenuItem>
+          <MenuItem value="newest">Newest</MenuItem>
+          <MenuItem value="oldest">Oldest</MenuItem>
+        </Select>
         <Button
           className="grid-option-btn"
           variant="contained"

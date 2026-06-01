@@ -9,9 +9,7 @@ export const getBoardsByUser = async (userId) => {
 };
 
 export const getBoardById = async (boardId) => {
-  console.log("getBoardById called with:", boardId);
   const { rows } = await pool.query("SELECT * FROM boards WHERE id = $1", [boardId]);
-  console.log("getBoardById rows:", rows);
   return rows[0];
 };
 

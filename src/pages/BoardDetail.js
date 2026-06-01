@@ -7,6 +7,7 @@ import { ThemeContext } from "../contexts/ThemeContext";
 import "./BoardDetail.css";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
 
 const BoardDetail = () => {
   const { boardId } = useParams();
@@ -63,62 +64,25 @@ const BoardDetail = () => {
 
   return (
     <div className={`board-detail-container ${currentTheme}`}>
-      {/* Back Button */}
-      <Button
-        className="back-button"
-        variant="contained"
-        type="secondary"
-        onClick={() => navigate("/dashboard")}
-      >
-        Back to Dashboard
-      </Button>
-
-      <h1 className={"board-header"}>{board ? board.name : "Loading..."}</h1>
-
-      {/* Add List Button */}
-      {!showListForm ? (
+      <div className="board-header">
+        {/* Back Button */}
         <Button
-          className="add-list-button"
+          className="back-button"
           variant="contained"
-          type="primary"
-          onClick={() => setShowListForm(true)}
+          type="secondary"
+          onClick={() => navigate("/dashboard")}
         >
-          Add List
+          Back to Dashboard
         </Button>
-      ) : (
-        <div className="add-list-form">
-          <TextField
-            type="text"
-            placeholder="Enter list name"
-            value={newListName}
-            onChange={(e) => setNewListName(e.target.value)}
-            className="list-input"
-            variant="outlined"
-            size="small"
-            fullWidth
-          />
-          <Button
-            className="add-list-btn"
-            variant="contained"
-            onClick={handleAddList}
-          >
-            Create
-          </Button>
-          <Button
-            className="cancel-list-btn"
-            variant="outlined"
-            onClick={() => setShowListForm(false)}
-          >
-            Cancel
-          </Button>
-        </div>
-      )}
+
+        <h1>{board ? board.name : "Loading..."}</h1>
+      </div>
 
       {/* Lists Display */}
       {/* Conditionally render loading icon, board Grid or no boards message */}
       {loading ? (
         <div className="loading-icon">Loading...</div>
-      ) : lists.length > 0 ? (
+      ) : (
         <div className="lists-container">
           {lists.map((list) => (
             <List
@@ -130,11 +94,34 @@ const BoardDetail = () => {
               onListUpdated={fetchLists}
             />
           ))}
+          {!showListForm ? (
+            <div
+              className="add-list-placeholder"
+              onClick={() => setShowListForm(true)}
+            >
+              <AddIcon />
+            </div>
+          ) : (
+            <div className="add-list-form">
+              <TextField
+                type="text"
+                placeholder="List name"
+                value={newListName}
+                onChange={(e) => setNewListName(e.target.value)}
+                className="list-input"
+                variant="outlined"
+                size="small"
+                fullWidth
+              />
+              <Button variant="contained" onClick={handleAddList}>
+                Create
+              </Button>
+              <Button variant="outlined" onClick={() => setShowListForm(false)}>
+                Cancel
+              </Button>
+            </div>
+          )}
         </div>
-      ) : (
-        <p className="no-lists-message">
-          You have no lists yet. Click 'Add List' to create one!
-        </p>
       )}
     </div>
   );
